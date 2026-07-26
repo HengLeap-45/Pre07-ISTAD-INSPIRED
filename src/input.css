@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+
+@source "../node_modules/flowbite";
+@import "tailwindcss";
+
+/* Preline */
+@source "../node_modules/preline/dist/*.js";
+@import "../node_modules/preline/variants.css";
+
+/* Forms plugin */
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-primary: #F7F7F7;
+  --color-secondary: #D9D9D9;
+  --color-secondary2: #564CE5;
+  --color-accent1: #FFFF00;
+  --color-accent2:#B3B3FF;
+}
+
+@theme {
+    --font-title: 'Inter Bold';
+    --font-description: 'Inter Regular';
+
+}
+
+@theme {
+    --text-title-size: 48px;
+    --text-description-size: 32px;
+    
+}
+ @theme {
+   --text-title-card-size: 32px;
+   --text-description-card-size: 24px;
+ }
+
