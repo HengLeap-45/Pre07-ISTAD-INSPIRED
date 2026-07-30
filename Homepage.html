@@ -56,51 +56,116 @@
     width: 0.35em;
   }
 
+   @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
  
-  @keyframes fadeSlideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
  
-  @keyframes imgReveal {
-    from { opacity: 0; transform: translateY(30px) scale(0.94); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
+    .reveal-img {
+      opacity: 1;
+      animation: slideInUp 1s ease-out forwards;
+      animation-timeline: view(100px);
+      animation-range: entry 0% cover 30%;
+    }
  
-  @keyframes letterIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    .reveal-text {
+      opacity: 0;
+      animation: slideInRight 1s ease-out forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
  
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-12px); }
-  }
+    @supports not (animation-timeline: view()) {
+      .reveal-img,
+      .reveal-text {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    
+    }@keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateX(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
  
-  .letter { display: inline-block; }
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateY(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
  
-   .Ccolor{
-    color:#564CE5;
-   }
-   #puplar{
-    color:#564CE5;
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30px;
-    letter-spacing: 5px;
-    font-weight: bold;
-   }
-   #Ccolor2{
-    color: red;
-    text-align: center;
-   }
-   #box2{
-    color: red;
-    text-align: center;
-   }
-   .fixone{
-    text-align: center;
-   }
+    .reveal-img1 {
+      opacity: 1;
+      animation: slideInUp 1s ease-out forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text1 {
+      opacity: 100%;
+      animation: slideInUp 3s ease-out forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img1,
+      .reveal-text1 {
+        opacity: 100%;
+        transform: translateX(60%) translateY(0);
+      }
+    }
+    .reveal-text2 {
+      opacity: 1;
+      animation: slideInUp 1s ease-out forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text2 {
+      opacity: 100%;
+      animation: slideInUp 3s ease-out forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img2,
+      .reveal-text2 {
+        opacity: 100%;
+        transform: translateY(0) translateX(60%);
+      }
+    }
+
+
+ 
 </style>
 
 
@@ -129,10 +194,12 @@
     <a href="#" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
   </div>
 </nav>
+
 <section class=" max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16" id="margin">
-  <div class="flex-1 text-center md:text-left text-[#564CE5] md:pl-16">
+  <div class="grid justify-start mr-[200px]">
+  <div class=" p-5 flex-1 text-center md:text-left text-[#564CE5] md:pl-16">
     <h1 class="letter text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-[#564CE5]">
-      Showcase Your Projects,<br class="hidden md:inline" /> <span class="Ccolor">Inspire the Next Generation</span>
+      <span class="text-red-600 " id="red">Showcase Your Projects  </span><br class="hidden md:inline" /> <span class="text-[#564CE5] text-2xl">Inspire the Next Generation</span>
     </h1>
     <p class="mt-6 text-gray-500 text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
       Publish your best work, discover innovative student projects, receive valuable feedback, and build a portfolio that prepares you for future careers.
@@ -142,89 +209,111 @@
         Learn more
       </button>
     </div>
+    </div>
   </div>
+  </div>
+  <div class="grid justify-end mr-[100px]">
   <div class="flex-1 flex letter justify-center md:justify-end">
     <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] aspect-square flex items-center justify-center">
       <img src="image/hero sectionpicture.png" class="w-full max-w-[400px] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300">
     </div>
   </div>
+  </div>
+  </div>
 </section>
 <div class="  marquee-track  bg-[#564CE5] text-white py-3 overflow-hidden" id="animation-letters">
   <div class="flex gap-12 justify-center flex-wrap font-bold text-sm tracking-wide">
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class="marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>PROJECTS</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>SHOWCASE</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>PROJECTS</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>SHOWCASE</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>PROJECTS</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>SHOWCASE</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>PROJECTS</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>SHOWCASE</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>PROJECTS</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>EXCELLENT</span><span class=" marquee-item">✦</span>
+    <span>CREATIVE</span><span class=" marquee-item">✦</span>
+    <span>STUDENTS</span><span class=" marquee-item">✦</span>
   </div>
 </div>
 <section class=" mx-auto px-10 py-0 space-y-10">
   <div class=" grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <div class=" font-extrabold text-xl mb-5" id="Ccolor2">Benefits for Students</div>
+    <div class="reveal-text1">
+      <div class="text-red-600 text-center  font-extrabold text-xl mb-5" id="Ccolor2">Benefits for Students</div>
       <ul class="space-y-5">
-        <li class="flex gap-4 text-gray-500 text-[14.5px]  ">
+        <li class="flex gap-4  text-[14.5px]  ">
           <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 text-coral flex items-center justify-center text-sm">🌐</span>
           Students can publish their projects online and build a professional portfolio to demonstrate their skills.
         </li>
-        <li class="flex gap-4 text-gray-500 text-[14.5px] leading-relaxed">
+        <li class="flex gap-4  text-[14.5px] leading-relaxed">
           <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 text-coral flex items-center justify-center text-sm">🔍</span>
           Students can explore projects from different generations and gain new ideas and inspiration. Students can upload, edit, and organize their projects in one platform.
         </li>
       </ul>
     </div>
-    <div class=" reveal-right reveal-img   flex justify-center">
+    <div class="reveal-img1  reveal-img1 reveal-text1   flex justify-center">
       <img src="image/photo_2026-07-25_17-14-45-removebg-preview.png" class="  w-[380px] h-[380px] ">
     </div>
   </div>
-  <div class="grid md:grid-cols-2 gap-12 items-center">
-    <div class="order-2 md:order-1 reveal-left reveal-img flex justify-center">
+  <div class="reveal-text grid md:grid-cols-2 gap-12 items-center">
+    <div class="order-2 md:order-1  reveal-img flex justify-center">
      <img src="image/about_us-removebg-preview.png" class="w-[380px] h-[380px]">
     </div>
-    <div class="order-1 md:order-2 reveal-right reveal-text">
-      <div class="text-coral font-extrabold text-xl mb-5  " id="box2">Benefits for Users</div>
+    <div class="order-1 md:order-2  reveal-text px-10  text-black-600">
+      <div class="text-red-600 text-center font-extrabold text-xl mb-5 reveal-text  " id="box2">Benefits for Users</div>
       <ul class="space-y-5">
-        <li class="flex gap-4 text-gray-500 text-[14.5px] leading-relaxed">
-          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 text-coral flex items-center justify-center text-sm">📝</span>
+        <li class="flex gap-4  text-[14.5px] leading-relaxed text-black px-10 ">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-black  ">📝</span>
           Users can review projects and exchange ideas through comments.
         </li>
-        <li class="flex gap-4 text-gray-500 text-[14.5px] leading-relaxed">
-          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 text-coral flex items-center justify-center text-sm">💡</span>
+        <li class="flex gap-4 text-[14.5px] leading-relaxed text-black px-10 ">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50  flex items-center justify-center text-sm text-black  ">💡</span>
           Users can discover creative and innovative projects from other students. Users can search, browse, and filter projects quickly.
         </li>
       </ul>
@@ -244,12 +333,9 @@
     </div>
 </section>
 </section>
-     <div class="px-4 sm:px-6 lg:px-8 pb-16">
-        <div class="max-w-6xl mx-auto">
-            <!-- Cards Grid -->
+     <div class=" reveal-text grid px-4 sm:px-6 lg:px-8 pb-16">
+        <div class=" reveal-text mx-auto ">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
-                
-                <!-- Card 1 -->
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -283,8 +369,6 @@
                         </div>
                     </div>
                 </div>
- 
-                <!-- Card 2 -->
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -318,8 +402,6 @@
                         </div>
                     </div>
                 </div>
- 
-                <!-- Card 3 -->
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -353,8 +435,6 @@
                         </div>
                     </div>
                 </div>
- 
-                <!-- Card 4 -->
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -389,7 +469,7 @@
                     </div>
                 </div>
  
-                <!-- Card 5 -->
+                
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -423,8 +503,6 @@
                         </div>
                     </div>
                 </div>
- 
-                <!-- Card 6 -->
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -462,20 +540,25 @@
             </div>
         </div>
     </div>
+    <div class="flex justify-center">
+     <button type="button" class="reveal-text1  bg-[#564CE5] hover:bg-yellow-600 text-white  font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg  cursor-pointer">
+        View More 
+      </button>
+    </div>
     <br>
     <div class="py-8 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto text-center">
-            <h4 class="text-2xl md:text-2xl font-bold text-blue-600 mb-4 tracking-tight">
+        <div class="max-w-xl mx-auto text-center">
+            <h4 class="text-[30px] md:text-[30px] font-bold text-blue-600 mb-4 tracking-tight">
                 What our Student say
             </h4>
-            <p class="text-xl md:text-xl text-slate-700 leading-relaxed max-w-xl mx-auto font-light">
+            <p class="text-[16px] md:text-[16px] text-black-600 leading-relaxed max-w-xl mx-auto ">
                 Master essential frontend technologies and frameworks to build modern, 
                 responsive web applications with clean and efficient code.
             </p>
         </div>
     </div>
- <div class="grid justify-center">
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+ <div class="grid justify-center  reveal-img2  ">
+  <div class=" reveal-text2  grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow p-5">
       <div class="text-gold text-sm mb-3" fill="#F9AA01">★★★★★</div>
       <p class="mb-4 text-[14px] font-normal text-gray-700 leading-relaxed min-h-[66px]">The project-based structure meant I actually had things to show employers.</p>
@@ -532,48 +615,74 @@
     </button>
   </div>
 </div>
-<<div class="  marquee-track  bg-[#564CE5] text-white py-3 overflow-hidden" id="animation-letters">
+<div class="  marquee-track  bg-[#564CE5] text-white py-3 overflow-hidden" id="animation-letters">
   <div class="flex gap-12 justify-center flex-wrap font-bold text-sm tracking-wide">
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>HTML</span><span class=" marquee-item">✦</span>
-    <span>CSS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class=" marquee-item">✦</span>
-    <span>TAILWIND CSS</span><span class=" marquee-item">✦</span>
-    <span>NODE JS</span><span class=" marquee-item">✦</span>
-    <span>JAVASCRIPT</span><span class=" marquee-item">✦</span>
-    <span>BOOTSTRAP</span><span class="marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>ABOUT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class=" marquee-item">✦</span>
+    <span>WEB DESIGN</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>ABOUT US</span><span class=" marquee-item">✦</span>
+    <span>BEST WORK</span><span class=" marquee-item">✦</span>
+    <span>STUDENT</span><span class=" marquee-item">✦</span>
+    <span>POSTED</span><span class=" marquee-item">✦</span>
+    <span>PROJECT</span><span class=" marquee-item">✦</span>
+    <span>CONTACT US</span><span class=" marquee-item">✦</span>
+    <span>POPULAR</span><span class="marquee-item">✦</span>
   </div>
 </div>
 </div>
