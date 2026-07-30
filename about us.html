@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../style/about-us.css" />
+    <style>
+   .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 25s linear infinite;
+  }
+ 
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+ 
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+ 
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+ 
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: letterIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+ 
+  @keyframes letterIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .letter.space {
+    width: 0.35em;
+  }
+
+   @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+ 
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+ 
+    .reveal-img {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(100px);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text {
+      opacity: 0;
+      animation: slideInRight 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img,
+      .reveal-text {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    
+    }@keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateX(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+ 
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateY(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+ 
+    .reveal-img1 {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text1 {
+      opacity: 100%;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img1,
+      .reveal-text1 {
+        opacity: 100%;
+        transform: translateX(60%) translateY(0);
+      }
+    }
+    .reveal-text2 {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text2 {
+      opacity: 100%;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img2,
+      .reveal-text2 {
+        opacity: 100%;
+        transform: translateY(0) translateX(60%);
+      }
+    }
+
+
+ 
+</style>
+
+  </head>
+  <body class="bg-light">
+    <nav class="bg-white">
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4"
+      >
+        <a
+          href="#"
+          class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm"
+        >
+          <img src="image/stadia-logo-transparent.png" class="w-24" />
+        </a>
+
+        <div
+          class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1"
+        >
+          <a
+            href="#"
+            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500  hover:bg-blue-400 hover:text-white"
+            >PROJECT</a
+          >
+          <a
+            href="#"
+            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy hover:bg-blue-400 hover:text-white"
+            >POST</a
+          >
+          <a
+            href="#"
+            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy hover:bg-blue-400 hover:text-white"
+            >ABOUT US</a
+          >
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
+          >
+            <i class="fa-solid fa-sun"></i>
+          </button>
+          <button
+            class="w-9 h-9 rounded-full bg-[#2b2a3a] text-white flex items-center justify-center"
+            href=""
+          >
+            <img
+              src="../pic/38301b625a39d22fe66145d6e96b619b.jpg"
+              class="w-9 h-9 rounded-full"
+            />
+          </button>
+          <button
+            data-collapse-toggle="mobile-menu"
+            type="button"
+            class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+      <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
+        <a href="#" class="block py-2 font-semibold text-navy">PROJECT</a>
+        <a href="#" class="block py-2 font-semibold text-gray-500">HOME</a>
+        <a href="#" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
+      </div>
+    </nav>
+    <main>
+      <section class="mx-auto lg:ml-20 px-4 sm:px-6 lg:px-8 py-12">
+        <div
+          class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12"
+        >
+          <div class="max-w-xl text-left">
+            <!-- Single Inline Heading -->
+            <h1 class="text-2xl md:text-3xl font-bold leading-tight mb-6">
+              <span class="text-[#ff4242]">Empowering</span>
+              <span class="text-[#2040a1]"> Future Innovators</span>
+            </h1>
+
+            <!-- Updated Body Text -->
+            <p
+              class="text-slate-800 text-base md:text-lg leading-snug mb-8 max-w-lg"
+            >
+              We are a learning platform dedicated to empowering students with
+              practical technology skills through hands-on learning, real-world
+              projects, and continuous mentorship.
+            </p>
+
+            <!-- Button -->
+            <a
+              href="#"
+              class="inline-block bg-[#3b3abe] hover:bg-[#2e2ea3] text-white font-bold text-lg px-8 py-3.5 rounded-2xl transition-all shadow-md active:scale-95"
+            >
+              Learn more
+            </a>
+          </div>
+          <div class="flex-1 flex justify-end items-center w-full lg:mr-20">
+            <img
+              src="image/about_us-removebg-preview.png"
+              alt="Hero Illustration"
+              class="max-w-full h-85 md:h-100 object-contain lg:ml-45 rounded"
+            />
+          </div>
+        </div>
+      </section>
+       <div class="  marquee-track  bg-[#564CE5] text-white py-3 overflow-hidden" id="animation-letters">
+  <div class="flex gap-12 justify-center flex-wrap font-bold text-sm tracking-wide">
+    <span>STUDENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+  </div>
+      </div>
+      <div class="text-center max-w-xl mx-auto py-12 px-4">
+        <h3 class="text-[#2040a1] text-lg font-bold mb-4">
+          Our mission and Vision
+        </h3>
+        <p class="text-slate-800 text-sm md:text-base leading-relaxed">
+          We build the shortest honest path between curiosity and a real skill —
+          <br class="hidden sm:inline" />
+          no fluff, no gatekeeping, just structured practice that sticks.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto p-6">
+        <!-- Card 1: Our mission -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">❤️</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our mission</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            To make practical tech skills accessible to anyone, anywhere —
+            turning self-paced study into real, job-ready ability through
+            hands-on courses and mentorship.
+          </p>
+        </div>
+
+        <!-- Card 2: Our Value -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">💎</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our Value</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Learn by building, feedback over lectures, and community over
+            competition. Every course is judged by one thing: can it get you
+            hired or promoted.
+          </p>
+        </div>
+
+        <!-- Card 3: Our Vision -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">🎯</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our Vision</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            A world where geography and budget never decide who gets to become a
+            developer — where one platform can take a beginner from first line
+            of code to first job offer.
+          </p>
+        </div>
+      </div>
+      <div class="w-full bg-white border-y border-gray-100 py-10 my-8">
+        <div
+          class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4"
+        >
+          <!-- Item 1: Projects -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">📁</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">168+</span>
+              <span class="block text-[#2040a1] text-lg">Project</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Time -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">⏳</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">2years</span>
+              <span class="block text-[#2040a1] text-lg">Time</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Technology -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">🤖</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">Technology</span>
+              <span class="block text-[#2040a1] text-lg">15+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="bg-[#f8f9fa] py-16 px-4">
+        <div class="max-w-6xl mx-auto space-y-16">
+          <!-- SECTION 1: MENTORS -->
+          <div>
+            <h2
+              class="text-[#3b3abe] font-bold text-center uppercase tracking-wider text-lg mb-10"
+            >
+              MENTORS
+            </h2>
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16">
+              <!-- Mentor 1 -->
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/image copy 3.png"
+                  alt="Eung Lyzhia"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Eung Lyzhia
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <!-- Mentor 2 -->
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/teacher.jpg"
+                  alt="Kung Sovannda"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Kung Sovannda
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+          <div>
+            <h2
+              class="text-[#3b3abe] font-bold text-center uppercase tracking-wider text-lg mb-12"
+            >
+              TEAM MEMBER
+            </h2>
+
+   
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/image copy 4.png"
+                  alt="Tha Leapheng"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Tha Leapheng
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/image copy 5.png"
+                  alt="Chao Sokthearith"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chao Sothearith
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: 3 Members -->
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/baung.jpg"
+                  alt="Long Baung"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Long Baung
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/charkya.jpg"
+                  alt="Ngin Chakreya"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Ngin Chakreya
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/srey neang.jpg"
+                  alt="Chet Sreyneang"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chet Sreyneang
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: 4 Members -->
+            <div class="flex flex-wrap justify-center gap-10 md:gap-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/lyhong.png"
+                  alt="Yun Menghong"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Yun Menghong
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/fang.jpg"
+                  alt="Ly fang"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">Ly fang</h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="image/satya.jpg"
+                  alt="Sun Rathanak sathya"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3 leading-snug">
+                  Sun Rathanak<br />sathya
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <!-- Member 4 (Placeholder Avatar) -->
+              <div class="flex flex-col items-center text-center w-40">
+                <div
+                  class="w-36 h-36 rounded-full bg-gray-500 mb-4 shadow-sm"
+                ></div>
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chhun Sopharoth
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="text-center max-w-xl mx-auto py-12 px-4">
+        <h1 class="text-2xl md:text-3xl font-bold leading-tight mb-6">
+          <span class="text-[#ff4242]">We are a team</span>
+          <span class="text-[#2040a1]"> with a shared goal</span>
+        </h1>
+        <p class="text-slate-800 text-sm md:text-base leading-relaxed">
+          We build the shortest honest path between curiosity and a real skill —
+          <br class="hidden sm:inline" />
+          no fluff, no gatekeeping, just structured practice that sticks.
+        </p>
+      </div>
+      <div
+        class="marquee-track bg-[#564CE5] text-white py-3 overflow-hidden"
+        id="animation-letters"
+      >
+        <div class="  marquee-track  bg-[#564CE5] text-white overflow-hidden" id="animation-letters">
+  <div class="flex gap-12 justify-center flex-wrap font-bold text-sm tracking-wide">
+    <span>STUDENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>SHOWCASE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POSTED</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>PROJECTS</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>BEST WORK</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>POPULAR</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>EXCELLENT</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>CREATIVE</span><span class="text-yellow-500 marquee-item">✦</span>
+    <span>STUDENTS</span><span class="text-yellow-500 marquee-item">✦</span>
+  </div>
+      </div>
+    </main>
+    <footer class="bg-[#f5f5f7] px-6">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10">
+        <div>
+          <div class="flex items-center gap-2 font-extrabold text-navy">
+            <img src="image/stadia-logo-transparent.png" alt="" class="w-40" />
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">EXPLORE</h5>
+          <ul class="space-y-2 text-[13.5px] text-gray-500">
+            <li><a href="#" class="hover:text-navy">Home</a></li>
+            <li><a href="#" class="hover:text-navy">About Us</a></li>
+            <li><a href="#" class="hover:text-navy">List project</a></li>
+            <li><a href="#" class="hover:text-navy">Post project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">Connect With Us</h5>
+          <p class="text-[13.5px] text-gray-500 mb-3">
+            Stay updated with our latest news and events.
+          </p>
+          <div class="flex gap-2">
+            <span><i class="fa-brands fa-facebook"></i></span>
+            <span><i class="fa-brands fa-youtube"></i></span>
+            <span><i class="fa-brands fa-github"></i></span>
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">
+            Sponsored and organized by ISTAD
+          </h5>
+          <div>
+            <img src="image/New Logo iSTAD Full-12.png" alt="" class="w-48" />
+          </div>
+        </div>
+      </div>
+      <b
+        ><div
+          class="text-center tmax-w-7xl mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500"
+        >
+          © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the
+          next generation through their projects.
+        </div></b
+      >
+    </footer>
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="../node_modules/preline/dist/preline.js"></script>
+  </body>
+</html>
