@@ -9,38 +9,42 @@
 
 </head>
 <body class="bg-gray-100 min-h-screen">
+<div class="max-w-2xl mx-auto py-6 px-4">
 
-  <div class="max-w-2xl mx-auto py-6 px-4">
-
+    <!-- Top bar -->
     <div class="flex items-center justify-between mb-8">
-      <a href="#" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600">
+      <a href="#" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-blue-600">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back To Home
       </a>
-      <button type="button" data-tooltip-target="settings-tooltip" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
+      <a type="button" data-tooltip-target="settings-tooltip" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-      </button>
+      </a>
       <div id="settings-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
         Settings
       </div>
     </div>
-        <div class="flex items-start gap-5 mb-6">
-      <img src="image/heng picture.JPG" alt="Profile avatar"class="w-24 h-24 rounded-full bg-gray-200 object-cover shrink-0" />
+
+    <!-- Profile header -->
+    <div class="flex items-start gap-5 mb-6">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaBCpyQIJSGIUWdn05vYhV4n6Tcf1LzrZSsHHBA8I0XA&s=10"
+           alt="Profile avatar"
+           class="w-24 h-24 rounded-full bg-gray-200 object-cover shrink-0" />
 
       <div class="flex-1 pt-1">
         <h1 class="text-xl font-bold text-gray-900">
-          TOP USER AI <span class="text-sm font-normal text-gray-500">(she/her)</span>
+          Ngin Chakreya <span class="text-sm font-normal text-gray-500">(she/her)</span>
         </h1>
         <p class="text-sm text-gray-500 mt-0.5">UI/UX Intern</p>
 
         <div class="flex items-center gap-8 mt-4">
           <div class="text-sm">
-            <span class="block font-bold text-gray-900">1</span>
+            <span class="block font-bold text-gray-900" id="stat-posts">1</span>
             <span class="text-gray-500">Post</span>
           </div>
           <div class="text-sm">
@@ -65,22 +69,22 @@
       on visual design systems and interactive prototyping to build the future of web interfaces.
     </p>
     <div class="flex items-center bg-gray-200 rounded-xl p-1 mb-8">
-      <button class="flex-1 flex items-center justify-center py-2.5 rounded-lg bg-white shadow-sm">
-        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <a href="./history-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2" />
         </svg>
-      </button>
-      <button class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
+      </a>
+      <a href="./favorite page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 4h12v16l-6-4-6 4V4z" />
         </svg>
-      </button>
-      <button class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      </a>
+      <a href="./useracchistory.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg bg-white shadow-sm ">
+        <svg class="w-5 h-5  text-indigo-600"  fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" />
         </svg>
-      </button>
+      </a>
     </div>
     <h2 class="text-lg font-bold text-gray-900 mb-4">Recent Activity</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
