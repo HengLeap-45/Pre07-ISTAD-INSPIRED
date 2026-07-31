@@ -235,14 +235,9 @@
   </div>
 
 <script>
-/* ---------------------------------------------------------------
-   Fake backend: in-memory "database" + a small async API layer
-   that mimics real network calls (latency + occasional promise
-   rejection) so the front end below behaves like it's talking
-   to a real server.
---------------------------------------------------------------- */
+
 const DB = {
-  votes: { helpful: 168, notForMe: 4, userVote: null }, // userVote: 'helpful' | 'notForMe' | null
+  votes: { helpful: 168, notForMe: 4, userVote: null }, 
   author: { following: false },
   comments: [
     {
