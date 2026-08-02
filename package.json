@@ -15,7 +15,7 @@
   },
   "scripts": {
     "css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "serve": "live-server . --entry-file=html/index.html --port=3000 --watch=html,src,js,components,store,image --mount=/:./html --mount=/js:./js --mount=/src:./src --mount=/image:./image --mount=/components:./components --mount=/store:./store --mount=/node_modules:./node_modules",
+    "serve": "live-server . --entry-file=html/index.html --port=3000 --watch=html,src,js,components,store,image,vendor --mount=/:./html --mount=/js:./js --mount=/src:./src --mount=/image:./image --mount=/components:./components --mount=/store:./store --mount=/vendor:./vendor --mount=/node_modules:./node_modules",
     "prestart": "kill-port 3000",
     "start": "concurrently -n CSS,SERVER -c cyan,green \"npm run css\" \"npm run serve\"",
     "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify"
