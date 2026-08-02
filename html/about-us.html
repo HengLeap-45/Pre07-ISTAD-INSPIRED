@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../src/output.css" />
     <link rel="stylesheet" href="../style/about-us.css" />
+     <link rel="stylesheet" href="../css/style.css" />
     <style>
    .marquee-track {
     display: flex;
@@ -169,68 +170,85 @@
 </style>
 
   </head>
-  <body class="bg-light">
-    <nav class="bg-white">
-      <div
-        class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4"
-      >
-        <a
-          href="#"
+  <nav class="bg- border-gray-200 px-6 py-3 shadow-lg relative z-20">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
+
+    <!-- Logo -->
+     <a
+          href="Homepage.html"
           class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm"
         >
-          <img src="image/stadia-logo-transparent.png" class="w-24" />
+          <img src="image/stadia-logo-transparent.png" class="w-12" />
         </a>
 
-        <div
-          class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1"
-        >
-          <a
-            href="#"
-            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500  hover:bg-blue-400 hover:text-white"
-            >PROJECT</a
-          >
-          <a
-            href="#"
-            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy hover:bg-blue-400 hover:text-white"
-            >POST</a
-          >
-          <a
-            href="#"
-            class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy hover:bg-blue-400 hover:text-white"
-            >ABOUT US</a
-          >
-        </div>
+    <!-- Mobile toggle button -->
+    <button data-collapse-toggle="navbar-default" type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 rounded-lg md:hidden hover:bg-gray-200"
+      aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 17 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+      </svg>
+    </button>
 
-        <div class="flex items-center gap-3">
-          <button
-            class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
-          >
-            <i class="fa-solid fa-sun"></i>
-          </button>
-          <button
-            class="w-9 h-9 rounded-full bg-[#2b2a3a] text-white flex items-center justify-center"
-            href=""
-          >
-            <img
-              src="../pic/38301b625a39d22fe66145d6e96b619b.jpg"
-              class="w-9 h-9 rounded-full"
-            />
-          </button>
-          <button
-            data-collapse-toggle="mobile-menu"
-            type="button"
-            class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
-          >
-            ☰
-          </button>
+    <!-- Center pill nav -->
+    <div class="hidden md:flex" id="navbar-default">
+      <ul class="flex items-center gap-1 bg-white rounded-full px-2 py-1 shadow-md border border-gray-200">
+        <li>
+          <a href="Home-page.html" class="block px-5 py-2 rounded-full bg-blue-600 text-white font-semibold text-sm">HOME</a>
+        </li>
+        <li>
+          <a href="all-project.html" class="block px-5 py-2 rounded-full text-gray-800 font-semibold text-sm hover:bg-gray-100 transition">PROJECT</a>
+        </li>
+        <li>
+          <a href="about-us.html" class="block px-5 py-2 rounded-full text-gray-800 font-semibold text-sm hover:bg-gray-100 transition">ABOUT US</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right side actions -->
+    <div class="flex items-center gap-3">
+      <a href="post-project.html" type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-sm px-7 py-2.5 transition">
+        CREATE POST
+      </a>
+
+      <!-- Dark mode toggle -->
+      <a id="theme-toggle" type="button"
+        class="w-10 h-10 flex items-center justify-center text-gray-800 bg-white rounded-full border border-gray-200 shadow hover:bg-gray-100 focus:ring-4 focus:ring-gray-200">
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+        <svg id="theme-toggle-light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+      </a>
+
+      <!-- Profile dropdown (Flowbite pattern) -->
+      <button type="button" class="w-10 h-10 flex items-center justify-center bg-gray-900 rounded-full text-white hover:bg-gray-800"
+        id="user-menu-button" data-dropdown-toggle="user-dropdown">
+        <span class="sr-only">Open user menu</span>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+        </svg>
+      </button>
+
+      <!-- Dropdown menu (Flowbite) -->
+      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900">Your Account</span>
         </div>
+        <ul class="py-2">
+          <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a></li>
+          <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a></li>
+          <li><a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a></li>
+        </ul>
       </div>
-      <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
-        <a href="#" class="block py-2 font-semibold text-navy">PROJECT</a>
-        <a href="#" class="block py-2 font-semibold text-gray-500">HOME</a>
-        <a href="#" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
-      </div>
-    </nav>
+    </div>
+
+  </div>
+</nav>
+  <body class="bg-light">
     <main>
       <section class="mx-auto lg:ml-20 px-4 sm:px-6 lg:px-8 py-12">
         <div
