@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Your New Project</title>
+<meta name="description" content="Post your project to STADIA and share it with the community.">
+<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+<link rel="stylesheet" href="../src/output.css">
+<style>
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  /* brand color utilities (page no longer depends on the Tailwind CDN's runtime
+     config, so the "brand" palette used throughout this form is defined here) */
+  .text-brand { color: #5B4FE9; }
+  .hover\:text-brand:hover { color: #5B4FE9; }
+  .hover\:text-brand-dark:hover { color: #4B3FD9; }
+  .bg-brand { background-color: #5B4FE9; }
+  .bg-brand\/5 { background-color: rgba(91, 79, 233, 0.05); }
+  .hover\:bg-brand-dark:hover { background-color: #4B3FD9; }
+  .hover\:bg-brand\/5:hover { background-color: rgba(91, 79, 233, 0.05); }
+  .border-brand { border-color: #5B4FE9; }
+  .hover\:border-brand\/50:hover { border-color: rgba(91, 79, 233, 0.5); }
+  .focus\:ring-brand\/40:focus { outline: none; box-shadow: 0 0 0 2px rgba(91, 79, 233, 0.4); }
+
+  .count-pop {
+    display: inline-block;
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.28s ease;
+  }
+  .count-pop.bump {
+    animation: countBump 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes countBump {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    100% { transform: scale(1); }
+  }
+
+  .vote-btn {
+    transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .vote-btn:active {
+    transform: scale(0.96);
+  }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+  <nav class="bg-white">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="./index.html" class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
+        <img src="../image/stadia-logo-transparent.png" class="w-24">
+      </a>
+      <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
+        <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">PROJECT</a>
+        <a href="./create-project.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-[#564CE5] text-white">POST CREATOR</a>
+        <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">ABOUT US</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3">
+          <div data-auth="guest" class="flex items-center gap-2">
+            <a href="./login.html" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">Sign In</a>
+            <a href="./signup.html" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Sign Up</a>
+          </div>
+          <div data-auth="user" class="hidden flex items-center gap-2">
+            <a href="./dashboard.html" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy" title="Account">
+            <span data-auth="user-avatar" class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"></span>
+            <span data-auth="user-name">Account</span>
+          </a>
+            <button type="button" data-action="logout" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Log out</button>
+          </div>
+        </div>
+        <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+        <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">☰</button>
+      </div>
+    </div>
+    <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
+      <a href="./projects.html" class="block py-2 font-semibold text-gray-500">PROJECT</a>
+      <a href="./create-project.html" class="block py-2 font-semibold text-navy">POST CREATOR</a>
+      <a href="./about-us.html" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
+      <div data-auth="guest" class="pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+        <a href="./login.html" class="font-semibold text-gray-500">Sign In</a>
+        <a href="./signup.html" class="font-semibold text-[#564CE5]">Sign Up</a>
+      </div>
+      <div data-auth="user" class="hidden pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+        <a href="./dashboard.html" class="flex items-center gap-2 font-semibold text-gray-500" title="Account">
+        <span data-auth="user-avatar" class="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-white text-[10px] font-bold shrink-0 bg-gray-300"></span>
+        <span data-auth="user-name">Account</span>
+      </a>
+        <button type="button" data-action="logout" class="font-semibold text-red-600">Log out</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="formView" class="max-w-2xl mx-auto px-4 py-6">
+
+    <a href="./projects.html" id="backHomeFromForm" class="flex items-center gap-2 text-sm text-gray-700 font-medium mb-8">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back To Home
+    </a>
+
+    <h1 id="formHeading" class="text-center text-brand font-bold text-lg tracking-wide mb-6">POST YOUR NEW PROJECT HERE</h1>
+
+    <div class="flex items-center gap-1 bg-gray-100 rounded-full p-1 mb-6 max-w-xs mx-auto">
+      <button type="button" id="tabEditBtn" class="flex-1 px-4 py-2 rounded-full text-sm font-semibold bg-white shadow-sm text-gray-900 transition">Edit Details</button>
+      <button type="button" id="tabPreviewBtn" class="flex-1 px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-gray-700 transition">Preview</button>
+    </div>
+
+    <form id="projectForm" novalidate>
+      <div id="formAlert" class="hidden mb-4 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2"></div>
+
+      <div id="editPane">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-sm font-semibold text-gray-800 mb-2">Project Title <span class="text-red-500">*</span></label>
+          <input id="fTitle" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-800 mb-2">Project Type (Category) <span class="text-red-500">*</span></label>
+          <select id="fCategory" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+            <option value="">Loading categories...</option>
+          </select>
+          <div id="newCategoryRow" class="hidden mt-2 flex items-center gap-2">
+            <input id="fNewCategoryName" type="text" placeholder="New category name"
+              class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+            <button type="button" id="createCategoryBtn" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white text-sm font-semibold disabled:opacity-60">Create</button>
+            <button type="button" id="cancelNewCategoryBtn" class="px-3 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-50">Cancel</button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-800 mb-2">Course &amp; Generation <span class="text-red-500">*</span></label>
+          <select id="fGeneration" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+            <option value="">Loading generations...</option>
+          </select>
+          <div id="newGenerationRow" class="hidden mt-2 space-y-2 border border-gray-200 rounded-lg p-3 bg-gray-50">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Course</label>
+              <select id="fNewGenCourse" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+                <option value="">Loading courses...</option>
+              </select>
+              <div id="newCourseRow" class="hidden mt-2 flex items-center gap-2">
+                <input id="fNewCourseName" type="text" placeholder="New course name (e.g. Software Engineering)"
+                  class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+                <button type="button" id="createCourseBtn" class="px-3 py-2 rounded-lg bg-gray-700 hover:bg-gray-800 text-white text-xs font-semibold disabled:opacity-60 whitespace-nowrap">Add course</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Generation number</label>
+              <input id="fNewGenNumber" type="number" min="1" placeholder="e.g. 5"
+                class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+            </div>
+            <div class="flex items-center gap-2 pt-1">
+              <button type="button" id="createGenerationBtn" class="px-4 py-2 rounded-lg bg-brand hover:bg-brand-dark text-white text-sm font-semibold disabled:opacity-60">Create</button>
+              <button type="button" id="cancelNewGenerationBtn" class="px-3 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-50">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-semibold text-gray-800 mb-2">Project Description <span class="text-red-500">*</span></label>
+        <textarea id="fDescription" rows="4" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white resize-none focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="Write your description..."></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-semibold text-gray-800 mb-2">Technology</label>
+        <input id="fTechnology" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="Project Technology (comma separated, e.g. React, NodeJs, PostgreSQL)">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-semibold text-gray-800 mb-2">Project Post <span class="text-red-500">*</span></label>
+        <label id="dropzone" for="fFile" class="cursor-pointer relative flex flex-col items-center justify-center gap-2 border-2 border-dashed border-gray-300 rounded-xl h-40 text-center px-4 hover:border-brand/50 hover:bg-brand/5 transition overflow-hidden">
+          <img id="dropzonePreviewImg" class="hidden absolute inset-0 w-full h-full object-cover" alt="Selected thumbnail preview">
+          <svg id="dropzoneIcon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-300 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 8.25L12 3.75m0 0L7.5 8.25M12 3.75v13.5" />
+          </svg>
+          <p id="dropzoneText" class="text-sm text-gray-400 relative z-10">Drop or Drag your files here<br>PNG, JPG, GIF up to 10MB</p>
+          <input id="fFile" type="file" accept="image/png,image/jpeg,image/gif" class="hidden">
+        </label>
+      </div>
+
+      <div class="space-y-3 mb-4">
+        <input id="fVideoUrl" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="Video URL.....">
+        <input id="fDemoUrl" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="Demo URL.....">
+        <input id="fRepoUrl" type="text" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40" placeholder="Repository URL/ Github or GitLab">
+      </div>
+      </div>
+
+      <div id="previewPane" class="hidden mb-4">
+        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white">
+          <div class="h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+            <img id="previewThumb" class="hidden w-full h-full object-cover" alt="">
+            <span id="previewThumbEmpty" class="text-sm text-gray-400">No image selected yet</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span id="previewCategory" class="hidden px-2.5 py-1 rounded-full bg-brand/5 text-brand text-xs font-semibold"></span>
+              <span id="previewGeneration" class="hidden px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 text-xs font-semibold"></span>
+            </div>
+            <h2 id="previewTitle" class="text-lg font-bold text-gray-900 mb-2">Untitled project</h2>
+            <p id="previewDescription" class="text-sm text-gray-600 whitespace-pre-line mb-3">No description yet.</p>
+            <div id="previewTech" class="flex flex-wrap gap-1.5"></div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 mt-3 text-center">This is a preview — nothing is saved until you click Submit.</p>
+      </div>
+
+      <div class="flex items-center justify-between flex-wrap gap-4 mt-8">
+        <!-- New projects start as a draft; use "Publish" on the dashboard once
+             it's ready -- there's no separate Public/Private setting on the backend. -->
+        <p class="text-xs text-gray-400">New projects start as a draft. Publish it from your dashboard once it's ready.</p>
+        <div class="flex items-center gap-3">
+          <button type="button" id="cancelBtn" class="px-8 py-2.5 rounded-lg border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button type="submit" id="submitBtn" class="px-8 py-2.5 rounded-lg bg-brand hover:bg-brand-dark text-white text-sm font-semibold shadow disabled:opacity-60 flex items-center gap-2">
+            <svg id="submitSpinner" class="hidden animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <span id="submitLabel">Submit Project</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- =========================================================
+       VIEW 2 — PROJECT DETAIL (populated after submit)
+  ========================================================== -->
+  <!-- Shown right after a successful create/update instead of auto-redirecting:
+       the user picks what to do next (see the submit handler below). -->
+  <div id="detailView" class="hidden max-w-md mx-auto px-4 py-16 text-center">
+    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-5">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <h1 id="successHeading" class="text-xl font-bold text-gray-900 mb-2">Project posted successfully!</h1>
+    <p class="text-sm text-gray-500 mb-8">What would you like to do next?</p>
+    <div class="flex flex-col gap-3">
+      <a id="viewProjectBtn" href="#" class="w-full bg-brand hover:bg-brand-dark text-white text-sm font-semibold py-3 rounded-lg transition">View my project</a>
+      <button id="postAnotherBtn" type="button" class="w-full border border-gray-300 text-gray-700 hover:bg-gray-50 text-sm font-semibold py-3 rounded-lg transition">+ Post another project</button>
+      <a href="./dashboard.html" class="text-xs font-semibold text-gray-500 hover:text-gray-700 mt-2">Go to my dashboard</a>
+    </div>
+  </div>
+
+<script>
+const ProjectAPI = {
+  /**
+   * Create a new project on the real STADIA backend.
+   *  - uploads the optional cover image via MediaAPI (multipart)
+   *  - builds a JSON payload with the fields the API requires
+   *  - POSTs it via ProjectsAPI.createProject() (JSON body)
+   *
+   * Backend schema (verified): slug, user_uuid & generation_uuid are
+   * required; title & description are validated as non-empty.
+   */
+  async createProject(data, imageFile) {
+    if (!data.title || !data.description) {
+      throw new Error('Please fill in project title and description.');
+    }
+    if (!window.ProjectsAPI || !window.MediaAPI) {
+      throw new Error('API not loaded. Please refresh the page and try again.');
+    }
+
+    // ---- resolve authenticated user (owner) ----
+    let userUuid = null;
+    const stored = (function(){
+      try { return JSON.parse(localStorage.getItem('stadia_user') || 'null'); } catch(e){ return null; }
+    })();
+    if (stored && stored.uuid) userUuid = stored.uuid;
+    if (!userUuid && window.UsersAPI) {
+      try {
+        const me = await window.UsersAPI.getCurrentUser();
+        if (me && me.uuid) userUuid = me.uuid;
+      } catch (e) { /* user not logged in */ }
+    }
+    if (!userUuid) {
+      throw new Error('You must be logged in to post a project.');
+    }
+
+    if (!data.generationUuid) {
+      throw new Error('Please choose a Course & Generation.');
+    }
+
+    // ---- optional cover image -> upload -> filename ----
+    let thumbnail = '';
+    if (imageFile) {
+      const media = await window.MediaAPI.uploadFile(imageFile);
+      thumbnail = (media && (media.filename || media.url || media.path)) || '';
+    }
+
+    // ---- build JSON payload ----
+    // Backend contract (confirmed via the live OpenAPI schema at
+    // https://inspire-api.gital.me/openapi.json -- CreateProjectRequest):
+    // categories/tech-stacks are relations linked via category_uuids /
+    // tech_stack_uuids arrays, NOT free-text `category` or comma-joined
+    // `tech_stacks` strings (the API silently ignores those). There is also
+    // no `visibility` field on the backend at all -- Public/Private was
+    // never actually doing anything.
+    const techStackUuids = await resolveTechStackUuids(data.technology);
+    const payload = {
+      title: data.title,
+      description: data.description,
+      slug: data.slug
+        ? data.slug.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+        : data.title.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      user_uuid: userUuid,
+      generation_uuid: data.generationUuid,
+      category_uuids: data.categoryUuid ? [data.categoryUuid] : [],
+      tech_stack_uuids: techStackUuids,
+      demo_url: data.demoUrl,
+      video_url: data.videoUrl,
+      repository_url: data.repoUrl,
+      thumbnail,
+    };
+
+    // Send JSON (ProjectsAPI.createProject posts a JSON object, not FormData)
+    return await window.ProjectsAPI.createProject(payload);
+  },
+
+  /**
+   * Update an existing project (edit mode). Same field-building as
+   * createProject, but PUTs to /projects/{uuid} and keeps the existing
+   * thumbnail unless the user picked a new image file.
+   */
+  async updateProject(uuid, data, imageFile, existingThumbnail) {
+    if (!data.title || !data.description) {
+      throw new Error('Please fill in project title and description.');
+    }
+    if (!window.ProjectsAPI || !window.MediaAPI) {
+      throw new Error('API not loaded. Please refresh the page and try again.');
+    }
+
+    let thumbnail = existingThumbnail || '';
+    if (imageFile) {
+      const media = await window.MediaAPI.uploadFile(imageFile);
+      thumbnail = (media && (media.filename || media.url || media.path)) || thumbnail;
+    }
+
+    const techStackUuids = await resolveTechStackUuids(data.technology);
+    const payload = {
+      title: data.title,
+      description: data.description,
+      category_uuids: data.categoryUuid ? [data.categoryUuid] : [],
+      tech_stack_uuids: techStackUuids,
+      generation_uuid: data.generationUuid || undefined,
+      demo_url: data.demoUrl,
+      video_url: data.videoUrl,
+      repository_url: data.repoUrl,
+      thumbnail,
+    };
+
+    return await window.ProjectsAPI.updateProject(uuid, payload);
+  }
+};
+
+function escapeHtml(str) {
+  return window.ApiUtils ? window.ApiUtils.escapeHTML(str) : '';
+}
+
+/**
+ * Resolve comma-separated tech-stack names (as typed in the free-text
+ * Technology field) into real tech_stack UUIDs by matching against
+ * TechStacksAPI.getAllTechStacks(). Names that don't match anything
+ * existing are silently skipped (creating tech stacks on the fly is out
+ * of scope here -- only categories support "create new" in this form).
+ */
+async function resolveTechStackUuids(technologyText) {
+  const names = (technologyText || '').split(/[,;]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+  if (!names.length || !window.TechStacksAPI) return [];
+  try {
+    const all = (await window.TechStacksAPI.getAllTechStacks()) || [];
+    return all
+      .filter(t => names.includes((t.title || t.name || '').trim().toLowerCase()))
+      .map(t => t.uuid);
+  } catch (e) {
+    return [];
+  }
+}
+
+/* ---------------------------------------------------------------
+   Front end wiring
+--------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Posting/editing a project always requires a signed-in user. Send anyone
+  // who isn't logged in to login.html, remembering this exact page (including
+  // ?id=... in edit mode) so they land right back here after signing in.
+  if (window.AuthAPI && !AuthAPI.isAuthenticated()) {
+    AuthAPI.redirectToLogin('create-project.html' + window.location.search);
+    return;
+  }
+  if (window.AuthAPI) AuthAPI.initNavAuth();
+
+  const formView = document.getElementById('formView');
+  const detailView = document.getElementById('detailView');
+
+  function showForm() {
+    detailView.classList.add('hidden');
+    formView.classList.remove('hidden');
+  }
+
+  function showSuccessChoice(projectId, isEdit) {
+    formView.classList.add('hidden');
+    detailView.classList.remove('hidden');
+    document.getElementById('successHeading').textContent =
+      isEdit ? 'Project updated successfully!' : 'Project posted successfully!';
+    document.getElementById('viewProjectBtn').href = 'project-detail.html?id=' + encodeURIComponent(projectId);
+  }
+
+  document.getElementById('postAnotherBtn').addEventListener('click', () => {
+    document.getElementById('projectForm').reset();
+    resetDropzone();
+    window.location.href = 'create-project.html';
+  });
+
+  /* ---------------- FORM VIEW ---------------- */
+  const fTitle = document.getElementById('fTitle');
+  const fCategory = document.getElementById('fCategory');
+  const fGeneration = document.getElementById('fGeneration');
+  const fDescription = document.getElementById('fDescription');
+  const fTechnology = document.getElementById('fTechnology');
+  const fVideoUrl = document.getElementById('fVideoUrl');
+  const fDemoUrl = document.getElementById('fDemoUrl');
+  const fRepoUrl = document.getElementById('fRepoUrl');
+  const fFile = document.getElementById('fFile');
+  const dropzone = document.getElementById('dropzone');
+  const dropzoneText = document.getElementById('dropzoneText');
+  const dropzonePreviewImg = document.getElementById('dropzonePreviewImg');
+  const dropzoneIcon = document.getElementById('dropzoneIcon');
+  const formAlert = document.getElementById('formAlert');
+  const projectForm = document.getElementById('projectForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const submitSpinner = document.getElementById('submitSpinner');
+  const submitLabel = document.getElementById('submitLabel');
+  const newCategoryRow = document.getElementById('newCategoryRow');
+  const fNewCategoryName = document.getElementById('fNewCategoryName');
+  const createCategoryBtn = document.getElementById('createCategoryBtn');
+  const cancelNewCategoryBtn = document.getElementById('cancelNewCategoryBtn');
+  const newGenerationRow = document.getElementById('newGenerationRow');
+  const fNewGenCourse = document.getElementById('fNewGenCourse');
+  const newCourseRow = document.getElementById('newCourseRow');
+  const fNewCourseName = document.getElementById('fNewCourseName');
+  const createCourseBtn = document.getElementById('createCourseBtn');
+  const fNewGenNumber = document.getElementById('fNewGenNumber');
+  const createGenerationBtn = document.getElementById('createGenerationBtn');
+  const cancelNewGenerationBtn = document.getElementById('cancelNewGenerationBtn');
+
+  let mediaDataUrl = null;
+
+  // ---- Edit Details / Preview subtabs. Preview renders a read-only card
+  // from the current in-memory form values (nothing is sent to the API) so
+  // the user can see how the post will look before submitting. ----
+  const tabEditBtn = document.getElementById('tabEditBtn');
+  const tabPreviewBtn = document.getElementById('tabPreviewBtn');
+  const editPane = document.getElementById('editPane');
+  const previewPane = document.getElementById('previewPane');
+
+  function renderPreview() {
+    const previewThumb = document.getElementById('previewThumb');
+    const previewThumbEmpty = document.getElementById('previewThumbEmpty');
+    const thumbSrc = mediaDataUrl || (existingThumbnail && window.MediaAPI ? MediaAPI.getMediaUrl(existingThumbnail) : '');
+    if (thumbSrc) {
+      previewThumb.src = thumbSrc;
+      previewThumb.classList.remove('hidden');
+      previewThumbEmpty.classList.add('hidden');
+    } else {
+      previewThumb.classList.add('hidden');
+      previewThumbEmpty.classList.remove('hidden');
+    }
+
+    document.getElementById('previewTitle').textContent = fTitle.value.trim() || 'Untitled project';
+    document.getElementById('previewDescription').textContent = fDescription.value.trim() || 'No description yet.';
+
+    const previewCategory = document.getElementById('previewCategory');
+    const catOpt = fCategory.selectedOptions[0];
+    if (fCategory.value && fCategory.value !== ADD_NEW_VALUE && catOpt) {
+      previewCategory.textContent = catOpt.textContent;
+      previewCategory.classList.remove('hidden');
+    } else {
+      previewCategory.classList.add('hidden');
+    }
+
+    const previewGeneration = document.getElementById('previewGeneration');
+    const genOpt = fGeneration.selectedOptions[0];
+    if (fGeneration.value && fGeneration.value !== ADD_NEW_GEN_VALUE && genOpt) {
+      previewGeneration.textContent = genOpt.textContent;
+      previewGeneration.classList.remove('hidden');
+    } else {
+      previewGeneration.classList.add('hidden');
+    }
+
+    const previewTech = document.getElementById('previewTech');
+    previewTech.innerHTML = '';
+    fTechnology.value.split(',').map(t => t.trim()).filter(Boolean).forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'px-2 py-1 rounded-md bg-gray-100 text-gray-600 text-xs font-medium';
+      span.textContent = t;
+      previewTech.appendChild(span);
+    });
+  }
+
+  function setActiveTab(tab) {
+    const editing = tab !== 'preview';
+    editPane.classList.toggle('hidden', !editing);
+    previewPane.classList.toggle('hidden', editing);
+    tabEditBtn.classList.toggle('bg-white', editing);
+    tabEditBtn.classList.toggle('shadow-sm', editing);
+    tabEditBtn.classList.toggle('text-gray-900', editing);
+    tabEditBtn.classList.toggle('text-gray-500', !editing);
+    tabPreviewBtn.classList.toggle('bg-white', !editing);
+    tabPreviewBtn.classList.toggle('shadow-sm', !editing);
+    tabPreviewBtn.classList.toggle('text-gray-900', !editing);
+    tabPreviewBtn.classList.toggle('text-gray-500', editing);
+    if (!editing) renderPreview();
+  }
+  tabEditBtn.addEventListener('click', () => setActiveTab('edit'));
+  tabPreviewBtn.addEventListener('click', () => setActiveTab('preview'));
+
+  // ---- Category dropdown: populated live from CategoriesAPI, with a
+  // "+ Add new category" option that reveals an inline create form. ----
+  const ADD_NEW_VALUE = '__add_new__';
+
+  async function loadCategoriesInto(select, selectedUuid) {
+    select.innerHTML = '<option value="">Loading categories...</option>';
+    try {
+      const categories = (window.CategoriesAPI ? await CategoriesAPI.getAllCategories() : []) || [];
+      select.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Select a category';
+      select.appendChild(placeholder);
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.uuid;
+        opt.textContent = cat.title || cat.name || 'Untitled category';
+        if (selectedUuid && cat.uuid === selectedUuid) opt.selected = true;
+        select.appendChild(opt);
+      });
+      const addNewOpt = document.createElement('option');
+      addNewOpt.value = ADD_NEW_VALUE;
+      addNewOpt.textContent = '+ Add new category...';
+      select.appendChild(addNewOpt);
+    } catch (err) {
+      select.innerHTML = '<option value="">Could not load categories</option>';
+      if (window.ApiUtils) ApiUtils.showError('Could not load categories: ' + (err.message || 'unknown error'));
+    }
+  }
+
+  fCategory.addEventListener('change', () => {
+    if (fCategory.value === ADD_NEW_VALUE) {
+      newCategoryRow.classList.remove('hidden');
+      fNewCategoryName.focus();
+    } else {
+      newCategoryRow.classList.add('hidden');
+    }
+  });
+
+  cancelNewCategoryBtn.addEventListener('click', () => {
+    newCategoryRow.classList.add('hidden');
+    fNewCategoryName.value = '';
+    fCategory.value = '';
+  });
+
+  createCategoryBtn.addEventListener('click', async () => {
+    const name = fNewCategoryName.value.trim();
+    if (!name) { fNewCategoryName.focus(); return; }
+    createCategoryBtn.disabled = true;
+    createCategoryBtn.textContent = 'Creating...';
+    try {
+      const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const created = await CategoriesAPI.createCategory({ title: name, slug, description: name });
+      await loadCategoriesInto(fCategory, created && created.uuid);
+      newCategoryRow.classList.add('hidden');
+      fNewCategoryName.value = '';
+      if (window.ApiUtils) ApiUtils.showSuccess(`Category "${name}" created.`);
+    } catch (err) {
+      if (window.ApiUtils) ApiUtils.showError('Could not create category: ' + (err.message || 'unknown error'));
+    } finally {
+      createCategoryBtn.disabled = false;
+      createCategoryBtn.textContent = 'Create';
+    }
+  });
+
+  loadCategoriesInto(fCategory);
+
+  // ---- Generation dropdown: populated from GenerationsAPI, each option
+  // labelled "Gen N — Course Title" (GenerationResponse already embeds the
+  // course, confirmed via the live OpenAPI schema, so no extra calls needed).
+  // A "+ Add new generation..." option reveals an inline create form (course
+  // picker, itself with its own "+ Add new course..." escape hatch, plus a
+  // generation number) since GenerationsAPI.createGeneration needs both. ----
+  const ADD_NEW_GEN_VALUE = '__add_new_gen__';
+  const ADD_NEW_COURSE_VALUE = '__add_new_course__';
+
+  async function loadGenerationsInto(select, selectedUuid) {
+    select.innerHTML = '<option value="">Loading generations...</option>';
+    try {
+      const generations = (window.GenerationsAPI ? await GenerationsAPI.getAllGenerations({ page: 1, size: 100 }) : []) || [];
+      select.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = generations.length ? 'Select a course & generation' : 'No generations set up yet';
+      select.appendChild(placeholder);
+      generations.forEach(gen => {
+        const opt = document.createElement('option');
+        opt.value = gen.uuid;
+        const courseTitle = (gen.course && gen.course.title) || 'Unknown course';
+        opt.textContent = `Gen ${gen.gen} — ${courseTitle}`;
+        if (selectedUuid && gen.uuid === selectedUuid) opt.selected = true;
+        select.appendChild(opt);
+      });
+      const addNewOpt = document.createElement('option');
+      addNewOpt.value = ADD_NEW_GEN_VALUE;
+      addNewOpt.textContent = '+ Add new course & generation...';
+      select.appendChild(addNewOpt);
+    } catch (err) {
+      select.innerHTML = '<option value="">Could not load generations</option>';
+      if (window.ApiUtils) ApiUtils.showError('Could not load generations: ' + (err.message || 'unknown error'));
+    }
+  }
+
+  async function loadCoursesInto(select, selectedUuid) {
+    select.innerHTML = '<option value="">Loading courses...</option>';
+    try {
+      const courses = (window.CoursesAPI ? await CoursesAPI.getAllCourses({ page: 1, size: 100 }) : []) || [];
+      select.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Select a course';
+      select.appendChild(placeholder);
+      courses.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.uuid;
+        opt.textContent = c.title || 'Untitled course';
+        if (selectedUuid && c.uuid === selectedUuid) opt.selected = true;
+        select.appendChild(opt);
+      });
+      const addNewOpt = document.createElement('option');
+      addNewOpt.value = ADD_NEW_COURSE_VALUE;
+      addNewOpt.textContent = '+ Add new course...';
+      select.appendChild(addNewOpt);
+    } catch (err) {
+      select.innerHTML = '<option value="">Could not load courses</option>';
+      if (window.ApiUtils) ApiUtils.showError('Could not load courses: ' + (err.message || 'unknown error'));
+    }
+  }
+
+  fGeneration.addEventListener('change', () => {
+    if (fGeneration.value === ADD_NEW_GEN_VALUE) {
+      newGenerationRow.classList.remove('hidden');
+      loadCoursesInto(fNewGenCourse);
+    } else {
+      newGenerationRow.classList.add('hidden');
+    }
+  });
+
+  cancelNewGenerationBtn.addEventListener('click', () => {
+    newGenerationRow.classList.add('hidden');
+    newCourseRow.classList.add('hidden');
+    fNewGenNumber.value = '';
+    fNewCourseName.value = '';
+    fGeneration.value = '';
+  });
+
+  fNewGenCourse.addEventListener('change', () => {
+    if (fNewGenCourse.value === ADD_NEW_COURSE_VALUE) {
+      newCourseRow.classList.remove('hidden');
+      fNewCourseName.focus();
+    } else {
+      newCourseRow.classList.add('hidden');
+    }
+  });
+
+  createCourseBtn.addEventListener('click', async () => {
+    const name = fNewCourseName.value.trim();
+    if (!name) { fNewCourseName.focus(); return; }
+    createCourseBtn.disabled = true;
+    createCourseBtn.textContent = 'Adding...';
+    try {
+      const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const created = await CoursesAPI.createCourse({ title: name, slug, description: name });
+      await loadCoursesInto(fNewGenCourse, created && created.uuid);
+      newCourseRow.classList.add('hidden');
+      fNewCourseName.value = '';
+      if (window.ApiUtils) ApiUtils.showSuccess(`Course "${name}" added.`);
+    } catch (err) {
+      if (window.ApiUtils) ApiUtils.showError('Could not add course: ' + (err.message || 'unknown error'));
+    } finally {
+      createCourseBtn.disabled = false;
+      createCourseBtn.textContent = 'Add course';
+    }
+  });
+
+  createGenerationBtn.addEventListener('click', async () => {
+    const courseUuid = fNewGenCourse.value;
+    const genNum = parseInt(fNewGenNumber.value, 10);
+    if (!courseUuid || courseUuid === ADD_NEW_COURSE_VALUE) {
+      if (window.ApiUtils) ApiUtils.showError('Please choose or add a course first.');
+      return;
+    }
+    if (!genNum || genNum < 1) {
+      fNewGenNumber.focus();
+      if (window.ApiUtils) ApiUtils.showError('Please enter a valid generation number.');
+      return;
+    }
+    createGenerationBtn.disabled = true;
+    createGenerationBtn.textContent = 'Creating...';
+    try {
+      const created = await GenerationsAPI.createGeneration({ course_uuid: courseUuid, gen: genNum });
+      await loadGenerationsInto(fGeneration, created && created.uuid);
+      newGenerationRow.classList.add('hidden');
+      fNewGenNumber.value = '';
+      if (window.ApiUtils) ApiUtils.showSuccess(`Generation ${genNum} created.`);
+    } catch (err) {
+      if (window.ApiUtils) ApiUtils.showError('Could not create generation: ' + (err.message || 'unknown error'));
+    } finally {
+      createGenerationBtn.disabled = false;
+      createGenerationBtn.textContent = 'Create';
+    }
+  });
+
+  loadGenerationsInto(fGeneration);
+
+  // ---- Edit mode: create-project.html?id=<uuid> loads and edits an existing
+  // project instead of creating a new one. ----
+  const editId = new URLSearchParams(window.location.search).get('id');
+  let existingThumbnail = '';
+
+  async function loadForEdit(id) {
+    const formHeading = document.getElementById('formHeading');
+    formHeading.textContent = 'EDIT YOUR PROJECT';
+    submitLabel.textContent = 'Save Changes';
+    document.title = 'Edit Project';
+
+    try {
+      const project = await window.ProjectsAPI.getProjectByUuid(id);
+      if (!project) throw new Error('Project not found');
+
+      fTitle.value = project.title || '';
+      fDescription.value = project.description || '';
+
+      const currentCategoryUuid = Array.isArray(project.categories) && project.categories[0]
+        ? project.categories[0].uuid
+        : '';
+      await loadCategoriesInto(fCategory, currentCategoryUuid);
+
+      const currentGenerationUuid = (project.generation && project.generation.uuid) || '';
+      await loadGenerationsInto(fGeneration, currentGenerationUuid);
+
+      const techNames = Array.isArray(project.tech_stacks)
+        ? project.tech_stacks.map(t => t.name || t.title).filter(Boolean).join(', ')
+        : (project.tech_stacks || '');
+      fTechnology.value = techNames;
+
+      fVideoUrl.value = project.video_url || '';
+      fDemoUrl.value = project.demo_url || '';
+      fRepoUrl.value = project.repository_url || '';
+
+      existingThumbnail = project.thumbnail || '';
+      if (existingThumbnail && window.MediaAPI) {
+        dropzonePreviewImg.src = MediaAPI.getMediaUrl(existingThumbnail);
+        dropzonePreviewImg.classList.remove('hidden');
+        dropzoneIcon.classList.add('hidden');
+        dropzoneText.innerHTML = 'Current image on file';
+        dropzoneText.classList.add('relative', 'z-10', 'bg-black/60', 'text-white', 'px-3', 'py-1', 'rounded-full');
+      }
+    } catch (err) {
+      formAlert.textContent = 'Could not load this project for editing: ' + (err.message || 'unknown error');
+      formAlert.classList.remove('hidden');
+      submitBtn.disabled = true;
+    }
+  }
+
+  if (editId) {
+    loadForEdit(editId);
+  }
+
+  function resetDropzone() {
+    mediaDataUrl = null;
+    fFile.value = '';
+    dropzonePreviewImg.src = '';
+    dropzonePreviewImg.classList.add('hidden');
+    dropzoneIcon.classList.remove('hidden');
+    dropzoneText.classList.remove('relative', 'z-10', 'bg-black/60', 'text-white', 'px-3', 'py-1', 'rounded-full');
+    dropzoneText.innerHTML = 'Drop or Drag your files here<br>PNG, JPG, GIF up to 10MB';
+  }
+
+  const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10MB, matches the "up to 10MB" copy shown in the dropzone
+
+  function handleFiles(fileList) {
+    const file = fileList && fileList[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      dropzoneText.textContent = 'Please choose an image file (PNG, JPG, GIF).';
+      return;
+    }
+    if (file.size > MAX_UPLOAD_BYTES) {
+      dropzoneText.textContent = `File is too large (${(file.size / (1024 * 1024)).toFixed(1)}MB). Maximum size is 10MB.`;
+      fFile.value = '';
+      mediaDataUrl = null;
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      mediaDataUrl = reader.result;
+      // Show the actual chosen image as a live preview right in the dropzone,
+      // not just its filename, so the user sees what they're about to upload.
+      dropzonePreviewImg.src = mediaDataUrl;
+      dropzonePreviewImg.classList.remove('hidden');
+      dropzoneIcon.classList.add('hidden');
+      dropzoneText.classList.add('relative', 'z-10', 'bg-black/60', 'text-white', 'px-3', 'py-1', 'rounded-full');
+      dropzoneText.innerHTML = `<span class="font-medium">${escapeHtml(file.name)}</span> · click to replace`;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  fFile.addEventListener('change', () => handleFiles(fFile.files));
+  ['dragenter', 'dragover'].forEach(evt =>
+    dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.add('border-brand', 'bg-brand/5'); })
+  );
+  ['dragleave', 'drop'].forEach(evt =>
+    dropzone.addEventListener(evt, e => { e.preventDefault(); dropzone.classList.remove('border-brand', 'bg-brand/5'); })
+  );
+  dropzone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+
+  document.getElementById('cancelBtn').addEventListener('click', () => {
+    if (editId) {
+      window.location.href = 'project-detail.html?id=' + encodeURIComponent(editId);
+      return;
+    }
+    projectForm.reset();
+    resetDropzone();
+    formAlert.classList.add('hidden');
+  });
+
+  projectForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formAlert.classList.add('hidden');
+
+    submitBtn.disabled = true;
+    submitSpinner.classList.remove('hidden');
+    submitLabel.textContent = editId ? 'Saving...' : 'Submitting...';
+
+    try {
+      if (!fTitle.value.trim()) {
+        throw new Error('Please enter a project title.');
+      }
+      if (!fDescription.value.trim()) {
+        throw new Error('Please enter a project description.');
+      }
+      if (fCategory.value === ADD_NEW_VALUE || !fCategory.value) {
+        throw new Error('Please choose a Project Type (category), or create a new one first.');
+      }
+      if (!fGeneration.value || fGeneration.value === ADD_NEW_GEN_VALUE) {
+        throw new Error('Please choose a Course & Generation.');
+      }
+      if (!editId && !mediaDataUrl) {
+        throw new Error('Please upload a project thumbnail image.');
+      }
+      const formData = {
+        title: fTitle.value.trim(),
+        categoryUuid: fCategory.value,
+        generationUuid: fGeneration.value,
+        description: fDescription.value.trim(),
+        technology: fTechnology.value.trim(),
+        videoUrl: fVideoUrl.value.trim(),
+        demoUrl: fDemoUrl.value.trim(),
+        repoUrl: fRepoUrl.value.trim(),
+        mediaDataUrl,
+      };
+      const file = fFile.files && fFile.files[0];
+
+      const project = editId
+        ? await ProjectAPI.updateProject(editId, formData, file, existingThumbnail)
+        : await ProjectAPI.createProject(formData, file);
+
+      const id = editId || project.uuid || project.slug || '';
+      if (window.ApiUtils) ApiUtils.showSuccess(editId ? 'Project updated successfully!' : 'Project posted successfully!');
+      if (!id) {
+        // Fallback (no id returned): stay in form view showing a confirmation.
+        formAlert.classList.remove('hidden');
+        formAlert.className = formAlert.className.replace('text-red-600', 'text-emerald-700').replace('bg-red-50', 'bg-emerald-50').replace('border-red-200', 'border-emerald-200');
+        formAlert.textContent = editId ? 'Project updated successfully!' : 'Project posted successfully!';
+      } else if (editId) {
+        // Editing an existing project: no reason to offer "create another" --
+        // just take the user to see the updated project.
+        window.location.href = 'project-detail.html?id=' + encodeURIComponent(id);
+      } else {
+        // Creating a new project: let the user choose what to do next
+        // instead of silently redirecting them away.
+        showSuccessChoice(id, false);
+      }
+    } catch (err) {
+      const message = err.message || 'Something went wrong. Please try again.';
+      setActiveTab('edit'); // surface the offending field(s) even if the user was on the Preview tab
+      formAlert.textContent = message;
+      formAlert.classList.remove('hidden');
+      if (window.ApiUtils) ApiUtils.showError(message);
+    } finally {
+      submitBtn.disabled = false;
+      submitSpinner.classList.add('hidden');
+      submitLabel.textContent = editId ? 'Save Changes' : 'Submit Project';
+    }
+  });
+
+});
+</script>
+  
+<!-- STADIA API wiring -->
+<script src="../node_modules/@multiavatar/multiavatar/multiavatar.min.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/media.js"></script>
+<script src="../js/project.js"></script>
+<script src="../js/categories.js"></script>
+<script src="../js/users.js"></script>
+<script src="../js/generations.js"></script>
+<script src="../js/courses.js"></script>
+<script src="../js/techStacks.js"></script>
+<script src="../js/cardDetail.js"></script>
+  
+</body>
+</html>

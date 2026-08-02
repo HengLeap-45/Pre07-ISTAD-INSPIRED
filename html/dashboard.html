@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Dashboard</title>
+<meta name="description" content="Manage your STADIA projects.">
+<meta name="robots" content="noindex, nofollow">
+<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+ <link href="../src/output.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-100 min-h-screen">
+<div class="max-w-2xl mx-auto py-6 px-4">
+
+    <!-- Top bar -->
+    <div class="flex items-center justify-between mb-8">
+      <a href="./index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-blue-600">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back To Home
+      </a>
+      <div class="flex items-center gap-1">
+        <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
+          <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        <a href="./settings.html" type="button" data-tooltip-target="settings-tooltip" title="Settings" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </a>
+        <button type="button" id="dashboardLogoutBtn" title="Log out" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-red-50 text-gray-800 hover:text-red-600">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+          </svg>
+        </button>
+      </div>
+      <div id="settings-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
+        Settings
+      </div>
+    </div>
+
+    <!-- Profile header -->
+    <div class="flex items-start gap-5 mb-6">
+      <span id="profileAvatar" class="w-24 h-24 rounded-full bg-gray-300 overflow-hidden flex items-center justify-center text-white text-3xl font-bold shrink-0"></span>
+
+      <div class="flex-1 pt-1">
+        <h1 id="profileName" class="text-xl font-bold text-gray-900">Loading...</h1>
+        <p id="profileUsername" class="text-sm text-gray-500 mt-0.5"></p>
+
+        <div class="flex items-center gap-8 mt-4">
+          <div class="text-sm">
+            <span class="block font-bold text-gray-900" id="stat-posts">-</span>
+            <span class="text-gray-500">Post</span>
+          </div>
+          <div class="text-sm">
+            <span class="block font-bold text-gray-900" id="stat-published">-</span>
+            <span class="text-gray-500">Published</span>
+          </div>
+          <div class="text-sm">
+            <span class="block font-bold text-gray-900" id="stat-draft">-</span>
+            <span class="text-gray-500">Draft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center bg-gray-200 rounded-xl p-1 mb-8">
+      <a href="./history-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2" />
+        </svg>
+      </a>
+      <a href="./favorite-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 4h12v16l-6-4-6 4V4z" />
+        </svg>
+      </a>
+      <a href="./dashboard.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg bg-white shadow-sm " title="My Dashboard">
+        <svg class="w-5 h-5  text-indigo-600"  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-gray-900">My Projects</h2>
+      <a href="./create-project.html" class="text-sm font-semibold text-[#564CE5] hover:underline">+ New Project</a>
+    </div>
+
+    <!-- Not logged in -->
+    <div id="auth-required" class="hidden text-sm text-gray-600 py-8 text-center border border-dashed border-gray-300 rounded-xl">
+      Please <a href="./login.html" class="text-[#564CE5] font-semibold hover:underline">sign in</a> to see your dashboard.
+    </div>
+
+    <!-- Loading state -->
+    <div id="loading-state" class="text-sm text-gray-500 py-8 text-center">
+      Loading your projects...
+    </div>
+
+    <!-- Empty state (shown only if the user has no projects) -->
+    <div id="empty-state" class="hidden text-sm text-gray-500 py-8 text-center border border-dashed border-gray-300 rounded-xl">
+      You haven't posted any projects yet. <a href="./create-project.html" class="text-[#564CE5] font-semibold hover:underline">Post your first one</a>.
+    </div>
+
+    <!-- Cards render here, populated by JS with the current user's own projects -->
+    <div id="activity-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+  </div>
+
+  <template id="dashboardCardTemplate">
+    <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col" data-project-uuid="">
+      <div class="relative bg-gray-100 h-32 flex items-center justify-center">
+        <img class="card-thumb hidden w-full h-32 object-cover" alt="" />
+        <span class="card-status absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase"></span>
+      </div>
+      <div class="p-3 flex-1 flex flex-col">
+        <p class="card-title text-sm font-semibold text-gray-900 mb-1 line-clamp-1"></p>
+        <p class="card-desc text-xs text-gray-500 line-clamp-2 mb-3 flex-1"></p>
+        <div class="flex items-center gap-2 mt-auto">
+          <a class="card-edit px-2 py-1.5 text-xs font-semibold rounded-md border border-gray-200 text-gray-700 hover:bg-gray-50">Edit</a>
+          <button type="button" class="card-toggle-status flex-1 px-2 py-1.5 text-xs font-semibold rounded-md border border-gray-200 text-gray-700 hover:bg-gray-50"></button>
+          <button type="button" class="card-delete px-2 py-1.5 text-xs font-semibold rounded-md border border-red-200 text-red-600 hover:bg-red-50">Delete</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="../node_modules/flowbite/dist/flowbite.min.js"> </script>
+    <script src="../node_modules/preline/dist/preline.js"></script>
+    <!-- STADIA API wiring -->
+    <script src="../node_modules/@multiavatar/multiavatar/multiavatar.min.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/media.js"></script>
+    <script src="../js/project.js"></script>
+    <script src="../js/users.js"></script>
+    <script src="../js/cardDetail.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        if (window.AuthAPI) AuthAPI.initNavAuth();
+
+        const dashboardLogoutBtn = document.getElementById('dashboardLogoutBtn');
+        if (dashboardLogoutBtn) {
+          dashboardLogoutBtn.addEventListener('click', () => {
+            if (window.AuthAPI) AuthAPI.logout();
+          });
+        }
+
+        const grid = document.getElementById('activity-grid');
+        const loading = document.getElementById('loading-state');
+        const empty = document.getElementById('empty-state');
+        const authRequired = document.getElementById('auth-required');
+        const template = document.getElementById('dashboardCardTemplate');
+
+        if (!window.AuthAPI || !AuthAPI.isAuthenticated()) {
+          loading.classList.add('hidden');
+          authRequired.classList.remove('hidden');
+          return;
+        }
+
+        function escapeHtml(str) {
+          return window.ApiUtils ? window.ApiUtils.escapeHTML(str) : (str || '');
+        }
+
+        function renderCard(project) {
+          const node = template.content.firstElementChild.cloneNode(true);
+          node.dataset.projectUuid = project.uuid;
+
+          const thumb = node.querySelector('.card-thumb');
+          const thumbUrl = window.MediaAPI ? MediaAPI.getMediaUrl(project.thumbnail) : '';
+          if (thumbUrl) {
+            thumb.src = thumbUrl;
+            thumb.alt = project.title || '';
+            thumb.classList.remove('hidden');
+          }
+
+          const statusBadge = node.querySelector('.card-status');
+          const status = (project.status || 'draft').toLowerCase();
+          statusBadge.textContent = status;
+          statusBadge.className = 'card-status absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase ' +
+            (status === 'published' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600');
+
+          node.querySelector('.card-title').textContent = project.title || 'Untitled';
+          node.querySelector('.card-desc').textContent = project.description || project.summary || '';
+
+          const editLink = node.querySelector('.card-edit');
+          editLink.href = `create-project.html?id=${project.uuid}`;
+          editLink.addEventListener('click', (e) => e.stopPropagation());
+
+          const toggleBtn = node.querySelector('.card-toggle-status');
+          toggleBtn.textContent = status === 'published' ? 'Unpublish' : 'Publish';
+          toggleBtn.addEventListener('click', async () => {
+            const nextStatus = status === 'published' ? 'draft' : 'published';
+            const confirmMessage = nextStatus === 'published'
+              ? `Publish "${project.title || 'this project'}"? It will become visible to everyone.`
+              : `Unpublish "${project.title || 'this project'}"? It will go back to draft.`;
+            const confirmed = window.showConfirmModal
+              ? await showConfirmModal(confirmMessage, { confirmLabel: nextStatus === 'published' ? 'Publish' : 'Unpublish', danger: false })
+              : confirm(confirmMessage);
+            if (!confirmed) return;
+            toggleBtn.disabled = true;
+            const original = toggleBtn.textContent;
+            toggleBtn.textContent = '...';
+            try {
+              await ProjectsAPI.updateStatus(project.uuid, nextStatus);
+              project.status = nextStatus;
+              const fresh = renderCard(project);
+              node.replaceWith(fresh);
+              if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" is now ${nextStatus}.`);
+            } catch (err) {
+              const message = 'Could not update status: ' + (err.message || 'unknown error');
+              if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+              toggleBtn.disabled = false;
+              toggleBtn.textContent = original;
+            }
+          });
+
+          const deleteBtn = node.querySelector('.card-delete');
+          deleteBtn.addEventListener('click', async () => {
+            const confirmed = window.showConfirmModal
+              ? await showConfirmModal(`Delete "${project.title || 'this project'}"? This cannot be undone.`, { confirmLabel: 'Delete' })
+              : confirm(`Delete "${project.title || 'this project'}"? This cannot be undone.`);
+            if (!confirmed) return;
+            deleteBtn.disabled = true;
+            deleteBtn.textContent = 'Deleting...';
+            try {
+              await ProjectsAPI.deleteProject(project.uuid);
+              node.remove();
+              updateStatsAfterRemoval();
+              if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" deleted.`);
+              if (!grid.querySelector('[data-project-uuid]')) {
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
+              }
+            } catch (err) {
+              const message = 'Could not delete project: ' + (err.message || 'unknown error');
+              if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+              deleteBtn.disabled = false;
+              deleteBtn.textContent = 'Delete';
+            }
+          });
+
+          // Clicking the thumbnail/title (not the action buttons) opens the project
+          node.addEventListener('click', (e) => {
+            if (e.target.closest('button')) return;
+            window.location.href = `project-detail.html?id=${project.uuid}`;
+          });
+          node.style.cursor = 'pointer';
+
+          return node;
+        }
+
+        function updateStatsAfterRemoval() {
+          const cards = grid.querySelectorAll('[data-project-uuid]');
+          document.getElementById('stat-posts').textContent = cards.length;
+        }
+
+        try {
+          const me = await UsersAPI.getCurrentUser();
+          document.getElementById('profileName').textContent =
+            (me && (me.given_name || me.username)) ? `${me.given_name || ''} ${me.family_name || ''}`.trim() || me.username : 'Your Profile';
+          document.getElementById('profileUsername').textContent = me && me.username ? '@' + me.username : '';
+          if (window.AuthAPI) AuthAPI.renderUserAvatar(document.getElementById('profileAvatar'), me);
+
+          // No "my projects" endpoint exists on the backend, so we fetch a
+          // generous page of all projects and filter by ownership client-side.
+          const all = await ProjectsAPI.getAllProjects({ page: 1, size: 100 });
+          const mine = (Array.isArray(all) ? all : []).filter(p => p.owner && me && p.owner.uuid === me.uuid);
+
+          loading.classList.add('hidden');
+
+          document.getElementById('stat-posts').textContent = mine.length;
+          document.getElementById('stat-published').textContent = mine.filter(p => (p.status || '').toLowerCase() === 'published').length;
+          document.getElementById('stat-draft').textContent = mine.filter(p => (p.status || '').toLowerCase() !== 'published').length;
+
+          if (mine.length === 0) {
+            empty.classList.remove('hidden');
+            return;
+          }
+
+          mine.forEach(project => grid.appendChild(renderCard(project)));
+          grid.classList.remove('hidden');
+        } catch (err) {
+          console.error('Failed to load dashboard:', err);
+          loading.classList.add('hidden');
+          empty.textContent = 'Failed to load your projects. Please try again.';
+          empty.classList.remove('hidden');
+        }
+      });
+    </script>
+  </body>
+  </html>

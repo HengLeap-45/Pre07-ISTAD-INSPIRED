@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STADIA — About Us</title>
+<meta name="description" content="Learn about STADIA, the project showcase platform built for ISTAD students.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="STADIA — About Us">
+<meta property="og:description" content="Learn about STADIA, the project showcase platform built for ISTAD students.">
+<meta property="og:image" content="../image/stadia-logo-transparent.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="STADIA — About Us">
+<meta name="twitter:description" content="Learn about STADIA, the project showcase platform built for ISTAD students.">
+<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
+    
+    <style>
+   .marquee-wrap {
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll 55s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-wrap:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    padding-right: 0.75rem;
+  }
+
+  .marquee-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+  }
+  .marquee-pill:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: letterIn 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+ 
+  @keyframes letterIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .letter.space {
+    width: 0.35em;
+  }
+
+   @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+ 
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+ 
+    .reveal-img {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(100px);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text {
+      opacity: 0;
+      animation: slideInRight 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img,
+      .reveal-text {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+      }
+    
+    }@keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateX(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+ 
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateY(65%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+ 
+    .reveal-img1 {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text1 {
+      opacity: 100%;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img1,
+      .reveal-text1 {
+        opacity: 100%;
+        transform: translateX(60%) translateY(0);
+      }
+    }
+    .reveal-text2 {
+      opacity: 1;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view(65%);
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    .reveal-text2 {
+      opacity: 100%;
+      animation: slideInUp 5s ease-out 5s forwards;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+ 
+    @supports not (animation-timeline: view()) {
+      .reveal-img2,
+      .reveal-text2 {
+        opacity: 100%;
+        transform: translateY(0) translateX(60%);
+      }
+    }
+
+
+ 
+</style>
+
+  </head>
+  <body class="bg-light">
+   <nav class="bg-white">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <a href="./index.html" class=" items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
+      <img src="../image/stadia-logo-transparent.png" class="w-30 h-30">
+    </a>
+    <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
+      <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-[#564CE5] text-white">PROJECT</a>
+      <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">POST CREATOR</a>
+      <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">ABOUT US</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden md:flex items-center gap-3">
+        <div data-auth="guest" class="flex items-center gap-2">
+          <a href="./login.html" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">Sign In</a>
+          <a href="./signup.html" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Sign Up</a>
+        </div>
+        <div data-auth="user" class="hidden flex items-center gap-2">
+          <a href="./dashboard.html" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy" title="Account">
+            <span data-auth="user-avatar" class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"></span>
+            <span data-auth="user-name">Account</span>
+          </a>
+          <button type="button" data-action="logout" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Log out</button>
+        </div>
+      </div>
+      <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+        <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">☰</button>
+    </div>
+  </div>
+  <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
+    <a href="./projects.html" class="block py-2 font-semibold text-navy">PROJECT</a>
+    <a href="./create-project.html" data-requires-auth class="block py-2 font-semibold text-gray-500">POST CREATOR</a>
+    <a href="./about-us.html" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
+    <div data-auth="guest" class="pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+      <a href="./login.html" class="font-semibold text-gray-500">Sign In</a>
+      <a href="./signup.html" class="font-semibold text-[#564CE5]">Sign Up</a>
+    </div>
+    <div data-auth="user" class="hidden pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+      <a href="./dashboard.html" class="flex items-center gap-2 font-semibold text-gray-500" title="Account">
+        <span data-auth="user-avatar" class="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-white text-[10px] font-bold shrink-0 bg-gray-300"></span>
+        <span data-auth="user-name">Account</span>
+      </a>
+      <button type="button" data-action="logout" class="font-semibold text-red-600">Log out</button>
+    </div>
+  </div>
+</nav>
+    <main>
+      <section class="mx-auto lg:ml-20 px-4 sm:px-6 lg:px-8 py-12">
+        <div
+          class="flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12"
+        >
+          <div class="max-w-xl text-left">
+            <!-- Single Inline Heading -->
+            <h1 class="text-2xl md:text-3xl font-bold leading-tight mb-6">
+              <span class="text-[#ff4242]">Empowering</span>
+              <span class="text-[#2040a1]"> Future Innovators</span>
+            </h1>
+
+            <!-- Updated Body Text -->
+            <p
+              class="text-slate-800 text-base md:text-lg leading-snug mb-8 max-w-lg"
+            >
+              We are a learning platform dedicated to empowering students with
+              practical technology skills through hands-on learning, real-world
+              projects, and continuous mentorship.
+            </p>
+
+            <!-- Button -->
+            <a
+              href="#"
+              class="inline-block bg-[#3b3abe] hover:bg-[#2e2ea3] text-white font-bold text-lg px-8 py-3.5 rounded-2xl transition-all shadow-md active:scale-95"
+            >
+              Learn more
+            </a>
+          </div>
+          <div class="flex-1 flex justify-end items-center w-full lg:mr-20">
+            <img
+              src="../image/aboutus.png"
+              alt="Hero Illustration"
+              class="max-w-full h-50 md:h-100 object-contain lg:ml-45 rounded "
+            />
+          </div>
+        </div>
+      </section>
+<div class="marquee-wrap bg-[#564CE5] py-3" id="animation-letters">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+  </div>
+</div>
+      <div class="text-center max-w-xl mx-auto py-12 px-4">
+        <h3 class="text-[#2040a1] text-lg font-bold mb-4">
+          Our mission and Vision
+        </h3>
+        <p class="text-slate-800 text-sm md:text-base leading-relaxed">
+          We build the shortest honest path between curiosity and a real skill —
+          <br class="hidden sm:inline" />
+          no fluff, no gatekeeping, just structured practice that sticks.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto p-6">
+        <!-- Card 1: Our mission -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">❤️</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our mission</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            To make practical tech skills accessible to anyone, anywhere —
+            turning self-paced study into real, job-ready ability through
+            hands-on courses and mentorship.
+          </p>
+        </div>
+
+        <!-- Card 2: Our Value -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">💎</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our Value</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            Learn by building, feedback over lectures, and community over
+            competition. Every course is judged by one thing: can it get you
+            hired or promoted.
+          </p>
+        </div>
+
+        <!-- Card 3: Our Vision -->
+        <div
+          class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col items-start"
+        >
+          <div class="text-3xl mb-6">🎯</div>
+          <h2 class="text-xl font-bold text-[#2040a1] mb-4">Our Vision</h2>
+          <p class="text-slate-700 text-sm leading-relaxed">
+            A world where geography and budget never decide who gets to become a
+            developer — where one platform can take a beginner from first line
+            of code to first job offer.
+          </p>
+        </div>
+      </div>
+      <div class="w-full bg-white border-y border-gray-100 py-10 my-8">
+        <div
+          class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4"
+        >
+          <!-- Item 1: Projects -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">📁</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">168+</span>
+              <span class="block text-[#2040a1] text-lg">Project</span>
+            </div>
+          </div>
+
+          <!-- Item 2: Time -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">⏳</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">2years</span>
+              <span class="block text-[#2040a1] text-lg">Time</span>
+            </div>
+          </div>
+
+          <!-- Item 3: Technology -->
+          <div class="flex items-center justify-center space-x-3">
+            <div class="text-3xl">🤖</div>
+            <div class="text-left font-bold leading-tight">
+              <span class="block text-[#ff3b30] text-lg">Technology</span>
+              <span class="block text-[#2040a1] text-lg">15+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="bg-[#f8f9fa] py-16 px-4">
+        <div class="max-w-6xl mx-auto space-y-16">
+          <!-- SECTION 1: MENTORS -->
+          <div>
+            <h2
+              class="text-[#3b3abe] font-bold text-center uppercase tracking-wider text-lg mb-10"
+            >
+              MENTORS
+            </h2>
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16">
+              <!-- Mentor 1 -->
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/image copy 3.png"
+                  alt="Eung Lyzhia"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Eung Lyzhia
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <!-- Mentor 2 -->
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/teacher2.jpg"
+                  alt="Kung Sovannda"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Kung Sovannda
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         
+          <div>
+            <h2
+              class="text-[#3b3abe] font-bold text-center uppercase tracking-wider text-lg mb-12"
+            >
+              TEAM MEMBER
+            </h2>
+
+   
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/heng.jpg"
+                  alt="Tha Leapheng"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Tha Leapheng
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/rith.jpg"
+                  alt="Chao Sokthearith"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chao Sothearith
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: 3 Members -->
+            <div class="flex flex-wrap justify-center gap-10 md:gap-16 mb-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/buaung.jpg"
+                  alt="Long Baung"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Long Baung
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/ya.jpg"
+                  alt="Ngin Chakreya"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Ngin Chakreya
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/neang.jpg"
+                  alt="Chet Sreyneang"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chet Sreyneang
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: 4 Members -->
+            <div class="flex flex-wrap justify-center gap-10 md:gap-12">
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/hong.jpg"
+                  alt="Yun Menghong"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Yun Menghong
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/fang.jpg"
+                  alt="Ly fang"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3">Ly fang</h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center text-center w-40">
+                <img
+                  src="../image/tya.jpg"
+                  alt="Sun Rathanak sathya"
+                  class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm"
+                />
+                <h3 class="font-bold text-gray-900 text-base mb-3 leading-snug">
+                  Sun Rathanak<br />sathya
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+
+              <!-- Member 4 (Placeholder Avatar) -->
+              <div class="flex flex-col items-center text-center w-40">
+                 <img src="../image/paroth.jpg" alt="" class="w-36 h-36 rounded-full object-cover mb-4 shadow-sm">
+                 
+                <div class="flex flex-col items-center text-center w-40">
+               
+                <h3 class="font-bold text-gray-900 text-base mb-3">
+                  Chhun Sopharoth
+                </h3>
+                <div class="flex space-x-3 text-gray-900 text-xl">
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-facebook"></i
+                  ></a>
+                  <a href="#" class="hover:text-gray-600"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="text-center max-w-xl mx-auto py-12 px-4">
+        <h1 class="text-2xl md:text-3xl font-bold leading-tight mb-6">
+          <span class="text-[#ff4242]">We are a team</span>
+          <span class="text-[#2040a1]"> with a shared goal</span>
+        </h1>
+        <p class="text-slate-800 text-sm md:text-base leading-relaxed">
+          We build the shortest honest path between curiosity and a real skill —
+          <br class="hidden sm:inline" />
+          no fluff, no gatekeeping, just structured practice that sticks.
+        </p>
+      </div>
+<div class="marquee-wrap bg-[#564CE5] py-3">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+  </div>
+</div>
+    </main>
+    <footer class="bg-[#f5f5f7] px-6">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10">
+        <div>
+          <div class="flex items-center gap-2 font-extrabold text-navy">
+            <img src="../image/stadia-logo-transparent.png" alt="" class="w-40" />
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">EXPLORE</h5>
+          <ul class="space-y-2 text-[13.5px] text-gray-500">
+            <li><a href="./index.html" class="hover:text-navy">Home</a></li>
+            <li><a href="./about-us.html" class="hover:text-navy">About Us</a></li>
+            <li><a href="./projects.html" class="hover:text-navy">List project</a></li>
+            <li><a href="./create-project.html" data-requires-auth class="hover:text-navy">Post project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">Connect With Us</h5>
+          <p class="text-[13.5px] text-gray-500 mb-3">
+            Stay updated with our latest news and events.
+          </p>
+          <div class="flex gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="30"><path fill="rgb(8, 6, 26)" d="M576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 440 146.7 540.8 258.2 568.5L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 574.1C477.8 558.8 576 450.9 576 320z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="30"><path fill="rgb(8, 6, 26)" d="M320 72C183 72 72 183 72 320C72 457 183 568 320 568C457 568 568 457 568 320C568 183 457 72 320 72zM435 240.7C431.3 279.9 415.1 375.1 406.9 419C403.4 437.6 396.6 443.8 390 444.4C375.6 445.7 364.7 434.9 350.7 425.7C328.9 411.4 316.5 402.5 295.4 388.5C270.9 372.4 286.8 363.5 300.7 349C304.4 345.2 367.8 287.5 369 282.3C369.2 281.6 369.3 279.2 367.8 277.9C366.3 276.6 364.2 277.1 362.7 277.4C360.5 277.9 325.6 300.9 258.1 346.5C248.2 353.3 239.2 356.6 231.2 356.4C222.3 356.2 205.3 351.4 192.6 347.3C177.1 342.3 164.7 339.6 165.8 331C166.4 326.5 172.5 322 184.2 317.3C256.5 285.8 304.7 265 328.8 255C397.7 226.4 412 221.4 421.3 221.2C423.4 221.2 427.9 221.7 430.9 224.1C432.9 225.8 434.1 228.2 434.4 230.8C434.9 234 435 237.3 434.8 240.6z"/>
+            </svg>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="30" height="30"><path fill="rgb(8, 6, 26)" d="M280.5 426.5C214.5 418.5 168 371 168 309.5C168 284.5 177 257.5 192 239.5C185.5 223 186.5 188 194 173.5C214 171 241 181.5 257 196C276 190 296 187 320.5 187C345 187 365 190 383 195.5C398.5 181.5 426 171 446 173.5C453 187 454 222 447.5 239C463.5 258 472 283.5 472 309.5C472 371 425.5 417.5 358.5 426C375.5 437 387 461 387 488.5L387 540.5C387 555.5 399.5 564 414.5 558C505 523.5 576 433 576 321C576 179.5 461 64 319.5 64C178 64 64 179.5 64 321C64 432 134.5 524 229.5 558.5C243 563.5 256 554.5 256 541L256 501C249 504 240 506 232 506C199 506 179.5 488 165.5 454.5C160 441 154 433 142.5 431.5C136.5 431 134.5 428.5 134.5 425.5C134.5 419.5 144.5 415 154.5 415C169 415 181.5 424 194.5 442.5C204.5 457 215 463.5 227.5 463.5C240 463.5 248 459 259.5 447.5C268 439 274.5 431.5 280.5 426.5z"/>
+            </svg> 
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3">
+            Sponsored and organized by ISTAD
+          </h5>
+          <div>
+            <img src="../image/New Logo iSTAD Full-12.png" alt="" class="w-48" />
+          </div>
+        </div>
+      </div>
+      <b
+        ><div
+          class="text-center tmax-w-7xl mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500"
+        >
+          © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the
+          next generation through their projects.
+        </div></b
+      >
+    </footer>
+    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="../node_modules/preline/dist/preline.js"></script>
+    <!-- STADIA API wiring -->
+    <script src="../node_modules/@multiavatar/multiavatar/multiavatar.min.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/users.js"></script>
+    <script src="../js/media.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.AuthAPI) AuthAPI.initNavAuth();
+      });
+    </script>
+  </body>
+</html>

@@ -1,14 +1,22 @@
 {
   "dependencies": {
+    "@multiavatar/multiavatar": "^1.0.7",
     "@tailwindcss/cli": "^4.3.3",
     "flowbite": "^4.0.2",
     "preline": "^4.2.0",
     "tailwindcss": "^4.3.3"
   },
-  "scripts": {
-    "inspired": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
-  },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.11"
+    "@tailwindcss/forms": "^0.5.11",
+    "concurrently": "^9.2.0",
+    "kill-port": "^2.0.1",
+    "live-server": "^1.2.2"
+  },
+  "scripts": {
+    "css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "serve": "live-server . --entry-file=html/index.html --port=3000 --watch=html,src,js,components,store,image --mount=/:./html --mount=/js:./js --mount=/src:./src --mount=/image:./image --mount=/components:./components --mount=/store:./store --mount=/node_modules:./node_modules",
+    "prestart": "kill-port 3000",
+    "start": "concurrently -n CSS,SERVER -c cyan,green \"npm run css\" \"npm run serve\"",
+    "build": "tailwindcss -i ./src/input.css -o ./src/output.css --minify"
   }
 }

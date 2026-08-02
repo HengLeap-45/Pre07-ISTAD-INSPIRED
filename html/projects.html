@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>STADIA — Frontend Skill Projects</title>
-<meta name="description" content="Browse CSS projects built and shared by ISTAD students on STADIA.">
+<meta name="description" content="Browse every student project shared on STADIA, filterable by category and course.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="STADIA — CSS Projects">
-<meta property="og:description" content="Browse CSS projects built and shared by ISTAD students on STADIA.">
+<meta property="og:title" content="STADIA — All Projects">
+<meta property="og:description" content="Browse every student project shared on STADIA, filterable by category and course.">
 <meta property="og:image" content="../image/stadia-logo-transparent.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="STADIA — CSS Projects">
-<meta name="twitter:description" content="Browse CSS projects built and shared by ISTAD students on STADIA.">
+<meta name="twitter:title" content="STADIA — All Projects">
+<meta name="twitter:description" content="Browse every student project shared on STADIA, filterable by category and course.">
 <script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <link
   rel="stylesheet"
@@ -200,14 +200,15 @@
  
 </style>
 </head>
-<body class="text-ink bg-gray-50 min-h-screen font-sans text-gray-800">
+<body class="bg-gray-50 min-h-screen font-sans text-gray-800">
 
+  <section>
     <nav class="bg-white">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
     <a href="./index.html" class=" items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
-      <img src="../image/stadia-logo-transparent.png" class="w-24">
+      <img src="../image/stadia-logo-transparent.png" class="w-15 h-15" alt="Stadia Logo">
     </a>
-
+ 
     <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
       <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold bg-[#564CE5] text-white">PROJECT</a>
       <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">POST CREATOR</a>
@@ -260,15 +261,15 @@
     </div>
   </div>
 </nav>
-
+</section>
   <section class=" max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16" id="margin">
   <div class="grid justify-start mr-[200px]">
   <div class=" p-5 flex-1 text-center md:text-left text-[#564CE5] md:pl-16">
     <h1 class="reveal-text1 text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-[#564CE5]">
-      <span class="text-red-600  " id="red">Cascading Style Sheets</span><br class="hidden md:inline" /> <span class="text-[#564CE5] text-2xl "></span>
+      <span class="text-red-600  " id="red">All Project Web Page</span><br class="hidden md:inline" /> <span class="text-[#564CE5] text-2xl "></span>
     </h1>
     <p class="mt-6 text-gray-500 text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
-      Learn how to create beautiful, responsive, and user-friendly websites with CSS. Master layouts using Flexbox and Grid, build animations, customize colors and typography, and design modern web interfaces that work seamlessly across all devices.
+     Learn to build reponsive , dynamic website by combining HTML , CSS , and JavaScript. Create smooth user experiences by masstering UI/UX principles. Blend coding skills with design expertise to craft engaging, modern web applications.
     </p>
     <div class="mt-8 flex justify-center md:justify-start">
       <button type="button" class="bg-[#564CE5] hover:bg-[#4338CA] text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg active:scale-98 transition-all duration-200 cursor-pointer">
@@ -281,7 +282,7 @@
   <div class="grid justify-end mr-[100px]">
   <div class="flex-1 flex letter justify-center md:justify-end">
     <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] aspect-square flex items-center justify-center">
-      <img src="../image/css.jpg" class="w-full max-w-[100%] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300">
+      <img src="../image/all.jpg" class="w-full max-w-[100%] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300">
     </div>
   </div>
   </div>
@@ -289,38 +290,28 @@
 </section>
   <section class="max-w-4xl mx-auto px-4 pb-16">
     <div class="relative mb-8">
-      <input type="search"
-             placeholder="Search..."
+      <input type="search" id="projectSearchInput"
+             placeholder="Search projects..."
              class="w-full pl-5 pr-12 py-3.5 rounded-full border border-gray-200 bg-white shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+                    focus:outline-none focus:ring-2 focus:ring-secondary2 focus:border-transparent
+                    transition-shadow
                     text-gray-700 placeholder-gray-400" />
-      <button class="absolute mt-3  right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-600">
-        <svg class="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"stroke-width="2"
+      <div id="searchSpinner" class="hidden absolute right-4 top-1/2 -translate-y-1/2">
+        <div class="w-5 h-5 border-2 border-gray-200 border-t-secondary2 rounded-full animate-spin"></div>
+      </div>
+      <button id="searchIconBtn" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-secondary2 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       </button>
     </div>
-    <div class="flex gap-3 w-full">
-      <button class="flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium
-                     hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition shadow-sm text-sm">
+    <!-- "All Project" is static (it means "no filter"); every other button here
+         is generated at runtime from CategoriesAPI.getAllCategories() -- see the
+         script at the bottom of this page. Nothing else in this list is hardcoded. -->
+    <div id="categoryFilters" class="flex gap-3 w-full flex-wrap">
+      <button data-filter-all class="flex-1 py-2.5 rounded-full border border-gray-200 bg-secondary2 text-white font-medium transition shadow-sm text-sm">
         All Project
-      </button>
-      <button class="flex-1 py-2.5 rounded-full border border-gray-200 bg-blue-600 text-white font-medium
-                     hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition shadow-sm text-sm">
-        JAVA SCRIPT
-      </button>
-      <button class="flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium
-                     hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition shadow-sm text-sm">
-        CSS
-      </button>
-      <button class="flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium
-                     hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition shadow-sm text-sm">
-        HTML
-      </button>
-      <button class="flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium
-                     hover:bg-brand-50 hover:border-brand-300 hover:text-brand-700 transition shadow-sm text-sm">
-        UI/UX
       </button>
     </div>
     </div>
@@ -365,6 +356,72 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
                             <img 
+                                src="../image/html2.jpg" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">HTML Semantic Elements</span> 
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                               Understand semantic HTML by using elements like header, nav, section, article, main, and footer, to improve accessibility and SEO.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    298
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    456
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
+                                src="../image/2.png" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">Efficient Data Management: Arrays & Objects</span> 
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                                Master JavaScript arrays and objects to organize complex data and implement dynamic, interactive features on websites.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    298
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    456
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
                                 src="../image/css2.jpg" 
                                 alt="" 
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -376,6 +433,72 @@
                             </h3>
                             <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
                                Master modern CSS layouts using Flexbox and CSS Grid. Create responsive, flexible, and organized web page structures for every screen size.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    298
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    456
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
+                                src="../image/html4.jpg" 
+                                alt="Tailwind CSS Course" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">Responsive HTML Layouts</span> 
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                                 Build responsive page structures using semantic HTML combined with modern layout techniques for desktop, tablet, and mobile devices.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    187
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    234
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
+                                src="../image/2.png" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">Efficient Data Management: Arrays & Objects</span> 
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                                Master JavaScript arrays and objects to organize complex data and implement dynamic, interactive features on websites.
                             </p>
                             <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
                                 <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
@@ -460,7 +583,39 @@
                         </div>
                     </div>
                 </div>
- 
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
+                                src="../image/uxui in2.png" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">Principles of UI Design</span> 
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                                Learn fundamental UI design principles including color theory, typography, layout, and visual hierarchy to create visually appealing and user-friendly interfaces.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    298
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    456
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="group h-full w-full max-w-xs">
                     <div class="bg-white rounded-lg overflow-hiddenshadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
@@ -490,6 +645,39 @@
                                         <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
                                     </svg>
                                     389
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="group h-full w-full max-w-xs">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                        <div class="relative overflow-hidden bg-slate-100 h-32">
+                            <img 
+                                src="../image/uxui in4.png" 
+                                alt="" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                        </div>
+                        <div class="p-3 flex-1 flex flex-col">
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                                <span class="text-indigo-600">User Research and Persona Creation</span>
+                            </h3>
+                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                                Learn how to conduct effective user research through interviews, surveys, and observational studies to understand user needs, behaviors, and motivations.
+                            </p>
+                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
+                                    </svg>
+                                    521
+                                </span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
+                                    </svg>
+                                    678
                                 </span>
                             </div>
                         </div>
@@ -530,7 +718,11 @@
  
             </div>
         </div>
+
+        <!-- Pagination controls, populated by JS below based on the API's meta.total_pages -->
+        <div id="projectsPagination" class="hidden flex items-center justify-center gap-2 pt-8"></div>
     </div>
+
 
 <div class="marquee-wrap bg-[#564CE5] py-3">
   <div class="marquee-track">
@@ -594,7 +786,7 @@
     <div>
       <h5 class="font-extrabold text-sm mb-3">Sponsored and organized by ISTAD</h5>
       <div >
-        <img src="../image/New Logo iSTAD Full-12.png"
+        <img src="../image/download (1).png"
  alt="" class="w-48">
       </div>
  
@@ -615,6 +807,7 @@
     <script src="../js/media.js"></script>
     <script src="../js/project.js"></script>
     <script src="../js/categories.js"></script>
+    <script src="../js/techStacks.js"></script>
     <script src="../js/cardDetail.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -622,84 +815,158 @@
 
         const grid = document.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.gap-4');
         if (!grid || !window.ProjectsAPI) return;
-        const load = () => {
+
+        const PAGE_SIZE = 12;
+        const pagination = document.getElementById('projectsPagination');
+        let currentPage = 1;
+
+        function renderPagination(meta) {
+          if (!pagination) return;
+          if (!meta || !meta.total_pages || meta.total_pages <= 1) {
+            pagination.classList.add('hidden');
+            pagination.innerHTML = '';
+            return;
+          }
+          const page = meta.page || currentPage;
+          const totalPages = meta.total_pages;
+          const hasPrev = page > 1;
+          const hasNext = meta.has_next !== undefined ? meta.has_next : page < totalPages;
+
+          pagination.classList.remove('hidden');
+          pagination.innerHTML = `
+            <button type="button" id="pagePrevBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasPrev ? '' : 'disabled'}>Prev</button>
+            <span class="text-sm text-gray-500 px-2">Page ${page} of ${totalPages}</span>
+            <button type="button" id="pageNextBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasNext ? '' : 'disabled'}>Next</button>
+          `;
+
+          const prevBtn = document.getElementById('pagePrevBtn');
+          const nextBtn = document.getElementById('pageNextBtn');
+          if (prevBtn) prevBtn.addEventListener('click', () => { if (hasPrev) load(page - 1); });
+          if (nextBtn) nextBtn.addEventListener('click', () => { if (hasNext) load(page + 1); });
+        }
+
+        const load = (page = 1) => {
+          currentPage = page;
           cardDetailAPI.showLoading(grid);
-          ProjectsAPI.getAllProjects({ page: 1, size: 20 })
-            .then(projects => {
-              if (!Array.isArray(projects) || projects.length === 0) {
+          ProjectsAPI.getAllProjectsPaged({ page, size: PAGE_SIZE })
+            .then(({ items, meta }) => {
+              if (!Array.isArray(items) || items.length === 0) {
                 grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found. Try adjusting your search or filters.</div>';
+                renderPagination(null);
+                return;
+              }
+              cardDetailAPI.renderProjectCards(items, grid);
+              renderPagination(meta);
+              window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+            })
+            .catch(() => { cardDetailAPI.showError(grid, 'Failed to load projects.'); renderPagination(null); });
+        };
+        load(1);
+
+        // Wire the search input if present. Debounced so rapid typing doesn't
+        // fire a request (and re-flash the skeleton) on every keystroke; the
+        // magnifying-glass icon swaps for a spinner while a search is in flight.
+        const searchInput = document.getElementById('projectSearchInput');
+        const searchSpinner = document.getElementById('searchSpinner');
+        const searchIconBtn = document.getElementById('searchIconBtn');
+        let searchDebounceTimer = null;
+        let searchRequestId = 0;
+
+        function runSearch(q) {
+          const requestId = ++searchRequestId;
+          if (searchSpinner) searchSpinner.classList.remove('hidden');
+          if (searchIconBtn) searchIconBtn.classList.add('hidden');
+          cardDetailAPI.showLoading(grid);
+          renderPagination(null); // search results aren't paginated here
+          ProjectsAPI.searchProjects(q, { page: 1, size: 20 })
+            .then(projects => {
+              if (requestId !== searchRequestId) return; // a newer search superseded this one
+              if (!Array.isArray(projects) || projects.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' + ApiUtils.escapeHTML(q) + '&quot;.</div>';
                 return;
               }
               cardDetailAPI.renderProjectCards(projects, grid);
             })
-            .catch(() => cardDetailAPI.showError(grid, 'Failed to load projects.'));
-        };
-        load();
+            .catch(() => { if (requestId === searchRequestId) cardDetailAPI.showError(grid, 'Search failed.'); })
+            .finally(() => {
+              if (requestId !== searchRequestId) return;
+              if (searchSpinner) searchSpinner.classList.add('hidden');
+              if (searchIconBtn) searchIconBtn.classList.remove('hidden');
+            });
+        }
 
-        // Wire the search input if present
-        const searchInput = document.querySelector('input[type="search"]');
         if (searchInput) {
           searchInput.addEventListener('input', e => {
             const q = e.target.value.trim();
-            if (!q) { load(); return; }
-            cardDetailAPI.showLoading(grid);
-            ProjectsAPI.searchProjects(q, { page: 1, size: 20 })
-              .then(projects => {
-                if (!Array.isArray(projects) || projects.length === 0) {
-                  grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' + q + '&quot;.</div>';
-                  return;
-                }
-                cardDetailAPI.renderProjectCards(projects, grid);
-              })
-              .catch(() => cardDetailAPI.showError(grid, 'Search failed.'));
+            clearTimeout(searchDebounceTimer);
+            if (!q) {
+              searchRequestId++; // invalidate any in-flight search
+              if (searchSpinner) searchSpinner.classList.add('hidden');
+              if (searchIconBtn) searchIconBtn.classList.remove('hidden');
+              load(1);
+              return;
+            }
+            searchDebounceTimer = setTimeout(() => runSearch(q), 300);
           });
         }
 
-        // Wire the category filter buttons ("All Project / JAVA SCRIPT / CSS / HTML / UI/UX")
-        const filterButtons = document.querySelectorAll('.flex.gap-3.w-full > button');
-        if (filterButtons.length && window.CategoriesAPI) {
-          let categoriesCache = null;
-          const normalize = s => (s || '').trim().toLowerCase().replace(/[\s/_-]+/g, '');
-          const setActive = (activeBtn) => {
-            filterButtons.forEach(b => {
-              b.classList.remove('bg-blue-600', 'text-white');
-              b.classList.add('bg-white', 'text-gray-800');
-            });
-            activeBtn.classList.remove('bg-white', 'text-gray-800');
-            activeBtn.classList.add('bg-blue-600', 'text-white');
-          };
-          filterButtons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-              setActive(btn);
-              const label = btn.textContent.trim();
-              if (/all project/i.test(label)) { load(); return; }
-              cardDetailAPI.showLoading(grid);
-              try {
-                if (!categoriesCache) categoriesCache = await CategoriesAPI.getAllCategories();
-                const target = normalize(label);
-                const match = (categoriesCache || []).find(c => {
-                  const n = normalize(c.name);
-                  return n === target || n.includes(target) || target.includes(n);
-                });
-                if (!match) {
-                  grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' + label + '&quot;.</div>';
-                  return;
-                }
-                const projects = await CategoriesAPI.getCategoryProjects(match.uuid);
-                if (!Array.isArray(projects) || projects.length === 0) {
-                  grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' + label + '&quot;.</div>';
-                  return;
-                }
-                cardDetailAPI.renderProjectCards(projects, grid);
-              } catch (err) {
-                cardDetailAPI.showError(grid, 'Failed to filter projects.');
-              }
-            });
+        // Category filter buttons: "All Project" is static (see the HTML),
+        // every other button is generated here from CategoriesAPI.getAllCategories()
+        // -- nothing about the filter list itself is hardcoded.
+        const filtersContainer = document.getElementById('categoryFilters');
+        const allProjectBtn = filtersContainer ? filtersContainer.querySelector('[data-filter-all]') : null;
+
+        const FILTER_HOVER_CLASSES = ['hover:bg-secondary2/10', 'hover:border-secondary2', 'hover:text-secondary2'];
+        function setActiveFilterBtn(activeBtn) {
+          // Hover classes only make sense on inactive chips -- without removing
+          // them from the active one, hovering it would fade its solid purple
+          // background/white text toward the same hover tint used for inactive
+          // chips, making the "selected" chip look broken while hovered.
+          filtersContainer.querySelectorAll('button').forEach(b => {
+            b.classList.remove('bg-secondary2', 'text-white');
+            b.classList.add('bg-white', 'text-gray-800', ...FILTER_HOVER_CLASSES);
           });
+          activeBtn.classList.remove('bg-white', 'text-gray-800', ...FILTER_HOVER_CLASSES);
+          activeBtn.classList.add('bg-secondary2', 'text-white');
+        }
+
+        async function selectCategoryFilter(categoryUuid, btn) {
+          setActiveFilterBtn(btn);
+          cardDetailAPI.showLoading(grid);
+          renderPagination(null); // category results aren't paginated in this simple view
+          try {
+            const projects = await CategoriesAPI.getCategoryProjects(categoryUuid);
+            if (!Array.isArray(projects) || projects.length === 0) {
+              grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for this category.</div>';
+              return;
+            }
+            cardDetailAPI.renderProjectCards(projects, grid);
+          } catch (err) {
+            cardDetailAPI.showError(grid, 'Failed to filter projects.');
+          }
+        }
+
+        if (allProjectBtn) {
+          allProjectBtn.addEventListener('click', () => {
+            setActiveFilterBtn(allProjectBtn);
+            load(1);
+          });
+        }
+
+        if (filtersContainer && window.CategoriesAPI) {
+          CategoriesAPI.getAllCategories().then(categories => {
+            (categories || []).forEach(cat => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium hover:bg-secondary2/10 hover:border-secondary2 hover:text-secondary2 transition shadow-sm text-sm';
+              btn.textContent = cat.title || cat.name || 'Category';
+              btn.addEventListener('click', () => selectCategoryFilter(cat.uuid, btn));
+              filtersContainer.appendChild(btn);
+            });
+          }).catch(err => console.error('Failed to load category filters:', err.message));
         }
       });
     </script>
-
 
 </body>
 </html>

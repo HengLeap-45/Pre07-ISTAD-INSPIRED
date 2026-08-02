@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>View History</title>
-<meta name="description" content="Your recently viewed STADIA projects.">
+<title>My Favorites</title>
+<meta name="description" content="Your saved STADIA projects.">
 <meta name="robots" content="noindex, nofollow">
 <script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <link href="../src/output.css" rel="stylesheet">
@@ -14,7 +14,7 @@
 
     <!-- Top bar -->
     <div class="flex items-center justify-between mb-8">
-      <a href="./index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-gray-600">
+      <a href="./index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-blue-600">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
@@ -51,14 +51,14 @@
 
     <!-- Tabs -->
     <div class="flex items-center bg-gray-200 rounded-xl p-1 mb-8">
-      <a href="./history-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg bg-white shadow-sm" title="View History">
-        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <a href="./history-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700" title="View History">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2" />
         </svg>
       </a>
-      <a href="./favorite-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700" title="Favorites">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <a href="./favorite-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg bg-white shadow-sm" title="Favorites">
+        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 4h12v16l-6-4-6 4V4z" />
         </svg>
       </a>
@@ -70,23 +70,22 @@
     </div>
 
     <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-bold text-gray-900">Recently Viewed</h2>
-      <button type="button" id="clearHistoryBtn" class="hidden text-sm font-semibold text-red-600 hover:underline">Clear all</button>
+      <h2 class="text-lg font-bold text-gray-900">My Favorites</h2>
     </div>
 
     <!-- Not logged in -->
     <div id="auth-required" class="hidden text-sm text-gray-600 py-8 text-center border border-dashed border-gray-300 rounded-xl">
-      Please <a href="./login.html" class="text-[#564CE5] font-semibold hover:underline">sign in</a> to see your view history.
+      Please <a href="./login.html" class="text-[#564CE5] font-semibold hover:underline">sign in</a> to see your favorites.
     </div>
 
     <!-- Loading state -->
     <div id="loading-state" class="text-sm text-gray-500 py-8 text-center">
-      Loading history...
+      Loading favorites...
     </div>
 
     <!-- Empty state -->
     <div id="empty-state" class="hidden text-sm text-gray-500 py-8 text-center border border-dashed border-gray-300 rounded-xl">
-      No projects viewed yet. <a href="./projects.html" class="text-[#564CE5] font-semibold hover:underline">Browse projects</a> to build up your history.
+      No favorites yet. Tap <strong>Save</strong> on any project to bookmark it here.
     </div>
 
     <!-- Cards render here -->
@@ -94,7 +93,7 @@
 
   </div>
 
-  <template id="historyCardTemplate">
+  <template id="favoriteCardTemplate">
     <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col" data-project-uuid="">
       <a class="card-link relative bg-gray-100 h-32 flex items-center justify-center" href="#">
         <img class="card-thumb hidden w-full h-32 object-cover" alt="" />
@@ -103,8 +102,13 @@
         <a class="card-link" href="#">
           <p class="card-title text-sm font-semibold text-gray-900 mb-1 line-clamp-1"></p>
         </a>
-        <p class="card-viewed text-xs text-gray-400 mb-3"></p>
-        <button type="button" class="card-remove mt-auto self-start px-2 py-1.5 text-xs font-semibold rounded-md border border-gray-200 text-gray-600 hover:bg-gray-50">Remove</button>
+        <p class="card-saved text-xs text-gray-400 mb-3"></p>
+        <button type="button" class="card-remove mt-auto self-start px-2 py-1.5 text-xs font-semibold rounded-md border border-gray-200 text-gray-600 hover:bg-gray-50 flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 4h12v16l-6-4-6 4V4z" />
+          </svg>
+          Unsave
+        </button>
       </div>
     </div>
   </template>
@@ -126,8 +130,7 @@
         const loading = document.getElementById('loading-state');
         const empty = document.getElementById('empty-state');
         const authRequired = document.getElementById('auth-required');
-        const clearBtn = document.getElementById('clearHistoryBtn');
-        const template = document.getElementById('historyCardTemplate');
+        const template = document.getElementById('favoriteCardTemplate');
 
         if (!window.AuthAPI || !AuthAPI.isAuthenticated()) {
           loading.classList.add('hidden');
@@ -173,45 +176,34 @@
           }
 
           node.querySelector('.card-title').textContent = entry.title || 'Untitled project';
-          node.querySelector('.card-viewed').textContent = 'Viewed ' + timeAgo(entry.viewedAt);
+          node.querySelector('.card-saved').textContent = 'Saved ' + timeAgo(entry.savedAt);
 
           node.querySelector('.card-remove').addEventListener('click', async () => {
             const ok = window.showConfirmModal
-              ? await showConfirmModal('Remove this project from your history?', { confirmLabel: 'Remove', danger: true })
-              : confirm('Remove this project from your history?');
+              ? await showConfirmModal('Remove this project from your favorites?', { confirmLabel: 'Unsave', danger: true })
+              : confirm('Remove this project from your favorites?');
             if (!ok) return;
-            HistoryAPI.remove(entry.uuid);
+            FavoritesAPI.remove(entry.uuid);
             node.remove();
-            if (!HistoryAPI.getAll().length) renderList();
+            if (!FavoritesAPI.getAll().length) renderList();
           });
 
           return node;
         }
 
         function renderList() {
-          const items = HistoryAPI.getAll();
+          const items = FavoritesAPI.getAll();
           loading.classList.add('hidden');
           if (!items.length) {
             empty.classList.remove('hidden');
             grid.classList.add('hidden');
-            clearBtn.classList.add('hidden');
             return;
           }
           grid.innerHTML = '';
           items.forEach(entry => grid.appendChild(renderCard(entry)));
           empty.classList.add('hidden');
           grid.classList.remove('hidden');
-          clearBtn.classList.remove('hidden');
         }
-
-        clearBtn.addEventListener('click', async () => {
-          const ok = window.showConfirmModal
-            ? await showConfirmModal('Clear your entire view history? This cannot be undone.', { confirmLabel: 'Clear all', danger: true })
-            : confirm('Clear your entire view history?');
-          if (!ok) return;
-          HistoryAPI.clear();
-          renderList();
-        });
 
         renderList();
       });

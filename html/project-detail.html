@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Title</title>
+<meta id="metaDescription" name="description" content="See this student project on STADIA.">
+<meta id="ogType" property="og:type" content="article">
+<meta id="ogTitle" property="og:title" content="Project Title | STADIA">
+<meta id="ogDescription" property="og:description" content="See this student project on STADIA.">
+<meta id="ogImage" property="og:image" content="">
+<meta id="ogUrl" property="og:url" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta id="twitterTitle" name="twitter:title" content="Project Title | STADIA">
+<meta id="twitterDescription" name="twitter:description" content="See this student project on STADIA.">
+<meta id="twitterImage" name="twitter:image" content="">
+<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+<link rel="stylesheet" href="../src/output.css">
+<style>
+  /* brand color utilities (the page no longer depends on the Tailwind CDN,
+     so we define these scoped utilities here) */
+  .text-brand { color: #5B4FE9; }
+  .hover\:text-brand:hover { color: #5B4FE9; }
+  .bg-brand { background-color: #5B4FE9; }
+  .hover\:bg-brand-dark:hover { background-color: #4B3FD9; }
+  .focus\:ring-brand\/40:focus { --tw-ring-color: rgba(91, 79, 233, 0.4); }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+  <nav class="bg-white">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="./index.html" class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
+        <img src="../image/stadia-logo-transparent.png" class="w-24">
+      </a>
+      <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
+        <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">PROJECT</a>
+        <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">POST CREATOR</a>
+        <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">ABOUT US</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3">
+          <div data-auth="guest" class="flex items-center gap-2">
+            <a href="./login.html" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">Sign In</a>
+            <a href="./signup.html" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Sign Up</a>
+          </div>
+          <div data-auth="user" class="hidden flex items-center gap-2">
+            <a href="./dashboard.html" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy" title="Account">
+            <span data-auth="user-avatar" class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"></span>
+            <span data-auth="user-name">Account</span>
+          </a>
+            <button type="button" data-action="logout" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Log out</button>
+          </div>
+        </div>
+        <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+        <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">☰</button>
+      </div>
+    </div>
+    <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
+      <a href="./projects.html" class="block py-2 font-semibold text-gray-500">PROJECT</a>
+      <a href="./create-project.html" data-requires-auth class="block py-2 font-semibold text-gray-500">POST CREATOR</a>
+      <a href="./about-us.html" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
+      <div data-auth="guest" class="pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+        <a href="./login.html" class="font-semibold text-gray-500">Sign In</a>
+        <a href="./signup.html" class="font-semibold text-[#564CE5]">Sign Up</a>
+      </div>
+      <div data-auth="user" class="hidden pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
+        <a href="./dashboard.html" class="flex items-center gap-2 font-semibold text-gray-500" title="Account">
+        <span data-auth="user-avatar" class="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-white text-[10px] font-bold shrink-0 bg-gray-300"></span>
+        <span data-auth="user-name">Account</span>
+      </a>
+        <button type="button" data-action="logout" class="font-semibold text-red-600">Log out</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-6">
+
+    <!-- Top bar -->
+    <div class="flex items-center mb-6">
+      <a href="./projects.html" class="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back To Projects
+      </a>
+    </div>
+
+        <!-- Tags -->
+    <div id="projectTags" class="flex gap-2 mb-4 flex-wrap justify-center">
+      <span class="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full shadow-sm">Generation 2</span>
+      <span class="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full shadow-sm">Full Stack</span>
+      <span class="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full shadow-sm">SaaS</span>
+    </div>
+
+    <!-- Title -->
+    <h1 id="projectTitle" class="text-center text-2xl font-bold text-gray-900 mb-4">Project Title</h1>
+
+    <!-- Helpful / Not for me / Bookmark -->
+    <div class="flex items-center justify-center gap-4 mb-2">
+      <button id="helpfulBtn" class="flex items-center gap-2 bg-brand hover:bg-brand-dark text-white text-sm font-semibold pl-5 pr-3 py-2 rounded-full shadow transition disabled:opacity-60">
+        HELP FULL
+        <span class="flex items-center gap-1 bg-white/20 rounded-full px-2 py-0.5">
+          <span id="helpfulCount">168</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+        </span>
+      </button>
+      <button id="notForMeBtn" class="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition disabled:opacity-60">
+        Not for me
+        <span class="flex items-center gap-1">
+          <span id="notForMeCount">4</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+      <button id="favoriteBtn" type="button" class="flex items-center gap-2 border border-gray-200 hover:border-gray-300 text-gray-600 text-sm font-semibold px-4 py-2 rounded-full transition" title="Save to favorites">
+        <svg id="favoriteIcon" class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 4h12v16l-6-4-6 4V4z" />
+        </svg>
+        <span id="favoriteLabel">Save</span>
+      </button>
+      <button id="shareBtn" type="button" class="flex items-center gap-2 border border-gray-200 hover:border-gray-300 text-gray-600 text-sm font-semibold px-4 py-2 rounded-full transition" title="Share this project">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342a4.5 4.5 0 100-2.684m0 2.684a4.5 4.5 0 100 2.684m0-2.684l6.632-3.316m0 0a4.5 4.5 0 108.184-2.684 4.5 4.5 0 00-8.184 2.684zm0 8.316a4.5 4.5 0 108.184 2.684 4.5 4.5 0 00-8.184-2.684z" />
+        </svg>
+        Share
+      </button>
+    </div>
+    <p class="text-center text-xs text-gray-400 mb-8"><span id="totalVotes">172</span> people voted on this article</p>
+
+    <!-- Main grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Left column -->
+      <div class="lg:col-span-2 space-y-6">
+
+                <!-- Media & Highlight -->
+        <div>
+          <h2 class="text-brand font-semibold mb-3">Media &amp; Highlight</h2>
+          <div id="projectMedia" class="rounded-2xl overflow-hidden shadow-sm bg-gradient-to-br from-slate-800 to-slate-900 h-64 flex items-center justify-center relative">
+            <img id="projectImage" src="" alt="" class="w-full h-full object-cover" onerror="this.style.display='none'"/>
+          </div>
+        </div>
+
+                <!-- Description -->
+        <div>
+          <h2 class="text-brand font-semibold mb-3">Description</h2>
+          <div id="projectDescription" class="text-sm text-gray-600 leading-relaxed space-y-4">
+            <p>Loading description...</p>
+          </div>
+        </div>
+
+        <!-- Technology -->
+        <div>
+          <h2 class="text-brand font-semibold mb-3">Technology</h2>
+          <div id="projectTech" class="flex gap-2 flex-wrap">
+            <span class="text-xs font-medium bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full shadow-sm">-</span>
+          </div>
+        </div>
+
+        <!-- Links: video / demo / repository -- rendered as rich previews
+             instead of raw URLs (embedded player for YouTube, styled cards
+             with icons otherwise). Whole section stays hidden if the
+             project has none of these set. -->
+        <div id="projectLinksSection" class="hidden">
+          <h2 class="text-brand font-semibold mb-3">Links</h2>
+
+          <div id="projectVideoWrap" class="hidden mb-3 rounded-2xl overflow-hidden shadow-sm bg-black aspect-video">
+            <iframe id="projectVideoEmbed" class="w-full h-full" src="" title="Project video" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <a id="projectVideoLinkFallback" href="#" target="_blank" rel="noopener noreferrer"
+             class="hidden items-center gap-3 border border-gray-200 rounded-xl p-4 mb-3 bg-white hover:border-brand/50 hover:bg-brand/5 transition">
+            <span class="w-10 h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <div class="min-w-0">
+              <p class="text-sm font-semibold text-gray-900">Watch Video</p>
+              <p id="projectVideoLinkText" class="text-xs text-gray-500 truncate"></p>
+            </div>
+          </a>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <a id="projectDemoLink" href="#" target="_blank" rel="noopener noreferrer"
+               class="hidden items-center gap-3 border border-gray-200 rounded-xl p-4 bg-white hover:border-brand/50 hover:bg-brand/5 transition">
+              <span class="w-10 h-10 rounded-lg bg-brand/5 text-brand flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-gray-900">Live Demo</p>
+                <p id="projectDemoLinkText" class="text-xs text-gray-500 truncate"></p>
+              </div>
+            </a>
+            <a id="projectRepoLink" href="#" target="_blank" rel="noopener noreferrer"
+               class="hidden items-center gap-3 border border-gray-200 rounded-xl p-4 bg-white hover:border-brand/50 hover:bg-brand/5 transition">
+              <span class="w-10 h-10 rounded-lg bg-gray-900 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.9 10.9 0 015.73 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12c0-6.35-5.15-11.5-11.5-11.5z" />
+                </svg>
+              </span>
+              <div class="min-w-0">
+                <p id="projectRepoLinkLabel" class="text-sm font-semibold text-gray-900">Source Code</p>
+                <p id="projectRepoLinkText" class="text-xs text-gray-500 truncate"></p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Comments -->
+        <div>
+          <h2 class="font-semibold text-gray-900 mb-4">Comment (<span id="commentCount">168</span>)</h2>
+
+          <form id="commentForm" class="flex items-start gap-3 mb-6">
+            <div class="w-9 h-9 rounded-full bg-gray-300 flex-shrink-0"></div>
+            <input id="commentInput" type="text" placeholder="New Comment..." autocomplete="off" class="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+            <button type="submit" class="text-sm font-semibold text-brand hover:text-brand-dark px-3 py-2 flex-shrink-0">Post</button>
+          </form>
+
+          <div id="commentsList" class="space-y-3"></div>
+
+          <!-- comment card template (hidden, cloned by JS) -->
+          <template id="commentTemplate">
+            <div class="bg-white rounded-xl shadow-sm p-4 flex gap-3" data-comment-id="">
+              <div class="w-9 h-9 rounded-full bg-gray-300 flex-shrink-0"></div>
+              <div class="flex-1">
+                <p class="text-sm font-semibold text-gray-800 comment-author"></p>
+                <p class="text-sm text-gray-500 mb-2 comment-text"></p>
+                <div class="flex gap-4 text-xs text-gray-400 font-medium">
+                  <button type="button" class="hover:text-brand reply-btn">Reply</button>
+                  <button type="button" class="hover:text-brand like-btn flex items-center gap-1">
+                    <span class="like-label">Like</span>
+                    <span class="like-count text-gray-300"></span>
+                  </button>
+                </div>
+                <div class="reply-box hidden mt-2 flex items-center gap-2">
+                  <input type="text" placeholder="Write a reply..." class="reply-input flex-1 border border-gray-200 rounded-full px-3 py-1.5 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
+                  <button type="button" class="reply-submit text-xs font-semibold text-brand hover:text-brand-dark">Send</button>
+                </div>
+                <div class="replies-list mt-3 space-y-2 pl-3 border-l-2 border-gray-100"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="space-y-6">
+
+                <!-- About the Author -->
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="text-brand font-semibold mb-4">About the Author</h3>
+          <div class="flex items-center gap-3 mb-3">
+            <div id="authorAvatar" class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-300 to-amber-500 flex-shrink-0"></div>
+            <div>
+              <p id="authorName" class="text-sm font-semibold text-gray-800">Loading...</p>
+              <p id="publishDate" class="text-xs text-gray-400">...</p>
+            </div>
+          </div>
+          <button id="followBtn" class="w-full bg-brand hover:bg-brand-dark text-white text-sm font-semibold py-2 rounded-full transition disabled:opacity-60">Follow</button>
+        </div>
+
+        <!-- Project Meta -->
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="text-brand font-semibold mb-4">Project Meta</h3>
+          <div id="projectMeta" class="text-xs text-gray-500 space-y-2">
+            <p>Course : -</p>
+            <p>Generation : -</p>
+            <p>Categories : -</p>
+          </div>
+          <div class="flex justify-center text-gray-300 mt-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Quick Link -->
+        <div class="bg-white rounded-xl shadow-sm p-5">
+          <h3 class="text-brand font-semibold mb-4">Quick Link</h3>
+          <div class="space-y-3 text-sm text-gray-600">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5" />
+              </svg>
+              Demo URL
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              Repo URL
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Video URL
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- STADIA API wiring -->
+<script src="../node_modules/@multiavatar/multiavatar/multiavatar.min.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/media.js"></script>
+<script src="../js/project.js"></script>
+<script src="../js/users.js"></script>
+<script src="../js/reviews.js"></script>
+<script src="../js/categories.js"></script>
+<script src="../js/techStacks.js"></script>
+<script src="../js/generations.js"></script>
+<script src="../js/favorites.js"></script>
+<script src="../js/cardDetail.js"></script>
+<!-- Detail page wiring: loads the selected project from the real API and
+     renders its data into the static template below. Runs after the API
+     wrappers above have defined window.apiClient / window.CardDetailAPI. -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.AuthAPI) AuthAPI.initNavAuth();
+
+  const params = new URLSearchParams(window.location.search);
+  const id = (params.get('id') || '').trim();
+
+  // ---- element lookups ----
+  const $ = (sel) => document.querySelector(sel);
+  const titleEl = $('#projectTitle');
+  const tagsEl = $('#projectTags');
+  const descEl = $('#projectDescription');
+  const imageEl = $('#projectImage');
+  const mediaEl = $('#projectMedia');
+  const techEl = $('#projectTech');
+  const authorNameEl = $('#authorName');
+  const publishDateEl = $('#publishDate');
+  const metaEl = $('#projectMeta');
+  const followBtn = $('#followBtn');
+  const favoriteBtn = $('#favoriteBtn');
+  const favoriteIcon = $('#favoriteIcon');
+  const favoriteLabel = $('#favoriteLabel');
+  const shareBtn = $('#shareBtn');
+
+  // Votes / "helpful" counts: reviews-driven
+  const helpfulCount = $('#helpfulCount');
+  const notForMeCount = $('#notForMeCount');
+  const totalVotes = $('#totalVotes');
+  const commentCountEl = $('#commentCount');
+  const commentsList = $('#commentsList');
+  const commentTemplate = $('#commentTemplate');
+  const commentForm = $('#commentForm');
+  const commentInput = $('#commentInput');
+
+  if (!id) {
+    if (descEl) descEl.innerHTML = '<p class="text-gray-400">No project selected.</p>';
+    return;
+  }
+
+  function escapeHtml(str) {
+    return window.ApiUtils ? window.ApiUtils.escapeHTML(str == null ? '' : String(str)) : '';
+  }
+
+  function buildTag(text) {
+    const s = document.createElement('span');
+    s.className = 'text-xs font-medium bg-white border border-gray-200 text-gray-600 px-3 py-1.5 rounded-full shadow-sm';
+    s.textContent = text == null || String(text).trim() === '' ? '-' : text;
+    return s;
+  }
+  function setTags(container, items) {
+    if (!container) return;
+    container.innerHTML = '';
+    const arr = (items || []).filter(Boolean);
+    if (arr.length === 0) { container.appendChild(buildTag('-')); return; }
+    arr.forEach(t => container.appendChild(buildTag(t)));
+  }
+
+  // Turn a YouTube URL (watch/youtu.be/shorts/embed) into an embeddable URL,
+  // or null if it's not a recognizable YouTube link.
+  function getYouTubeEmbedUrl(url) {
+    if (!url) return null;
+    try {
+      const u = new URL(url);
+      let id = null;
+      if (/(^|\.)youtu\.be$/.test(u.hostname)) {
+        id = u.pathname.slice(1);
+      } else if (/(^|\.)youtube\.com$/.test(u.hostname)) {
+        if (u.pathname === '/watch') id = u.searchParams.get('v');
+        else if (u.pathname.startsWith('/embed/')) id = u.pathname.split('/embed/')[1];
+        else if (u.pathname.startsWith('/shorts/')) id = u.pathname.split('/shorts/')[1];
+      }
+      id = id ? id.split(/[?&]/)[0] : null;
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Render the video / demo / repository links as rich previews (embedded
+  // YouTube player when possible, styled cards otherwise) instead of raw
+  // URLs. The whole section stays hidden if the project has none of these.
+  function renderProjectLinks(data) {
+    const section = $('#projectLinksSection');
+    const videoWrap = $('#projectVideoWrap');
+    const videoEmbed = $('#projectVideoEmbed');
+    const videoFallback = $('#projectVideoLinkFallback');
+    const videoFallbackText = $('#projectVideoLinkText');
+    const demoLink = $('#projectDemoLink');
+    const demoText = $('#projectDemoLinkText');
+    const repoLink = $('#projectRepoLink');
+    const repoLabel = $('#projectRepoLinkLabel');
+    const repoText = $('#projectRepoLinkText');
+    if (!section) return;
+
+    const stripProtocol = (u) => u.replace(/^https?:\/\//i, '').replace(/\/$/, '');
+    let hasAnyLink = false;
+
+    if (data.video_url) {
+      hasAnyLink = true;
+      const embedUrl = getYouTubeEmbedUrl(data.video_url);
+      if (embedUrl && videoWrap && videoEmbed) {
+        videoEmbed.src = embedUrl;
+        videoWrap.classList.remove('hidden');
+      } else if (videoFallback) {
+        videoFallback.href = data.video_url;
+        if (videoFallbackText) videoFallbackText.textContent = stripProtocol(data.video_url);
+        videoFallback.classList.remove('hidden');
+        videoFallback.classList.add('flex');
+      }
+    }
+
+    if (data.demo_url && demoLink) {
+      hasAnyLink = true;
+      demoLink.href = data.demo_url;
+      if (demoText) demoText.textContent = stripProtocol(data.demo_url);
+      demoLink.classList.remove('hidden');
+      demoLink.classList.add('flex');
+    }
+
+    if (data.repository_url && repoLink) {
+      hasAnyLink = true;
+      repoLink.href = data.repository_url;
+      if (repoText) repoText.textContent = stripProtocol(data.repository_url);
+      if (repoLabel) repoLabel.textContent = /github\.com/i.test(data.repository_url) ? 'View on GitHub' : 'Source Code';
+      repoLink.classList.remove('hidden');
+      repoLink.classList.add('flex');
+    }
+
+    section.classList.toggle('hidden', !hasAnyLink);
+  }
+
+  // Render a comment node from the reviews array if present.
+  function renderComments(reviews) {
+    if (!commentsList) return;
+    commentsList.innerHTML = '';
+    const arr = Array.isArray(reviews) ? reviews.filter(r => r && r.comment && r.comment.trim()) : [];
+    if (arr.length === 0) {
+      commentsList.innerHTML = '<p class="text-sm text-gray-400">No comments yet.</p>';
+      if (commentCountEl) commentCountEl.textContent = '0';
+      return;
+    }
+    if (commentCountEl) commentCountEl.textContent = arr.length;
+    arr.slice(0, 50).forEach((r, i) => {
+      const node = commentTemplate
+        ? commentTemplate.content.firstElementChild.cloneNode(true)
+        : document.createElement('div');
+      const author = (r.user && (r.user.username || r.user.email || r.user.given_name)) || 'Anonymous';
+      node.querySelector('.comment-author').textContent = (r.user && r.user.username) || author;
+      node.querySelector('.comment-text').textContent = r.comment;
+      node.dataset.commentId = r.uuid || i;
+      if (commentsList) commentsList.appendChild(node);
+    });
+  }
+
+  // Main data load
+  async function load() {
+    try {
+      if (!(window.CardDetailAPI && CardDetailAPI.loadCompleteProjectData)) {
+        throw new Error('Detail API not loaded');
+      }
+            // loadCompleteProjectData returns the project object flattened with
+      // extra keys: data.reviews (array), data.category (single object),
+      // data.techStacks (array), data.thumbnailUrl / data.imageUrl (resolved).
+      const data = await CardDetailAPI.loadCompleteProjectData(id);
+      if (!data) throw new Error('Project not found');
+      document.title = (data.title || 'Project') + ' | STADIA';
+
+      if (titleEl) titleEl.textContent = data.title || 'Untitled';
+
+      // Track this as a recently-viewed project, and wire the Save/Saved
+      // bookmark toggle -- both are client-side only (localStorage), see
+      // js/favorites.js. The API has no favorites/history endpoint.
+      if (window.HistoryAPI) HistoryAPI.record(data);
+      if (favoriteBtn && window.FavoritesAPI) {
+        function renderFavoriteState() {
+          const saved = FavoritesAPI.isFavorited(data.uuid);
+          favoriteBtn.classList.toggle('bg-brand', saved);
+          favoriteBtn.classList.toggle('border-brand', saved);
+          favoriteBtn.classList.toggle('text-white', saved);
+          favoriteBtn.classList.toggle('border-gray-200', !saved);
+          favoriteBtn.classList.toggle('text-gray-600', !saved);
+          if (favoriteIcon) favoriteIcon.setAttribute('fill', saved ? 'currentColor' : 'none');
+          if (favoriteLabel) favoriteLabel.textContent = saved ? 'Saved' : 'Save';
+          favoriteBtn.title = saved ? 'Remove from favorites' : 'Save to favorites';
+        }
+        renderFavoriteState();
+        favoriteBtn.addEventListener('click', () => {
+          const nowSaved = FavoritesAPI.toggle(data);
+          renderFavoriteState();
+          if (window.ApiUtils) {
+            ApiUtils.showSuccess(nowSaved ? 'Saved to favorites.' : 'Removed from favorites.');
+          }
+        });
+      }
+
+      // Share this project's link -- native share sheet where supported
+      // (mobile browsers), falling back to copying the URL to the clipboard.
+      if (shareBtn) {
+        shareBtn.addEventListener('click', async () => {
+          const shareData = {
+            title: (data.title || 'Project') + ' | STADIA',
+            text: data.description || data.short_description || 'Check out this project on STADIA.',
+            url: window.location.href,
+          };
+          try {
+            if (navigator.share) {
+              await navigator.share(shareData);
+            } else {
+              await navigator.clipboard.writeText(shareData.url);
+              if (window.ApiUtils) ApiUtils.showSuccess('Link copied to clipboard.');
+            }
+          } catch (err) {
+            // AbortError happens when the user just cancels the native share sheet -- not a real failure.
+            if (err && err.name === 'AbortError') return;
+            try {
+              await navigator.clipboard.writeText(shareData.url);
+              if (window.ApiUtils) ApiUtils.showSuccess('Link copied to clipboard.');
+            } catch (clipErr) {
+              if (window.ApiUtils) ApiUtils.showError('Could not share or copy the link.');
+            }
+          }
+        });
+      }
+
+      // tags row (single category -> normalize to an array)
+      const cat = data.category ? [data.category] : [];
+      setTags(tagsEl, cat.map(c => (c && (c.name || c.title)) || null));
+
+      // description
+      if (descEl) {
+        const d = data.description || data.short_description || '';
+        descEl.innerHTML = d ? d.split(/\n+/).map(para => `<p>${escapeHtml(para)}</p>`).join('')
+                             : '<p class="text-gray-400">No description provided.</p>';
+      }
+
+      // Share/SEO metadata: update the tab title and Open Graph / Twitter Card
+      // tags now that we have the real project data, so sharing this page's
+      // link shows the project's own title, description and thumbnail.
+      const shareTitle = (data.title || 'Untitled project') + ' | STADIA';
+      const shareDesc = (data.description || data.short_description || 'See this student project on STADIA.').slice(0, 200);
+      const shareImage = data.thumbnailUrl || data.imageUrl || '';
+      const shareUrl = window.location.href;
+      const setMeta = (id, attr, value) => {
+        const el = document.getElementById(id);
+        if (el && value) el.setAttribute(attr, value);
+      };
+      setMeta('metaDescription', 'content', shareDesc);
+      setMeta('ogTitle', 'content', shareTitle);
+      setMeta('ogDescription', 'content', shareDesc);
+      setMeta('ogImage', 'content', shareImage);
+      setMeta('ogUrl', 'content', shareUrl);
+      setMeta('twitterTitle', 'content', shareTitle);
+      setMeta('twitterDescription', 'content', shareDesc);
+      setMeta('twitterImage', 'content', shareImage);
+
+      // media image (use the already-resolved thumbnail/image URLs)
+      const imgSrc = data.thumbnailUrl || data.imageUrl || data.thumbnail_url || data.image_url || '';
+      if (imageEl && imgSrc) {
+        imageEl.src = imgSrc;
+        imageEl.alt = data.title || '';
+        imageEl.style.display = '';
+      } else if (mediaEl) {
+        mediaEl.innerHTML = '<span class="text-gray-300 text-sm">No media</span>';
+      }
+
+      // technology (techStacks)
+      const tech = Array.isArray(data.techStacks)
+        ? data.techStacks.map(t => (t && (t.name || t.title)) || null)
+        : [];
+      setTags(techEl, tech);
+
+      // Links: video / demo / repository -- rich previews instead of raw URLs.
+      renderProjectLinks(data);
+
+      // author + date (the API embeds the project owner as `owner`, not `user`)
+      if (data.owner) {
+        const u = data.owner;
+        const name = u.given_name || u.family_name || u.username || u.email || 'Unknown author';
+        if (authorNameEl) authorNameEl.textContent = name;
+      }
+      if (data.created_at && publishDateEl) {
+        try {
+          publishDateEl.textContent = 'Published on ' + new Date(data.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        } catch (e) { publishDateEl.textContent = data.created_at; }
+      }
+
+      // project meta (category/type, course, generation -- all real API fields,
+      // see js/cardDetail.js for how course/category get attached)
+      if (metaEl) {
+        const catNames = (Array.isArray(data.categories) ? data.categories : [])
+          .map(c => c.title || c.name).filter(Boolean).join(', ') || '-';
+        const courseName = (data.course && data.course.title) || '-';
+        const genLabel = (data.generation && data.generation.gen) ? `Gen ${data.generation.gen}` : '-';
+        metaEl.innerHTML = '' +
+          `<p><span class="font-semibold text-gray-700">Course :</span> ${escapeHtml(courseName)}</p>` +
+          `<p><span class="font-semibold text-gray-700">Generation :</span> ${escapeHtml(genLabel)}</p>` +
+          `<p><span class="font-semibold text-gray-700">Project Type :</span> ${escapeHtml(catNames)}</p>`;
+      }
+
+            // reviews -> comments + rough vote totals
+      const reviews = data.reviews || [];
+      renderComments(reviews);
+      if (totalVotes && helpfulCount && notForMeCount) {
+        const n = Array.isArray(reviews) ? reviews.length : 0;
+        helpfulCount.textContent = n;
+        notForMeCount.textContent = 0;
+        totalVotes.textContent = n;
+      }
+
+      // Post a new comment (review) and refresh the list
+      if (commentForm && commentInput && data.uuid && window.ReviewsAPI) {
+        commentForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const text = commentInput.value.trim();
+          if (!text) return;
+          if (window.AuthAPI && !AuthAPI.isAuthenticated()) {
+            AuthAPI.redirectToLogin('project-detail.html?id=' + encodeURIComponent(id));
+            return;
+          }
+          const submitBtn = commentForm.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          commentInput.disabled = true;
+          try {
+            await window.ReviewsAPI.createReview({
+              project_uuid: data.uuid,
+              rating: 5,
+              comment: text,
+            });
+            commentInput.value = '';
+            // reload comments
+            const fresh = data.uuid
+              ? await window.ReviewsAPI.getReviewsByProject(data.uuid).catch(() => [])
+              : [];
+            const freshData = await CardDetailAPI.loadCompleteProjectData(id);
+            renderComments((freshData && freshData.reviews) ? freshData.reviews : fresh);
+          } catch (err) {
+            console.error('Failed to post comment:', err);
+            alert('Could not post comment. Please make sure you are logged in.');
+          } finally {
+            submitBtn.disabled = false;
+            commentInput.disabled = false;
+            commentInput.focus();
+          }
+        });
+      }
+    } catch (err) {
+      console.error('Failed to load project detail:', err);
+      if (descEl) descEl.innerHTML = `<p class="text-red-500">Could not load this project (${escapeHtml(err.message || 'error')}).</p>`;
+    }
+  }
+
+  load();
+});
+</script>
+
+</body>
+</html>
