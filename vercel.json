@@ -4,6 +4,23 @@
   "outputDirectory": ".",
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/html/index.html" }
+    { "source": "/", "destination": "/html/index.html" },
+    { "source": "/index.html", "destination": "/html/index.html" },
+    { "source": "/UXUI.html", "destination": "/html/UXUI.html" },
+    { "source": "/about-us.html", "destination": "/html/about-us.html" },
+    { "source": "/create-project.html", "destination": "/html/create-project.html" },
+    { "source": "/css.html", "destination": "/html/css.html" },
+    { "source": "/dashboard.html", "destination": "/html/dashboard.html" },
+    { "source": "/favorite-page.html", "destination": "/html/favorite-page.html" },
+    { "source": "/history-page.html", "destination": "/html/history-page.html" },
+    { "source": "/html.html", "destination": "/html/html.html" },
+    { "source": "/js.html", "destination": "/html/js.html" },
+    { "source": "/login.html", "destination": "/html/login.html" },
+    { "source": "/manage-courses.html", "destination": "/html/manage-courses.html" },
+    { "source": "/project-detail.html", "destination": "/html/project-detail.html" },
+    { "source": "/projectpage.html", "destination": "/html/projectpage.html" },
+    { "source": "/projects.html", "destination": "/html/projects.html" },
+    { "source": "/settings.html", "destination": "/html/settings.html" },
+    { "source": "/signup.html", "destination": "/html/signup.html" }
   ]
 }
