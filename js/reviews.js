@@ -33,8 +33,11 @@ class ReviewsAPI {
     /**
      * Create a new review.
      *
-     * Backend contract (verified by API testing):
-     *   POST /reviews  accepts  { project_uuid, user_uuid, rate, comment }
+     * Backend contract (verified against the live OpenAPI schema): POST
+     * /reviews accepts { project_uuid, user_uuid, rate, message } -- the
+     * review text field is `message`, NOT `comment` (an earlier version of
+     * this file sent `comment`, which the backend silently ignores, so the
+     * review saved with empty text every time).
      *   - `rate` is required (callers that pass `rating` are remapped)
      *   - `user_uuid` is required and is injected from the logged-in user
      *     when the caller does not provide it.
@@ -67,7 +70,7 @@ class ReviewsAPI {
                 project_uuid: reviewData.project_uuid,
                 user_uuid: userUuid,
                 rate,
-                comment: reviewData.comment || reviewData.message || '',
+                message: reviewData.message || reviewData.comment || '',
             };
 
             const response = await this.client.post('/reviews', payload);

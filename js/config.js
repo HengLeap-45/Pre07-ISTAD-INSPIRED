@@ -55,9 +55,13 @@ class APIClient {
             throw new Error('Network error - please check your connection');
         }
 
-        // Handle 401 - Token expired, try refresh
-        if (response.status === 401) {
-            const hadToken = !!token;
+        // Handle 401 - only meaningful as "session expired" if we actually
+        // HAD a token that got rejected. A 401 with no token present just
+        // means the request itself failed authentication (e.g. a login
+        // attempt with the wrong password) -- that's an expected failure
+        // that should surface its own message ("Invalid credentials"), not
+        // a misleading "your session has expired" when no session existed.
+        if (response.status === 401 && token) {
             const refreshed = await this._refreshToken();
             if (refreshed) {
                 // Retry the original request
@@ -79,11 +83,11 @@ class APIClient {
                 // The retried request can still come back 401 (e.g. the fresh
                 // token was rejected too) - fall through to session-expired handling.
                 if (response.status === 401) {
-                    this._handleSessionExpired(hadToken);
+                    this._handleSessionExpired(true);
                     throw new Error('Your session has expired. Please log in again.');
                 }
             } else {
-                this._handleSessionExpired(hadToken);
+                this._handleSessionExpired(true);
                 throw new Error('Your session has expired. Please log in again.');
             }
         }

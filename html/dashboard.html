@@ -11,41 +11,81 @@
 
 </head>
 <body class="bg-gray-100 min-h-screen">
-<div class="max-w-2xl mx-auto py-6 px-4">
 
-    <!-- Top bar -->
-    <div class="flex items-center justify-between mb-8">
-      <a href="./index.html" class="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-blue-600">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+<!-- Account-area navbar: logo (-> home) + profile dropdown (Dashboard,
+     Settings, Log out) + dark mode toggle. Shared across dashboard.html,
+     favorite-page.html, history-page.html and settings.html so the account
+     section has one consistent top bar instead of a plain "Back to Home"
+     link on every page. -->
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="./index.html" class="flex items-center gap-2">
+      <img src="../image/stadia-logo-transparent.png" class="h-8 w-auto">
+    </a>
+    <div class="flex items-center gap-2">
+      <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100 text-gray-600">
+        <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
-        Back To Home
-      </a>
-      <div class="flex items-center gap-1">
-        <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
-          <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
+        <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+      <div class="relative">
+        <button type="button" id="navProfileBtn" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full hover:bg-gray-100" aria-haspopup="true" aria-expanded="false">
+          <span id="navProfileAvatar" class="w-8 h-8 rounded-full bg-gray-300 overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0"></span>
+          <span id="navProfileName" class="hidden sm:inline text-sm font-semibold text-gray-800">Account</span>
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
         </button>
-        <a href="./settings.html" type="button" data-tooltip-target="settings-tooltip" title="Settings" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-200 text-gray-800">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </a>
-        <button type="button" id="dashboardLogoutBtn" title="Log out" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-red-50 text-gray-800 hover:text-red-600">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
-          </svg>
-        </button>
-      </div>
-      <div id="settings-tooltip" role="tooltip" class="absolute z-10 invisible inline-block px-2 py-1 text-xs font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-        Settings
+        <div id="navProfileMenu" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-30">
+          <a href="./dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">My Posts</a>
+          <a href="./favorite-page.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Bookmarks</a>
+          <a href="./history-page.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Recently Viewed</a>
+          <a href="./settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Settings</a>
+          <div class="border-t border-gray-100 my-1"></div>
+          <button type="button" id="navProfileLogout" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Log out</button>
+        </div>
       </div>
     </div>
+  </div>
+</nav>
+
+<div class="max-w-6xl mx-auto py-6 px-4 md:flex md:items-start md:gap-6">
+
+  <!-- Desktop sidebar: profile + full account nav (Posts, Bookmarks, Recently
+       Viewed, Settings) + dark mode + logout. Mobile keeps the compact top
+       bar / icon-pill-row below instead (a full sidebar doesn't fit there). -->
+  <aside class="hidden md:flex md:flex-col w-60 shrink-0 bg-white rounded-2xl shadow-sm p-4 sticky top-6 self-start">
+    <nav class="flex flex-col gap-1">
+      <a href="./dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-secondary2/10 text-secondary2">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" /></svg>
+        My Posts
+      </a>
+      <a href="./favorite-page.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 4h12v16l-6-4-6 4V4z" /></svg>
+        Bookmarks
+      </a>
+      <a href="./history-page.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 2" /></svg>
+        Recently Viewed
+      </a>
+      <a href="./settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Settings
+      </a>
+    </nav>
+    <div class="mt-4 pt-4 border-t border-gray-100">
+      <button type="button" id="sidebarLogoutBtn" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-red-600 hover:bg-red-50 w-full">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" /></svg>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <div class="md:flex-1 md:min-w-0">
 
     <!-- Profile header -->
     <div class="flex items-start gap-5 mb-6">
@@ -71,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center bg-gray-200 rounded-xl p-1 mb-8">
+    <div class="md:hidden flex items-center bg-gray-200 rounded-xl p-1 mb-8">
       <a href="./history-page.html" class="flex-1 flex items-center justify-center py-2.5 rounded-lg text-gray-500 hover:text-gray-700">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5" />
@@ -92,7 +132,17 @@
 
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-lg font-bold text-gray-900">My Projects</h2>
-      <a href="./create-project.html" class="text-sm font-semibold text-[#564CE5] hover:underline">+ New Project</a>
+      <div class="flex items-center gap-3">
+        <div id="viewToggle" class="hidden items-center bg-gray-200 rounded-lg p-1">
+          <button type="button" id="viewToggleCards" title="Card view" class="w-8 h-8 flex items-center justify-center rounded-md bg-white shadow-sm text-gray-800">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" /></svg>
+          </button>
+          <button type="button" id="viewToggleTable" title="Table view" class="w-8 h-8 flex items-center justify-center rounded-md text-gray-500 hover:text-gray-800">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+          </button>
+        </div>
+        <a href="./create-project.html" class="text-sm font-semibold text-[#564CE5] hover:underline">+ New Project</a>
+      </div>
     </div>
 
     <!-- Not logged in -->
@@ -113,6 +163,23 @@
     <!-- Cards render here, populated by JS with the current user's own projects -->
     <div id="activity-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
+    <!-- Table view: same data as activity-grid, compact rows -- switches in
+         alongside the card grid once there are enough projects that a plain
+         card grid becomes unwieldy to scan. -->
+    <div id="activity-table-wrap" class="hidden overflow-x-auto border border-gray-200 rounded-xl">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-50 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">
+          <tr>
+            <th class="px-4 py-3">Project</th>
+            <th class="px-4 py-3">Status</th>
+            <th class="px-4 py-3 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="activity-table-body" class="divide-y divide-gray-100 bg-white"></tbody>
+      </table>
+    </div>
+
+  </div>
   </div>
 
   <template id="dashboardCardTemplate">
@@ -133,6 +200,37 @@
     </div>
   </template>
 
+  <template id="dashboardTableRowTemplate">
+    <tr data-project-uuid="">
+      <td class="px-4 py-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="row-thumb w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden shrink-0">
+            <img class="row-thumb-img hidden w-full h-full object-cover" alt="" />
+          </div>
+          <div class="min-w-0">
+            <p class="row-title text-sm font-semibold text-gray-900 truncate"></p>
+            <p class="row-desc text-xs text-gray-500 truncate"></p>
+          </div>
+        </div>
+      </td>
+      <td class="px-4 py-3">
+        <span class="row-status px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase"></span>
+      </td>
+      <td class="px-4 py-3">
+        <div class="row-actions-menu relative flex justify-end">
+          <button type="button" class="row-actions-trigger w-8 h-8 flex items-center justify-center rounded-md text-gray-500 hover:bg-gray-100" aria-label="Actions" aria-haspopup="true" aria-expanded="false">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 100-4 2 2 0 000 4zM10 12a2 2 0 100-4 2 2 0 000 4zM10 18a2 2 0 100-4 2 2 0 000 4z" /></svg>
+          </button>
+          <div class="row-actions-panel hidden absolute right-0 top-9 z-10 w-36 bg-white rounded-lg shadow-lg border border-gray-100 py-1">
+            <a class="row-edit block px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50">Edit</a>
+            <button type="button" class="row-toggle-status block w-full text-left px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50"></button>
+            <button type="button" class="row-delete block w-full text-left px-3 py-2 text-xs font-semibold text-red-600 hover:bg-red-50">Delete</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </template>
+
   <script src="../node_modules/flowbite/dist/flowbite.min.js"> </script>
     <script src="../node_modules/preline/dist/preline.js"></script>
     <!-- STADIA API wiring -->
@@ -148,10 +246,23 @@
       document.addEventListener('DOMContentLoaded', async () => {
         if (window.AuthAPI) AuthAPI.initNavAuth();
 
-        const dashboardLogoutBtn = document.getElementById('dashboardLogoutBtn');
-        if (dashboardLogoutBtn) {
-          dashboardLogoutBtn.addEventListener('click', () => {
-            if (window.AuthAPI) AuthAPI.logout();
+        [document.getElementById('sidebarLogoutBtn'), document.getElementById('navProfileLogout')].forEach(btn => {
+          if (btn) btn.addEventListener('click', () => { if (window.AuthAPI) AuthAPI.logout(); });
+        });
+
+        // Navbar profile dropdown (logo -> home is a plain link, needs no JS)
+        const navProfileBtn = document.getElementById('navProfileBtn');
+        const navProfileMenu = document.getElementById('navProfileMenu');
+        if (navProfileBtn && navProfileMenu) {
+          navProfileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !navProfileMenu.classList.contains('hidden');
+            navProfileMenu.classList.toggle('hidden', isOpen);
+            navProfileBtn.setAttribute('aria-expanded', String(!isOpen));
+          });
+          document.addEventListener('click', () => {
+            navProfileMenu.classList.add('hidden');
+            navProfileBtn.setAttribute('aria-expanded', 'false');
           });
         }
 
@@ -160,6 +271,34 @@
         const empty = document.getElementById('empty-state');
         const authRequired = document.getElementById('auth-required');
         const template = document.getElementById('dashboardCardTemplate');
+        const tableWrap = document.getElementById('activity-table-wrap');
+        const tableBody = document.getElementById('activity-table-body');
+        const tableRowTemplate = document.getElementById('dashboardTableRowTemplate');
+        const viewToggle = document.getElementById('viewToggle');
+        const viewToggleCards = document.getElementById('viewToggleCards');
+        const viewToggleTable = document.getElementById('viewToggleTable');
+
+        // Card view is fine for a handful of projects, but doesn't scale --
+        // a table view lets a user with many projects scan/act on them
+        // without endless scrolling. Preference persists across visits.
+        function setView(mode) {
+          localStorage.setItem('stadia_dashboard_view', mode);
+          const isTable = mode === 'table';
+          grid.classList.toggle('hidden', isTable || !grid.querySelector('[data-project-uuid]'));
+          tableWrap.classList.toggle('hidden', !isTable || !tableBody.querySelector('[data-project-uuid]'));
+          viewToggleCards.classList.toggle('bg-white', !isTable);
+          viewToggleCards.classList.toggle('shadow-sm', !isTable);
+          viewToggleCards.classList.toggle('text-gray-800', !isTable);
+          viewToggleCards.classList.toggle('text-gray-500', isTable);
+          viewToggleTable.classList.toggle('bg-white', isTable);
+          viewToggleTable.classList.toggle('shadow-sm', isTable);
+          viewToggleTable.classList.toggle('text-gray-800', isTable);
+          viewToggleTable.classList.toggle('text-gray-500', !isTable);
+        }
+        if (viewToggleCards) viewToggleCards.addEventListener('click', () => setView('cards'));
+        if (viewToggleTable) viewToggleTable.addEventListener('click', () => setView('table'));
+
+        let mine = []; // the current user's own projects, populated below
 
         if (!window.AuthAPI || !AuthAPI.isAuthenticated()) {
           loading.classList.add('hidden');
@@ -198,56 +337,10 @@
 
           const toggleBtn = node.querySelector('.card-toggle-status');
           toggleBtn.textContent = status === 'published' ? 'Unpublish' : 'Publish';
-          toggleBtn.addEventListener('click', async () => {
-            const nextStatus = status === 'published' ? 'draft' : 'published';
-            const confirmMessage = nextStatus === 'published'
-              ? `Publish "${project.title || 'this project'}"? It will become visible to everyone.`
-              : `Unpublish "${project.title || 'this project'}"? It will go back to draft.`;
-            const confirmed = window.showConfirmModal
-              ? await showConfirmModal(confirmMessage, { confirmLabel: nextStatus === 'published' ? 'Publish' : 'Unpublish', danger: false })
-              : confirm(confirmMessage);
-            if (!confirmed) return;
-            toggleBtn.disabled = true;
-            const original = toggleBtn.textContent;
-            toggleBtn.textContent = '...';
-            try {
-              await ProjectsAPI.updateStatus(project.uuid, nextStatus);
-              project.status = nextStatus;
-              const fresh = renderCard(project);
-              node.replaceWith(fresh);
-              if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" is now ${nextStatus}.`);
-            } catch (err) {
-              const message = 'Could not update status: ' + (err.message || 'unknown error');
-              if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
-              toggleBtn.disabled = false;
-              toggleBtn.textContent = original;
-            }
-          });
+          toggleBtn.addEventListener('click', () => toggleProjectStatus(project, status, toggleBtn));
 
           const deleteBtn = node.querySelector('.card-delete');
-          deleteBtn.addEventListener('click', async () => {
-            const confirmed = window.showConfirmModal
-              ? await showConfirmModal(`Delete "${project.title || 'this project'}"? This cannot be undone.`, { confirmLabel: 'Delete' })
-              : confirm(`Delete "${project.title || 'this project'}"? This cannot be undone.`);
-            if (!confirmed) return;
-            deleteBtn.disabled = true;
-            deleteBtn.textContent = 'Deleting...';
-            try {
-              await ProjectsAPI.deleteProject(project.uuid);
-              node.remove();
-              updateStatsAfterRemoval();
-              if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" deleted.`);
-              if (!grid.querySelector('[data-project-uuid]')) {
-                grid.classList.add('hidden');
-                empty.classList.remove('hidden');
-              }
-            } catch (err) {
-              const message = 'Could not delete project: ' + (err.message || 'unknown error');
-              if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
-              deleteBtn.disabled = false;
-              deleteBtn.textContent = 'Delete';
-            }
-          });
+          deleteBtn.addEventListener('click', () => deleteProjectEverywhere(project, deleteBtn));
 
           // Clicking the thumbnail/title (not the action buttons) opens the project
           node.addEventListener('click', (e) => {
@@ -259,22 +352,145 @@
           return node;
         }
 
+        // Table view: same data/actions as renderCard, laid out as a row --
+        // scales better than a card grid once a user has many projects.
+        function renderTableRow(project) {
+          const node = tableRowTemplate.content.firstElementChild.cloneNode(true);
+          node.dataset.projectUuid = project.uuid;
+
+          const thumbImg = node.querySelector('.row-thumb-img');
+          const thumbUrl = window.MediaAPI ? MediaAPI.getMediaUrl(project.thumbnail) : '';
+          if (thumbUrl) {
+            thumbImg.src = thumbUrl;
+            thumbImg.alt = project.title || '';
+            thumbImg.classList.remove('hidden');
+          }
+
+          const status = (project.status || 'draft').toLowerCase();
+          const statusBadge = node.querySelector('.row-status');
+          statusBadge.textContent = status;
+          statusBadge.className = 'row-status px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase ' +
+            (status === 'published' ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-600');
+
+          node.querySelector('.row-title').textContent = project.title || 'Untitled';
+          node.querySelector('.row-desc').textContent = project.description || project.summary || '';
+
+          const editLink = node.querySelector('.row-edit');
+          editLink.href = `create-project.html?id=${project.uuid}`;
+
+          const toggleBtn = node.querySelector('.row-toggle-status');
+          toggleBtn.textContent = status === 'published' ? 'Unpublish' : 'Publish';
+          toggleBtn.addEventListener('click', () => { closeAllRowMenus(); toggleProjectStatus(project, status, toggleBtn); });
+
+          const deleteBtn = node.querySelector('.row-delete');
+          deleteBtn.addEventListener('click', () => { closeAllRowMenus(); deleteProjectEverywhere(project, deleteBtn); });
+
+          // Actions dropdown: a single "..." trigger per row instead of 3
+          // buttons crowding the table -- only one menu open at a time.
+          const menuTrigger = node.querySelector('.row-actions-trigger');
+          const menuPanel = node.querySelector('.row-actions-panel');
+          menuTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = !menuPanel.classList.contains('hidden');
+            closeAllRowMenus();
+            if (!isOpen) {
+              menuPanel.classList.remove('hidden');
+              menuTrigger.setAttribute('aria-expanded', 'true');
+            }
+          });
+          editLink.addEventListener('click', () => closeAllRowMenus());
+
+          return node;
+        }
+
+        function closeAllRowMenus() {
+          document.querySelectorAll('.row-actions-panel').forEach(p => p.classList.add('hidden'));
+          document.querySelectorAll('.row-actions-trigger').forEach(t => t.setAttribute('aria-expanded', 'false'));
+        }
+        document.addEventListener('click', closeAllRowMenus);
+
+        // Shared by both views so a status change or delete made from either
+        // the card grid or the table stays in sync in the other.
+        async function toggleProjectStatus(project, currentStatus, triggerBtn) {
+          const nextStatus = currentStatus === 'published' ? 'draft' : 'published';
+          const confirmMessage = nextStatus === 'published'
+            ? `Publish "${project.title || 'this project'}"? It will become visible to everyone.`
+            : `Unpublish "${project.title || 'this project'}"? It will go back to draft.`;
+          const confirmed = window.showConfirmModal
+            ? await showConfirmModal(confirmMessage, { confirmLabel: nextStatus === 'published' ? 'Publish' : 'Unpublish', danger: false })
+            : confirm(confirmMessage);
+          if (!confirmed) return;
+          triggerBtn.disabled = true;
+          const original = triggerBtn.textContent;
+          triggerBtn.textContent = '...';
+          try {
+            await ProjectsAPI.updateStatus(project.uuid, nextStatus);
+            project.status = nextStatus;
+            grid.querySelectorAll(`[data-project-uuid="${project.uuid}"]`).forEach(n => n.replaceWith(renderCard(project)));
+            tableBody.querySelectorAll(`[data-project-uuid="${project.uuid}"]`).forEach(n => n.replaceWith(renderTableRow(project)));
+            document.getElementById('stat-published').textContent = mine.filter(p => (p.status || '').toLowerCase() === 'published').length;
+            document.getElementById('stat-draft').textContent = mine.filter(p => (p.status || '').toLowerCase() !== 'published').length;
+            if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" is now ${nextStatus}.`);
+          } catch (err) {
+            const message = 'Could not update status: ' + (err.message || 'unknown error');
+            if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+            triggerBtn.disabled = false;
+            triggerBtn.textContent = original;
+          }
+        }
+
+        async function deleteProjectEverywhere(project, triggerBtn) {
+          const confirmed = window.showConfirmModal
+            ? await showConfirmModal(`Delete "${project.title || 'this project'}"? This cannot be undone.`, { confirmLabel: 'Delete' })
+            : confirm(`Delete "${project.title || 'this project'}"? This cannot be undone.`);
+          if (!confirmed) return;
+          triggerBtn.disabled = true;
+          triggerBtn.textContent = 'Deleting...';
+          try {
+            await ProjectsAPI.deleteProject(project.uuid);
+            grid.querySelectorAll(`[data-project-uuid="${project.uuid}"]`).forEach(n => n.remove());
+            tableBody.querySelectorAll(`[data-project-uuid="${project.uuid}"]`).forEach(n => n.remove());
+            updateStatsAfterRemoval();
+            if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" deleted.`);
+            if (!grid.querySelector('[data-project-uuid]')) {
+              grid.classList.add('hidden');
+              tableWrap.classList.add('hidden');
+              if (viewToggle) viewToggle.classList.add('hidden');
+              empty.classList.remove('hidden');
+            }
+          } catch (err) {
+            const message = 'Could not delete project: ' + (err.message || 'unknown error');
+            if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+            triggerBtn.disabled = false;
+            triggerBtn.textContent = 'Delete';
+          }
+        }
+
         function updateStatsAfterRemoval() {
           const cards = grid.querySelectorAll('[data-project-uuid]');
           document.getElementById('stat-posts').textContent = cards.length;
+          mine = mine.filter(p => grid.querySelector(`[data-project-uuid="${p.uuid}"]`));
+          document.getElementById('stat-published').textContent = mine.filter(p => (p.status || '').toLowerCase() === 'published').length;
+          document.getElementById('stat-draft').textContent = mine.filter(p => (p.status || '').toLowerCase() !== 'published').length;
         }
 
         try {
           const me = await UsersAPI.getCurrentUser();
-          document.getElementById('profileName').textContent =
-            (me && (me.given_name || me.username)) ? `${me.given_name || ''} ${me.family_name || ''}`.trim() || me.username : 'Your Profile';
+          const displayName = (me && (me.given_name || me.username))
+            ? `${me.given_name || ''} ${me.family_name || ''}`.trim() || me.username
+            : 'Your Profile';
+          document.getElementById('profileName').textContent = displayName;
           document.getElementById('profileUsername').textContent = me && me.username ? '@' + me.username : '';
           if (window.AuthAPI) AuthAPI.renderUserAvatar(document.getElementById('profileAvatar'), me);
+
+          const navProfileName = document.getElementById('navProfileName');
+          if (navProfileName) navProfileName.textContent = displayName;
+          if (window.AuthAPI) AuthAPI.renderUserAvatar(document.getElementById('navProfileAvatar'), me);
 
           // No "my projects" endpoint exists on the backend, so we fetch a
           // generous page of all projects and filter by ownership client-side.
           const all = await ProjectsAPI.getAllProjects({ page: 1, size: 100 });
-          const mine = (Array.isArray(all) ? all : []).filter(p => p.owner && me && p.owner.uuid === me.uuid);
+          mine = (Array.isArray(all) ? all : []).filter(p => p.owner && me && p.owner.uuid === me.uuid);
 
           loading.classList.add('hidden');
 
@@ -287,8 +503,14 @@
             return;
           }
 
-          mine.forEach(project => grid.appendChild(renderCard(project)));
-          grid.classList.remove('hidden');
+          mine.forEach(project => {
+            grid.appendChild(renderCard(project));
+            tableBody.appendChild(renderTableRow(project));
+          });
+          // Table view scales much better once there are many projects --
+          // default to it once the card grid would otherwise get unwieldy.
+          if (viewToggle) viewToggle.classList.remove('hidden');
+          setView(mine.length > 8 ? 'table' : (localStorage.getItem('stadia_dashboard_view') || 'cards'));
         } catch (err) {
           console.error('Failed to load dashboard:', err);
           loading.classList.add('hidden');

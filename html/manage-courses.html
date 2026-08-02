@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Courses & Generations | STADIA</title>
+<meta name="description" content="Create, rename, and remove courses and generations on STADIA.">
+<meta name="robots" content="noindex, nofollow">
+<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+<link rel="stylesheet" href="../src/output.css">
+<style>
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+  <nav class="bg-white">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="./index.html" class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
+        <img src="../image/stadia-logo-transparent.png" class="w-24">
+      </a>
+      <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
+        <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">PROJECT</a>
+        <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">POST CREATOR</a>
+        <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">ABOUT US</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3">
+          <div data-auth="guest" class="flex items-center gap-2">
+            <a href="./login.html" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">Sign In</a>
+            <a href="./signup.html" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Sign Up</a>
+          </div>
+          <div data-auth="user" class="hidden flex items-center gap-2">
+            <a href="./dashboard.html" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy" title="Account">
+              <span data-auth="user-avatar" class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"></span>
+              <span data-auth="user-name">Account</span>
+            </a>
+            <button type="button" data-action="logout" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Log out</button>
+          </div>
+        </div>
+        <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+          <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-8">
+
+    <a href="./create-project.html" class="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back To Post Creator
+    </a>
+
+    <h1 class="text-xl font-bold text-gray-900 mb-1">Manage Courses & Generations</h1>
+    <p class="text-sm text-gray-500 mb-8">Create, rename, or remove the courses and generations projects can be linked to.</p>
+
+    <!-- Not logged in -->
+    <div id="auth-required" class="hidden text-sm text-gray-600 py-8 text-center border border-dashed border-gray-300 rounded-xl">
+      Please <a href="./login.html?redirect=manage-courses.html" class="text-secondary2 font-semibold hover:underline">sign in</a> to manage courses and generations.
+    </div>
+
+    <div id="managePane" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- ===================== COURSES ===================== -->
+      <section>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base font-bold text-gray-900">Courses</h2>
+          <button type="button" id="newCourseBtn" class="text-sm font-semibold text-secondary2 hover:underline">+ New Course</button>
+        </div>
+
+        <div id="newCourseForm" class="hidden mb-4 border border-gray-200 rounded-xl p-4 bg-white space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Title</label>
+            <input id="newCourseTitle" type="text" placeholder="e.g. Software Engineering"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Description</label>
+            <input id="newCourseDescription" type="text" placeholder="Optional short description"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" id="createCourseSubmitBtn" class="px-4 py-2 rounded-lg bg-secondary2 hover:opacity-90 text-white text-sm font-semibold disabled:opacity-60">Create</button>
+            <button type="button" id="cancelNewCourseBtn" class="px-3 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-50">Cancel</button>
+          </div>
+        </div>
+
+        <div id="coursesLoading" class="text-sm text-gray-500 py-6 text-center">Loading courses...</div>
+        <div id="coursesEmpty" class="hidden text-sm text-gray-500 py-6 text-center border border-dashed border-gray-300 rounded-xl">No courses yet.</div>
+        <div id="coursesList" class="space-y-2"></div>
+      </section>
+
+      <!-- ===================== GENERATIONS ===================== -->
+      <section>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base font-bold text-gray-900">Generations</h2>
+          <button type="button" id="newGenBtn" class="text-sm font-semibold text-secondary2 hover:underline">+ New Generation</button>
+        </div>
+
+        <div id="newGenForm" class="hidden mb-4 border border-gray-200 rounded-xl p-4 bg-white space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Course</label>
+            <select id="newGenCourse" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+              <option value="">Loading courses...</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Generation number</label>
+            <input id="newGenNumber" type="number" min="1" placeholder="e.g. 5"
+              class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" id="createGenSubmitBtn" class="px-4 py-2 rounded-lg bg-secondary2 hover:opacity-90 text-white text-sm font-semibold disabled:opacity-60">Create</button>
+            <button type="button" id="cancelNewGenBtn" class="px-3 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-50">Cancel</button>
+          </div>
+        </div>
+
+        <div id="gensLoading" class="text-sm text-gray-500 py-6 text-center">Loading generations...</div>
+        <div id="gensEmpty" class="hidden text-sm text-gray-500 py-6 text-center border border-dashed border-gray-300 rounded-xl">No generations yet.</div>
+        <div id="gensList" class="space-y-2"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ===== Row templates (cloned by JS) ===== -->
+  <template id="courseRowTemplate">
+    <div class="border border-gray-200 rounded-xl p-3 bg-white" data-course-uuid="">
+      <div class="view-mode flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <p class="course-title text-sm font-semibold text-gray-900 truncate"></p>
+          <p class="course-desc text-xs text-gray-500 truncate"></p>
+        </div>
+        <div class="flex items-center gap-1 shrink-0">
+          <button type="button" class="edit-btn w-8 h-8 rounded-lg hover:bg-gray-100 text-gray-500 flex items-center justify-center" title="Rename">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z" /></svg>
+          </button>
+          <button type="button" class="delete-btn w-8 h-8 rounded-lg hover:bg-red-50 text-red-500 flex items-center justify-center" title="Delete">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="edit-mode hidden space-y-2">
+        <input class="edit-title w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+        <input class="edit-desc w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40">
+        <div class="flex items-center gap-2">
+          <button type="button" class="save-btn px-3 py-1.5 rounded-lg bg-secondary2 hover:opacity-90 text-white text-xs font-semibold">Save</button>
+          <button type="button" class="cancel-edit-btn px-3 py-1.5 rounded-lg border border-gray-300 text-xs text-gray-600 hover:bg-gray-50">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="genRowTemplate">
+    <div class="border border-gray-200 rounded-xl p-3 bg-white" data-gen-uuid="">
+      <div class="view-mode flex items-center justify-between gap-3">
+        <p class="gen-label text-sm font-semibold text-gray-900 truncate"></p>
+        <div class="flex items-center gap-1 shrink-0">
+          <button type="button" class="edit-btn w-8 h-8 rounded-lg hover:bg-gray-100 text-gray-500 flex items-center justify-center" title="Edit">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487z" /></svg>
+          </button>
+          <button type="button" class="delete-btn w-8 h-8 rounded-lg hover:bg-red-50 text-red-500 flex items-center justify-center" title="Delete">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="edit-mode hidden space-y-2">
+        <select class="edit-course w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40"></select>
+        <input class="edit-gen-number w-full border border-gray-200 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-secondary2/40" type="number" min="1">
+        <div class="flex items-center gap-2">
+          <button type="button" class="save-btn px-3 py-1.5 rounded-lg bg-secondary2 hover:opacity-90 text-white text-xs font-semibold">Save</button>
+          <button type="button" class="cancel-edit-btn px-3 py-1.5 rounded-lg border border-gray-300 text-xs text-gray-600 hover:bg-gray-50">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+<script src="../node_modules/@multiavatar/multiavatar/multiavatar.min.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/media.js"></script>
+<script src="../js/users.js"></script>
+<script src="../js/courses.js"></script>
+<script src="../js/generations.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  if (window.AuthAPI) AuthAPI.initNavAuth();
+
+  const authRequired = document.getElementById('auth-required');
+  const managePane = document.getElementById('managePane');
+
+  if (!window.AuthAPI || !AuthAPI.isAuthenticated()) {
+    authRequired.classList.remove('hidden');
+    return;
+  }
+  managePane.classList.remove('hidden');
+
+  function escapeHtml(str) {
+    return window.ApiUtils ? ApiUtils.escapeHTML(str == null ? '' : String(str)) : String(str || '');
+  }
+  async function confirmDialog(message) {
+    if (window.showConfirmModal) return showConfirmModal(message, { confirmLabel: 'Delete', danger: true });
+    return confirm(message);
+  }
+  function friendlyDeleteError(err) {
+    const msg = (err && err.message) || '';
+    if (/constraint|foreign key|in use|referenced|400|409/i.test(msg)) {
+      return 'Could not delete: one or more projects are still using this. Move or delete those projects first.';
+    }
+    return msg || 'Delete failed. Please try again.';
+  }
+
+  /* ===================== COURSES ===================== */
+  const coursesLoading = document.getElementById('coursesLoading');
+  const coursesEmpty = document.getElementById('coursesEmpty');
+  const coursesList = document.getElementById('coursesList');
+  const courseRowTemplate = document.getElementById('courseRowTemplate');
+  const newCourseBtn = document.getElementById('newCourseBtn');
+  const newCourseForm = document.getElementById('newCourseForm');
+  const newCourseTitle = document.getElementById('newCourseTitle');
+  const newCourseDescription = document.getElementById('newCourseDescription');
+  const createCourseSubmitBtn = document.getElementById('createCourseSubmitBtn');
+  const cancelNewCourseBtn = document.getElementById('cancelNewCourseBtn');
+
+  let allCourses = [];
+
+  function slugify(text) {
+    return text.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+
+  async function loadCourses() {
+    coursesLoading.classList.remove('hidden');
+    coursesEmpty.classList.add('hidden');
+    coursesList.innerHTML = '';
+    try {
+      allCourses = (await CoursesAPI.getAllCourses({ page: 1, size: 100 })) || [];
+      coursesLoading.classList.add('hidden');
+      if (!allCourses.length) {
+        coursesEmpty.classList.remove('hidden');
+        return;
+      }
+      allCourses.forEach(course => coursesList.appendChild(renderCourseRow(course)));
+    } catch (err) {
+      coursesLoading.textContent = 'Could not load courses: ' + (err.message || 'unknown error');
+    }
+  }
+
+  function renderCourseRow(course) {
+    const node = courseRowTemplate.content.firstElementChild.cloneNode(true);
+    node.dataset.courseUuid = course.uuid;
+    const viewMode = node.querySelector('.view-mode');
+    const editMode = node.querySelector('.edit-mode');
+    node.querySelector('.course-title').textContent = course.title || 'Untitled course';
+    node.querySelector('.course-desc').textContent = course.description || 'No description';
+
+    const editTitle = node.querySelector('.edit-title');
+    const editDesc = node.querySelector('.edit-desc');
+
+    node.querySelector('.edit-btn').addEventListener('click', () => {
+      editTitle.value = course.title || '';
+      editDesc.value = course.description || '';
+      viewMode.classList.add('hidden');
+      editMode.classList.remove('hidden');
+    });
+    node.querySelector('.cancel-edit-btn').addEventListener('click', () => {
+      editMode.classList.add('hidden');
+      viewMode.classList.remove('hidden');
+    });
+    node.querySelector('.save-btn').addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      const title = editTitle.value.trim();
+      if (!title) { editTitle.focus(); return; }
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      try {
+        await CoursesAPI.updateCourse(course.uuid, {
+          title,
+          slug: course.slug || slugify(title),
+          description: editDesc.value.trim(),
+        });
+        if (window.ApiUtils) ApiUtils.showSuccess('Course updated.');
+        await loadCourses();
+        await loadGenCourseOptions(); // course titles shown in the generations list may have changed
+        await loadGenerations();
+      } catch (err) {
+        if (window.ApiUtils) ApiUtils.showError('Could not update course: ' + (err.message || 'unknown error'));
+        btn.disabled = false;
+        btn.textContent = 'Save';
+      }
+    });
+    node.querySelector('.delete-btn').addEventListener('click', async () => {
+      const ok = await confirmDialog(`Delete the course "${course.title}"? This cannot be undone.`);
+      if (!ok) return;
+      try {
+        await CoursesAPI.deleteCourse(course.uuid);
+        if (window.ApiUtils) ApiUtils.showSuccess('Course deleted.');
+        await loadCourses();
+        await loadGenCourseOptions();
+        await loadGenerations();
+      } catch (err) {
+        if (window.ApiUtils) ApiUtils.showError(friendlyDeleteError(err));
+      }
+    });
+
+    return node;
+  }
+
+  newCourseBtn.addEventListener('click', () => {
+    newCourseForm.classList.toggle('hidden');
+    if (!newCourseForm.classList.contains('hidden')) newCourseTitle.focus();
+  });
+  cancelNewCourseBtn.addEventListener('click', () => {
+    newCourseForm.classList.add('hidden');
+    newCourseTitle.value = '';
+    newCourseDescription.value = '';
+  });
+  createCourseSubmitBtn.addEventListener('click', async () => {
+    const title = newCourseTitle.value.trim();
+    if (!title) { newCourseTitle.focus(); return; }
+    createCourseSubmitBtn.disabled = true;
+    createCourseSubmitBtn.textContent = 'Creating...';
+    try {
+      await CoursesAPI.createCourse({
+        title,
+        slug: slugify(title),
+        description: newCourseDescription.value.trim(),
+      });
+      if (window.ApiUtils) ApiUtils.showSuccess(`Course "${title}" created.`);
+      newCourseForm.classList.add('hidden');
+      newCourseTitle.value = '';
+      newCourseDescription.value = '';
+      await loadCourses();
+      await loadGenCourseOptions();
+    } catch (err) {
+      if (window.ApiUtils) ApiUtils.showError('Could not create course: ' + (err.message || 'unknown error'));
+    } finally {
+      createCourseSubmitBtn.disabled = false;
+      createCourseSubmitBtn.textContent = 'Create';
+    }
+  });
+
+  /* ===================== GENERATIONS ===================== */
+  const gensLoading = document.getElementById('gensLoading');
+  const gensEmpty = document.getElementById('gensEmpty');
+  const gensList = document.getElementById('gensList');
+  const genRowTemplate = document.getElementById('genRowTemplate');
+  const newGenBtn = document.getElementById('newGenBtn');
+  const newGenForm = document.getElementById('newGenForm');
+  const newGenCourse = document.getElementById('newGenCourse');
+  const newGenNumber = document.getElementById('newGenNumber');
+  const createGenSubmitBtn = document.getElementById('createGenSubmitBtn');
+  const cancelNewGenBtn = document.getElementById('cancelNewGenBtn');
+
+  function populateCourseSelect(select, selectedUuid) {
+    select.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = allCourses.length ? 'Select a course' : 'No courses yet -- create one first';
+    select.appendChild(placeholder);
+    allCourses.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c.uuid;
+      opt.textContent = c.title || 'Untitled course';
+      if (selectedUuid && c.uuid === selectedUuid) opt.selected = true;
+      select.appendChild(opt);
+    });
+  }
+
+  async function loadGenCourseOptions() {
+    populateCourseSelect(newGenCourse);
+  }
+
+  async function loadGenerations() {
+    gensLoading.classList.remove('hidden');
+    gensEmpty.classList.add('hidden');
+    gensList.innerHTML = '';
+    try {
+      const generations = (await GenerationsAPI.getAllGenerations({ page: 1, size: 100 })) || [];
+      gensLoading.classList.add('hidden');
+      if (!generations.length) {
+        gensEmpty.classList.remove('hidden');
+        return;
+      }
+      generations.forEach(gen => gensList.appendChild(renderGenRow(gen)));
+    } catch (err) {
+      gensLoading.textContent = 'Could not load generations: ' + (err.message || 'unknown error');
+    }
+  }
+
+  function renderGenRow(gen) {
+    const node = genRowTemplate.content.firstElementChild.cloneNode(true);
+    node.dataset.genUuid = gen.uuid;
+    const viewMode = node.querySelector('.view-mode');
+    const editMode = node.querySelector('.edit-mode');
+    const courseTitle = (gen.course && gen.course.title) || 'Unknown course';
+    node.querySelector('.gen-label').textContent = `Gen ${gen.gen} — ${courseTitle}`;
+
+    const editCourseSelect = node.querySelector('.edit-course');
+    const editGenNumber = node.querySelector('.edit-gen-number');
+
+    node.querySelector('.edit-btn').addEventListener('click', () => {
+      populateCourseSelect(editCourseSelect, gen.course && gen.course.uuid);
+      editGenNumber.value = gen.gen;
+      viewMode.classList.add('hidden');
+      editMode.classList.remove('hidden');
+    });
+    node.querySelector('.cancel-edit-btn').addEventListener('click', () => {
+      editMode.classList.add('hidden');
+      viewMode.classList.remove('hidden');
+    });
+    node.querySelector('.save-btn').addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      const courseUuid = editCourseSelect.value;
+      const genNum = parseInt(editGenNumber.value, 10);
+      if (!courseUuid) { editCourseSelect.focus(); return; }
+      if (!genNum || genNum < 1) { editGenNumber.focus(); return; }
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      try {
+        await GenerationsAPI.updateGeneration(gen.uuid, { course_uuid: courseUuid, gen: genNum });
+        if (window.ApiUtils) ApiUtils.showSuccess('Generation updated.');
+        await loadGenerations();
+      } catch (err) {
+        if (window.ApiUtils) ApiUtils.showError('Could not update generation: ' + (err.message || 'unknown error'));
+        btn.disabled = false;
+        btn.textContent = 'Save';
+      }
+    });
+    node.querySelector('.delete-btn').addEventListener('click', async () => {
+      const ok = await confirmDialog(`Delete "Gen ${gen.gen} — ${courseTitle}"? This cannot be undone.`);
+      if (!ok) return;
+      try {
+        await GenerationsAPI.deleteGeneration(gen.uuid);
+        if (window.ApiUtils) ApiUtils.showSuccess('Generation deleted.');
+        await loadGenerations();
+      } catch (err) {
+        if (window.ApiUtils) ApiUtils.showError(friendlyDeleteError(err));
+      }
+    });
+
+    return node;
+  }
+
+  newGenBtn.addEventListener('click', () => {
+    newGenForm.classList.toggle('hidden');
+  });
+  cancelNewGenBtn.addEventListener('click', () => {
+    newGenForm.classList.add('hidden');
+    newGenNumber.value = '';
+  });
+  createGenSubmitBtn.addEventListener('click', async () => {
+    const courseUuid = newGenCourse.value;
+    const genNum = parseInt(newGenNumber.value, 10);
+    if (!courseUuid) {
+      if (window.ApiUtils) ApiUtils.showError('Please choose a course.');
+      return;
+    }
+    if (!genNum || genNum < 1) {
+      newGenNumber.focus();
+      if (window.ApiUtils) ApiUtils.showError('Please enter a valid generation number.');
+      return;
+    }
+    createGenSubmitBtn.disabled = true;
+    createGenSubmitBtn.textContent = 'Creating...';
+    try {
+      await GenerationsAPI.createGeneration({ course_uuid: courseUuid, gen: genNum });
+      if (window.ApiUtils) ApiUtils.showSuccess(`Generation ${genNum} created.`);
+      newGenForm.classList.add('hidden');
+      newGenNumber.value = '';
+      await loadGenerations();
+    } catch (err) {
+      if (window.ApiUtils) ApiUtils.showError('Could not create generation: ' + (err.message || 'unknown error'));
+    } finally {
+      createGenSubmitBtn.disabled = false;
+      createGenSubmitBtn.textContent = 'Create';
+    }
+  });
+
+  await loadCourses();
+  await loadGenCourseOptions();
+  await loadGenerations();
+});
+</script>
+</body>
+</html>

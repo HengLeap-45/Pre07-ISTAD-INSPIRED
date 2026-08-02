@@ -3,16 +3,50 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign Up</title>
+<title>Sign Up | STADIA</title>
 <meta name="description" content="Create a STADIA account to start sharing your projects.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sign Up | STADIA">
+<meta property="og:description" content="Create a STADIA account to start sharing your projects.">
+<meta property="og:image" content="../image/stadia-logo-transparent.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sign Up | STADIA">
+<meta name="twitter:description" content="Create a STADIA account to start sharing your projects.">
 <script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
 <link rel="stylesheet" href="../node_modules/flowbite/dist/flowbite.min.css">
 <link rel="stylesheet" href="../src/output.css">
-
+<style>
+  .auth-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.35;
+    animation: auth-blob-float 20s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .auth-blob-1 { width: 380px; height: 380px; background: #564CE5; top: -100px; left: -100px; }
+  .auth-blob-2 { width: 320px; height: 320px; background: #FFD400; top: 45%; right: -120px; animation-delay: -7s; }
+  .auth-blob-3 { width: 280px; height: 280px; background: #22D3EE; bottom: -120px; left: 25%; animation-delay: -14s; }
+  @keyframes auth-blob-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -40px) scale(1.1); }
+    66% { transform: translate(-25px, 30px) scale(0.95); }
+  }
+  .dark .auth-blob { opacity: 0.16; }
+  @media (prefers-reduced-motion: reduce) {
+    .auth-blob { animation: none; }
+  }
+</style>
 </head>
-<body class="bg-gray-50 m-0 p-0 py-8">
+<body class="relative bg-gray-50 m-0 p-0 py-8">
 
-  <div class="flex items-center justify-center w-full min-h-screen px-4">
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="auth-blob auth-blob-1"></div>
+    <div class="auth-blob auth-blob-2"></div>
+    <div class="auth-blob auth-blob-3"></div>
+  </div>
+
+  <div class="relative flex items-center justify-center w-full min-h-screen px-4">
     <div class="w-full max-w-sm">
 
       <div class="flex items-center justify-between mb-4">
@@ -33,6 +67,12 @@
       </div>
 
       <div class="bg-white border border-gray-200 rounded-3xl shadow-sm px-6 py-8">
+
+        <div class="flex justify-center mb-4">
+          <a href="./index.html">
+            <img src="../image/stadia-logo-transparent.png" alt="STADIA" class="h-12 w-auto">
+          </a>
+        </div>
 
         <h1 class="text-center text-base font-bold text-gray-900 mb-6">Sign Up</h1>
 
@@ -105,7 +145,7 @@
           </div>
 
           <button type="submit" id="signupSubmitBtn"
-            class="w-full flex items-center justify-center gap-2 text-center bg-[#564CE5] text-white rounded-xl py-2 px-3 text-xs font-semibold hover:bg-[#4a3bc4] transition-colors disabled:opacity-60">
+            class="w-full flex items-center justify-center gap-2 text-center bg-secondary2 text-white rounded-xl py-2 px-3 text-xs font-semibold hover:opacity-90 transition-colors disabled:opacity-60">
             <svg id="signupSubmitSpinner" class="hidden animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
@@ -113,7 +153,7 @@
             <span id="signupSubmitLabel">Create your account</span>
           </button>
           <p class="text-center text-xs text-gray-500">Already have an account?
-            <a href="./login.html" id="signInLink" class="text-[#564CE5] font-semibold hover:underline">Sign In</a>
+            <a href="./login.html" id="signInLink" class="text-secondary2 font-semibold hover:underline">Sign In</a>
           </p>
         </form>
 

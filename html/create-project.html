@@ -45,10 +45,10 @@
 </head>
 <body class="bg-gray-100 min-h-screen text-gray-800">
 
-  <nav class="bg-white">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+  <nav class="bg-white sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5">
       <a href="./index.html" class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
-        <img src="../image/stadia-logo-transparent.png" class="w-24">
+        <img src="../image/stadia-logo-transparent.png" class="h-9 w-auto">
       </a>
       <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
         <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">PROJECT</a>
@@ -104,7 +104,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
-      Back To Home
+      <span id="backHomeFromFormLabel">Back To Projects</span>
     </a>
 
     <h1 id="formHeading" class="text-center text-brand font-bold text-lg tracking-wide mb-6">POST YOUR NEW PROJECT HERE</h1>
@@ -140,6 +140,7 @@
           <select id="fGeneration" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand/40">
             <option value="">Loading generations...</option>
           </select>
+          <a href="./manage-courses.html" class="inline-block mt-1.5 text-xs font-semibold text-gray-400 hover:text-brand">Manage all courses & generations →</a>
           <div id="newGenerationRow" class="hidden mt-2 space-y-2 border border-gray-200 rounded-lg p-3 bg-gray-50">
             <div>
               <label class="block text-xs font-semibold text-gray-600 mb-1">Course</label>
@@ -213,10 +214,26 @@
         <p class="text-xs text-gray-400 mt-3 text-center">This is a preview — nothing is saved until you click Submit.</p>
       </div>
 
+      <div class="mb-4 border border-gray-200 rounded-lg p-3 bg-gray-50">
+        <label class="block text-sm font-semibold text-gray-800 mb-2">Visibility</label>
+        <div class="flex items-center gap-2 mb-3">
+          <button type="button" id="statusDraftBtn" data-status="draft"
+            class="flex-1 px-3 py-2 rounded-lg border text-sm font-semibold transition">
+            Save as Draft
+          </button>
+          <button type="button" id="statusPublishBtn" data-status="published"
+            class="flex-1 px-3 py-2 rounded-lg border text-sm font-semibold transition">
+            Publish Now
+          </button>
+        </div>
+        <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer select-none">
+          <input type="checkbox" id="fFeatured" class="rounded border-gray-300 text-brand focus:outline-none focus:ring-2 focus:ring-brand/40">
+          Mark as featured
+        </label>
+        <p id="statusHelpText" class="text-xs text-gray-400 mt-2">Drafts are only visible to you until you publish.</p>
+      </div>
+
       <div class="flex items-center justify-between flex-wrap gap-4 mt-8">
-        <!-- New projects start as a draft; use "Publish" on the dashboard once
-             it's ready -- there's no separate Public/Private setting on the backend. -->
-        <p class="text-xs text-gray-400">New projects start as a draft. Publish it from your dashboard once it's ready.</p>
         <div class="flex items-center gap-3">
           <button type="button" id="cancelBtn" class="px-8 py-2.5 rounded-lg border border-gray-300 text-sm font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
           <button type="submit" id="submitBtn" class="px-8 py-2.5 rounded-lg bg-brand hover:bg-brand-dark text-white text-sm font-semibold shadow disabled:opacity-60 flex items-center gap-2">
@@ -320,10 +337,26 @@ const ProjectAPI = {
       video_url: data.videoUrl,
       repository_url: data.repoUrl,
       thumbnail,
+      featured: !!data.featured,
     };
 
     // Send JSON (ProjectsAPI.createProject posts a JSON object, not FormData)
-    return await window.ProjectsAPI.createProject(payload);
+    const project = await window.ProjectsAPI.createProject(payload);
+
+    // CreateProjectRequest has no `status` field -- every project starts as
+    // a draft server-side regardless. Publishing is only possible via a
+    // follow-up update, same as the dashboard's Publish/Unpublish toggle.
+    if (project && project.uuid && data.status === 'published') {
+      try {
+        await window.ProjectsAPI.updateProject(project.uuid, { status: 'published' });
+        project.status = 'published';
+      } catch (err) {
+        console.error('Project created but could not be published:', err.message);
+        if (window.ApiUtils) ApiUtils.showError('Project saved, but publishing failed: ' + (err.message || 'unknown error') + '. It was saved as a draft -- publish it from your dashboard.');
+      }
+    }
+
+    return project;
   },
 
   /**
@@ -356,6 +389,8 @@ const ProjectAPI = {
       video_url: data.videoUrl,
       repository_url: data.repoUrl,
       thumbnail,
+      featured: !!data.featured,
+      status: data.status || undefined,
     };
 
     return await window.ProjectsAPI.updateProject(uuid, payload);
@@ -411,8 +446,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function showSuccessChoice(projectId, isEdit) {
     formView.classList.add('hidden');
     detailView.classList.remove('hidden');
-    document.getElementById('successHeading').textContent =
-      isEdit ? 'Project updated successfully!' : 'Project posted successfully!';
+    const savedAsPublished = selectedStatus === 'published';
+    document.getElementById('successHeading').textContent = isEdit
+      ? 'Project updated successfully!'
+      : (savedAsPublished ? 'Project published successfully!' : 'Project saved as a draft!');
     document.getElementById('viewProjectBtn').href = 'project-detail.html?id=' + encodeURIComponent(projectId);
   }
 
@@ -441,6 +478,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('submitBtn');
   const submitSpinner = document.getElementById('submitSpinner');
   const submitLabel = document.getElementById('submitLabel');
+  const statusDraftBtn = document.getElementById('statusDraftBtn');
+  const statusPublishBtn = document.getElementById('statusPublishBtn');
+  const statusHelpText = document.getElementById('statusHelpText');
+  const fFeatured = document.getElementById('fFeatured');
+
+  // Draft/Publish choice -- new projects always start as a draft on the
+  // backend (CreateProjectRequest has no status field), so "Publish Now"
+  // is implemented as an immediate follow-up update right after creation
+  // (see ProjectAPI.createProject above). Defaults to Draft.
+  let selectedStatus = 'draft';
+  function setSelectedStatus(status) {
+    selectedStatus = status;
+    const isDraft = status === 'draft';
+    statusDraftBtn.classList.toggle('bg-brand', isDraft);
+    statusDraftBtn.classList.toggle('text-white', isDraft);
+    statusDraftBtn.classList.toggle('border-brand', isDraft);
+    statusDraftBtn.classList.toggle('bg-white', !isDraft);
+    statusDraftBtn.classList.toggle('text-gray-700', !isDraft);
+    statusDraftBtn.classList.toggle('border-gray-300', !isDraft);
+    statusPublishBtn.classList.toggle('bg-brand', !isDraft);
+    statusPublishBtn.classList.toggle('text-white', !isDraft);
+    statusPublishBtn.classList.toggle('border-brand', !isDraft);
+    statusPublishBtn.classList.toggle('bg-white', isDraft);
+    statusPublishBtn.classList.toggle('text-gray-700', isDraft);
+    statusPublishBtn.classList.toggle('border-gray-300', isDraft);
+    statusHelpText.textContent = isDraft
+      ? 'Drafts are only visible to you until you publish.'
+      : 'This project will be publicly visible right away.';
+  }
+  statusDraftBtn.addEventListener('click', () => setSelectedStatus('draft'));
+  statusPublishBtn.addEventListener('click', () => setSelectedStatus('published'));
+  setSelectedStatus('draft');
   const newCategoryRow = document.getElementById('newCategoryRow');
   const fNewCategoryName = document.getElementById('fNewCategoryName');
   const createCategoryBtn = document.getElementById('createCategoryBtn');
@@ -765,6 +834,9 @@ document.addEventListener('DOMContentLoaded', () => {
       fDemoUrl.value = project.demo_url || '';
       fRepoUrl.value = project.repository_url || '';
 
+      setSelectedStatus(project.status === 'published' ? 'published' : 'draft');
+      fFeatured.checked = !!project.featured;
+
       existingThumbnail = project.thumbnail || '';
       if (existingThumbnail && window.MediaAPI) {
         dropzonePreviewImg.src = MediaAPI.getMediaUrl(existingThumbnail);
@@ -782,6 +854,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (editId) {
     loadForEdit(editId);
+    // Editing is only ever entered from the dashboard's project list, so
+    // "back" and "cancel" should return there, not to the general
+    // projects page (the create-mode default).
+    const backLink = document.getElementById('backHomeFromForm');
+    const backLabel = document.getElementById('backHomeFromFormLabel');
+    if (backLink) backLink.href = './dashboard.html';
+    if (backLabel) backLabel.textContent = 'Back To Dashboard';
   }
 
   function resetDropzone() {
@@ -832,14 +911,91 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   dropzone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
 
-  document.getElementById('cancelBtn').addEventListener('click', () => {
-    if (editId) {
-      window.location.href = 'project-detail.html?id=' + encodeURIComponent(editId);
+  // ---- Leave-page guard: warn before losing an unsaved draft ----
+  // A real custom "Save draft / Discard" dialog is only possible for
+  // in-app navigation (clicking a link/button here) -- browsers don't allow
+  // customizing the beforeunload prompt (tab close, typed URL, refresh), so
+  // that case falls back to the browser's own generic warning.
+  function hasUnsavedInput() {
+    return !!(fTitle.value.trim() || fDescription.value.trim() || mediaDataUrl);
+  }
+
+  function showLeaveChoiceModal(message) {
+    return new Promise((resolve) => {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(17,24,39,0.5);z-index:10000;display:flex;align-items:center;justify-content:center;padding:1rem;';
+      const box = document.createElement('div');
+      box.style.cssText = 'background:#fff;border-radius:1rem;max-width:24rem;width:100%;padding:1.5rem;box-shadow:0 20px 40px rgba(0,0,0,0.15);';
+      box.innerHTML = `
+        <p style="font-size:0.875rem;color:#1f2937;line-height:1.5;margin:0 0 1.25rem;">${escapeHtml(message)}</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <button type="button" data-choice="save" style="padding:0.6rem 1rem;border-radius:0.5rem;border:none;background:#5B4FE9;color:#fff;font-size:0.8125rem;font-weight:600;cursor:pointer;">Save as Draft</button>
+          <button type="button" data-choice="discard" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid #fecaca;background:#fef2f2;color:#dc2626;font-size:0.8125rem;font-weight:600;cursor:pointer;">Discard changes</button>
+          <button type="button" data-choice="cancel" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid #d1d5db;background:#fff;color:#374151;font-size:0.8125rem;font-weight:600;cursor:pointer;">Keep editing</button>
+        </div>
+      `;
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+      box.querySelectorAll('button[data-choice]').forEach(btn => {
+        btn.addEventListener('click', () => { overlay.remove(); resolve(btn.dataset.choice); });
+      });
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.remove(); resolve('cancel'); } });
+    });
+  }
+
+  // Only guards CREATE mode -- an edit in progress leaving unsaved is a
+  // smaller/different concern (the original data is untouched on the
+  // server either way) and out of scope here.
+  async function handleLeaveIntent(destinationUrl) {
+    if (editId || !hasUnsavedInput()) {
+      window.location.href = destinationUrl;
       return;
     }
-    projectForm.reset();
-    resetDropzone();
-    formAlert.classList.add('hidden');
+    const choice = await showLeaveChoiceModal('You have unsaved changes on this project. Save it as a draft before leaving, or discard it?');
+    if (choice === 'save') {
+      setSelectedStatus('draft');
+      pendingLeaveDestination = destinationUrl;
+      projectForm.requestSubmit();
+    } else if (choice === 'discard') {
+      window.location.href = destinationUrl;
+    }
+    // 'cancel' -> stay put, nothing to do
+  }
+
+  let pendingLeaveDestination = null;
+
+  document.getElementById('backHomeFromForm').addEventListener('click', (e) => {
+    if (editId || !hasUnsavedInput()) return; // let the plain link navigate normally
+    e.preventDefault();
+    handleLeaveIntent(e.currentTarget.href);
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    if (editId || !hasUnsavedInput()) return;
+    e.preventDefault();
+    e.returnValue = '';
+  });
+
+  document.getElementById('cancelBtn').addEventListener('click', async () => {
+    if (editId) {
+      window.location.href = './dashboard.html';
+      return;
+    }
+    if (!hasUnsavedInput()) {
+      projectForm.reset();
+      resetDropzone();
+      formAlert.classList.add('hidden');
+      return;
+    }
+    const choice = await showLeaveChoiceModal('You have unsaved changes on this project. Save it as a draft, or discard it?');
+    if (choice === 'save') {
+      setSelectedStatus('draft');
+      projectForm.requestSubmit();
+    } else if (choice === 'discard') {
+      projectForm.reset();
+      resetDropzone();
+      formAlert.classList.add('hidden');
+    }
   });
 
   projectForm.addEventListener('submit', async (e) => {
@@ -876,6 +1032,8 @@ document.addEventListener('DOMContentLoaded', () => {
         demoUrl: fDemoUrl.value.trim(),
         repoUrl: fRepoUrl.value.trim(),
         mediaDataUrl,
+        status: selectedStatus,
+        featured: fFeatured.checked,
       };
       const file = fFile.files && fFile.files[0];
 
@@ -885,7 +1043,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const id = editId || project.uuid || project.slug || '';
       if (window.ApiUtils) ApiUtils.showSuccess(editId ? 'Project updated successfully!' : 'Project posted successfully!');
-      if (!id) {
+      if (pendingLeaveDestination) {
+        // Saved as a draft on the way out (see handleLeaveIntent) -- head
+        // straight to where the user was originally trying to go.
+        window.location.href = pendingLeaveDestination;
+      } else if (!id) {
         // Fallback (no id returned): stay in form view showing a confirmation.
         formAlert.classList.remove('hidden');
         formAlert.className = formAlert.className.replace('text-red-600', 'text-emerald-700').replace('bg-red-50', 'bg-emerald-50').replace('border-red-200', 'border-emerald-200');

@@ -38,6 +38,27 @@
    --text-description-card-size: 24px;
  }
 
+/* Guards against any decorative/animated element (marquee tracks, blobs,
+   etc.) ever producing a real horizontal scrollbar on the page -- overflow
+   on <body> alone isn't always enough since <html> is the actual root
+   scroller in most browsers. */
+html { overflow-x: hidden; }
+
+/* The old scroll-reveal effect (animation-timeline: view(), plus an
+   IntersectionObserver-driven .reveal/.show variant) starts every section
+   at opacity:0 and only reveals it once a scroll trigger fires. That trigger
+   doesn't fire reliably -- fast scrolling, unsupported browsers, or a
+   JS/observer hiccup all leave real content permanently invisible, which is
+   a much worse outcome than skipping the animation. Force everything using
+   these classes to always be visible; the reveal effect is intentionally
+   disabled site-wide. */
+.reveal-img, .reveal-text, .reveal-img1, .reveal-text1, .reveal-img2, .reveal-text2, .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
 /* ============================================
    Dark mode - toggled via a `dark` class on <html>
    (see js/theme.js). This overrides the standard Tailwind
