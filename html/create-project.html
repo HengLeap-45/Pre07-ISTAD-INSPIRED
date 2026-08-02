@@ -955,11 +955,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (choice === 'save') {
       setSelectedStatus('draft');
       pendingLeaveDestination = destinationUrl;
+      skipDraftConfirm = true; // already chose "save as draft" just now -- don't ask again
       projectForm.requestSubmit();
     } else if (choice === 'discard') {
       window.location.href = destinationUrl;
     }
     // 'cancel' -> stay put, nothing to do
+  }
+
+  // Double-checks the visibility choice right before submitting, since
+  // "draft" is the default and easy to submit without noticing -- gives the
+  // user one more chance to publish instead. Skipped when the submit was
+  // already triggered by the leave-guard's "Save as Draft" choice above.
+  let skipDraftConfirm = false;
+  function showDraftConfirmModal(message) {
+    return new Promise((resolve) => {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(17,24,39,0.5);z-index:10000;display:flex;align-items:center;justify-content:center;padding:1rem;';
+      const box = document.createElement('div');
+      box.style.cssText = 'background:#fff;border-radius:1rem;max-width:24rem;width:100%;padding:1.5rem;box-shadow:0 20px 40px rgba(0,0,0,0.15);';
+      box.innerHTML = `
+        <p style="font-size:0.875rem;color:#1f2937;line-height:1.5;margin:0 0 1.25rem;">${escapeHtml(message)}</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <button type="button" data-choice="publish" style="padding:0.6rem 1rem;border-radius:0.5rem;border:none;background:#5B4FE9;color:#fff;font-size:0.8125rem;font-weight:600;cursor:pointer;">Publish now</button>
+          <button type="button" data-choice="draft" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid #d1d5db;background:#fff;color:#374151;font-size:0.8125rem;font-weight:600;cursor:pointer;">Keep as draft</button>
+          <button type="button" data-choice="cancel" style="padding:0.6rem 1rem;border-radius:0.5rem;border:none;background:transparent;color:#6b7280;font-size:0.8125rem;font-weight:600;cursor:pointer;">Cancel</button>
+        </div>
+      `;
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+      box.querySelectorAll('button[data-choice]').forEach(btn => {
+        btn.addEventListener('click', () => { overlay.remove(); resolve(btn.dataset.choice); });
+      });
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.remove(); resolve('cancel'); } });
+    });
   }
 
   let pendingLeaveDestination = null;
@@ -1022,6 +1051,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!editId && !mediaDataUrl) {
         throw new Error('Please upload a project thumbnail image.');
       }
+
+      if (selectedStatus === 'draft' && !skipDraftConfirm) {
+        const choice = await showDraftConfirmModal(
+          'This project will be saved as a draft and won\'t be visible to anyone else yet. Publish it now instead, or keep it as a draft?'
+        );
+        if (choice === 'cancel') return;
+        if (choice === 'publish') setSelectedStatus('published');
+      }
+      skipDraftConfirm = false;
+
       const formData = {
         title: fTitle.value.trim(),
         categoryUuid: fCategory.value,
@@ -1053,9 +1092,10 @@ document.addEventListener('DOMContentLoaded', () => {
         formAlert.className = formAlert.className.replace('text-red-600', 'text-emerald-700').replace('bg-red-50', 'bg-emerald-50').replace('border-red-200', 'border-emerald-200');
         formAlert.textContent = editId ? 'Project updated successfully!' : 'Project posted successfully!';
       } else if (editId) {
-        // Editing an existing project: no reason to offer "create another" --
-        // just take the user to see the updated project.
-        window.location.href = 'project-detail.html?id=' + encodeURIComponent(id);
+        // Editing an existing project: editing is only ever entered from the
+        // dashboard's project list, so head back there instead of the
+        // general project-detail page.
+        window.location.href = './dashboard.html';
       } else {
         // Creating a new project: let the user choose what to do next
         // instead of silently redirecting them away.

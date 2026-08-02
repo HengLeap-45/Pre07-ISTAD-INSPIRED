@@ -433,7 +433,7 @@
             if (window.ApiUtils) ApiUtils.showSuccess(`"${project.title || 'Project'}" is now ${nextStatus}.`);
           } catch (err) {
             const message = 'Could not update status: ' + (err.message || 'unknown error');
-            if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+            if (window.ApiUtils) ApiUtils.showError(message);
             triggerBtn.disabled = false;
             triggerBtn.textContent = original;
           }
@@ -460,7 +460,7 @@
             }
           } catch (err) {
             const message = 'Could not delete project: ' + (err.message || 'unknown error');
-            if (window.ApiUtils) ApiUtils.showError(message); else alert(message);
+            if (window.ApiUtils) ApiUtils.showError(message);
             triggerBtn.disabled = false;
             triggerBtn.textContent = 'Delete';
           }
