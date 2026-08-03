@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="../vendor/aos/aos.css" />
     <style>
       body {
-        font-family: "Poppins", sans-serif;
+        font-family: "Segoe UI", Arial, sans-serif;
       }
       .marquee-wrap {
         overflow: hidden;
@@ -77,7 +77,6 @@
         flex-shrink: 0;
         padding-right: 0.75rem;
       }
-
       .marquee-pill {
         display: inline-flex;
         align-items: center;
@@ -95,7 +94,6 @@
       .marquee-pill:hover {
         background: rgba(255, 255, 255, 0.2);
       }
-
       @media (prefers-reduced-motion: reduce) {
         .marquee-track {
           animation: none;
@@ -270,11 +268,17 @@
       .dark .border-gray-100 {
         border-color: #23252c !important;
       }
+
+      /* Footer social / Font Awesome brand icons: black in light mode, white in dark mode */
+      footer .fa-brands {
+        color: #111827 !important;
+      }
+      .dark footer .fa-brands {
+        color: #e5e7eb !important;
+      }
     </style>
   </head>
-  <body
-    class="bg-gray-50 min-h-screen text-gray-800 dark:bg-black dark:text-white"
-  >
+  <body class="bg-gray-50 min-h-screen text-gray-800">
     <nav class="bg-white sticky top-0 z-50 shadow-sm">
       <div
         class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5"
@@ -1274,101 +1278,75 @@
       </div>
     </div>
 
-    <footer
-      class="bg-[#f5f5f7] dark:bg-gray-400 text-gray-800 dark:text-gray-200 px-6 transition-colors duration-200"
-    >
-      <div
-        class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10 dark:bg-black"
-      >
+    <footer class="bg-[#f5f5f7] px-6">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10">
         <div>
           <div class="flex items-center gap-2 font-extrabold text-navy">
             <img
               src="../image/stadia-logo-transparent.png"
-              alt="STADIA Logo"
+              alt=""
               class="w-40"
             />
           </div>
         </div>
         <div>
-          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
-            EXPLORE
-          </h5>
-          <ul class="space-y-2 text-[13.5px] text-gray-500 dark:text-gray-400">
+          <h5 class="font-extrabold text-sm mb-3">EXPLORE</h5>
+          <ul class="space-y-2 text-[13.5px] text-gray-500">
+            <li><a href="./index.html" class="hover:text-navy">Home</a></li>
             <li>
-              <a
-                href="./index.html"
-                class="hover:text-navy dark:hover:text-white"
-                >Home</a
-              >
+              <a href="./about-us.html" class="hover:text-navy">About Us</a>
             </li>
             <li>
-              <a
-                href="./about-us.html"
-                class="hover:text-navy dark:hover:text-white"
-                >About Us</a
-              >
-            </li>
-            <li>
-              <a
-                href="./projects.html"
-                class="hover:text-navy dark:hover:text-white"
-                >List project</a
-              >
+              <a href="./projects.html" class="hover:text-navy">List project</a>
             </li>
             <li>
               <a
                 href="./create-project.html"
                 data-requires-auth
-                class="hover:text-navy dark:hover:text-white"
+                class="hover:text-navy"
                 >Post project</a
               >
             </li>
           </ul>
         </div>
         <div>
-          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
-            Connect With Us
-          </h5>
-          <p class="text-[13.5px] text-gray-500 dark:text-gray-400 mb-3">
+          <h5 class="font-extrabold text-sm mb-3">Connect With Us</h5>
+          <p class="text-[13.5px] text-gray-500 mb-3">
             Stay updated with our latest news and events.
           </p>
-          <div class="flex gap-3">
+          <div class="flex gap-2">
             <div>
-              <i
-                class="fa-brands fa-facebook text-lg text-gray-700 dark:text-white"
-              ></i>
+              <i class="fa-brands fa-facebook text-lg dark:text-white"></i>
             </div>
             <div>
-              <i
-                class="fa-brands fa-telegram text-lg text-gray-700 dark:text-white"
-              ></i>
+              <i class="fa-brands fa-telegram text-lg dark:text-white"></i>
             </div>
             <div>
-              <i
-                class="fa-brands fa-youtube text-lg text-gray-700 dark:text-white"
-              ></i>
+              <i class="fa-brands fa-youtube text-lg dark:text-white"></i>
             </div>
           </div>
         </div>
         <div>
-          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
+          <h5 class="font-extrabold text-sm mb-3">
             Sponsored and organized by ISTAD
           </h5>
           <div>
             <img
               src="../image/New Logo iSTAD Full-12.png"
-              alt="iSTAD Logo"
+              alt=""
               class="w-48"
             />
           </div>
         </div>
       </div>
-      <div
-        class="text-center max-w-7xl mx-auto border-t border-gray-200 dark:border-gray-800 py-5 text-[13px] text-gray-500 dark:text-gray-400 font-bold"
+      <b
+        ><div
+          class="text-center tmax-w-7xl mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500"
+        >
+          © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the
+          next generation through their projects.
+        </div></b
       >
-        © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the next
-        generation through their projects.
-      </div>
     </footer>
     <script src="../vendor/flowbite/flowbite.min.js"></script>
     <script src="../vendor/preline/preline.js"></script>
