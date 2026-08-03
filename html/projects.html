@@ -1,802 +1,1407 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>STADIA — Frontend Skill Projects</title>
-<meta name="description" content="Browse every student project shared on STADIA, filterable by category and course.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="STADIA — All Projects">
-<meta property="og:description" content="Browse every student project shared on STADIA, filterable by category and course.">
-<meta property="og:image" content="../image/stadia-logo-transparent.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="STADIA — All Projects">
-<meta name="twitter:description" content="Browse every student project shared on STADIA, filterable by category and course.">
-<script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-/>
-<link rel="stylesheet" href="../src/output.css">
-<link rel="stylesheet" href="../vendor/aos/aos.css">
-<style>
-  body { font-family: 'Poppins', sans-serif; }
-    .marquee-wrap {
-    overflow: hidden;
-  }
-  .marquee-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: marquee-scroll 55s linear infinite;
-    will-change: transform;
-  }
- 
-  .marquee-wrap:hover .marquee-track {
-    animation-play-state: paused;
-  }
- 
-  @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
- 
-  .marquee-group {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
-    padding-right: 0.75rem;
-  }
-
-  .marquee-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    white-space: nowrap;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.03em;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    transition: background-color 0.2s ease;
-  }
-  .marquee-pill:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
- 
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-    }
-  }
- 
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-  @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(80px);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STADIA — Frontend Skill Projects</title>
+    <meta
+      name="description"
+      content="Browse every student project shared on STADIA, filterable by category and course."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="STADIA — All Projects" />
+    <meta
+      property="og:description"
+      content="Browse every student project shared on STADIA, filterable by category and course."
+    />
+    <meta property="og:image" content="../image/stadia-logo-transparent.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="STADIA — All Projects" />
+    <meta
+      name="twitter:description"
+      content="Browse every student project shared on STADIA, filterable by category and course."
+    />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("stadia_theme");
+          if (!t) {
+            t =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          }
+          if (t === "dark") document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="../vendor/aos/aos.css" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
       }
-      to {
+      .marquee-wrap {
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: marquee-scroll 55s linear infinite;
+        will-change: transform;
+      }
+
+      .marquee-wrap:hover .marquee-track {
+        animation-play-state: paused;
+      }
+
+      @keyframes marquee-scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      .marquee-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+        padding-right: 0.75rem;
+      }
+
+      .marquee-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.03em;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        transition: background-color 0.2s ease;
+      }
+      .marquee-pill:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .marquee-track {
+          animation: none;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.show {
         opacity: 1;
         transform: translateY(0);
       }
-    }
- 
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(80px);
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
-      to {
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(80px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(80px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .reveal-img {
         opacity: 1;
-        transform: translateX(0);
+        animation: slideInUp 0.1s ease-out 0.1s forwards;
+        animation-timeline: view(100px);
+        animation-range: entry 0% cover 30%;
       }
-    }
- 
-    .reveal-img {
-      opacity: 1;
-      animation: slideInUp 0.1s ease-out 0.1s forwards;
-      animation-timeline: view(100px);
-      animation-range: entry 0% cover 30%;
-    }
- 
-    .reveal-text {
-      opacity: 0;
-      animation: slideInRight 0.1s ease-out 0.1s forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
- 
-    @supports not (animation-timeline: view()) {
-      .reveal-img,
+
       .reveal-text {
-        opacity: 1;
-        transform: translateY(0) translateX(0);
-      }
-    
-    }@keyframes slideInUp {
-      from {
         opacity: 0;
-        transform: translateX(65%);
+        animation: slideInRight 0.1s ease-out 0.1s forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
       }
-      to {
+
+      @supports not (animation-timeline: view()) {
+        .reveal-img,
+        .reveal-text {
+          opacity: 1;
+          transform: translateY(0) translateX(0);
+        }
+      }
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateX(65%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateY(65%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+
+      .reveal-img1 {
         opacity: 1;
-        transform: translateY(0%);
+        animation: slideInUp 0.1s ease-out 0.1s forwards;
+        animation-timeline: view(65%);
+        animation-range: entry 0% cover 30%;
       }
-    }
- 
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateY(65%);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0%);
-      }
-    }
- 
-    .reveal-img1 {
-      opacity: 1;
-      animation: slideInUp 0.1s ease-out 0.1s forwards;
-      animation-timeline: view(65%);
-      animation-range: entry 0% cover 30%;
-    }
- 
-    .reveal-text1 {
-      opacity: 100%;
-      animation: slideInUp 0.1s ease-out 0.1s forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
- 
-    @supports not (animation-timeline: view()) {
-      .reveal-img1,
+
       .reveal-text1 {
         opacity: 100%;
-        transform: translateX(60%) translateY(0);
+        animation: slideInUp 0.1s ease-out 0.1s forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
       }
-    }
-    .reveal-text2 {
-      opacity: 1;
-      animation: slideInUp 0.1s ease-out 0.1s forwards;
-      animation-timeline: view(65%);
-      animation-range: entry 0% cover 30%;
-    }
- 
-    .reveal-text2 {
-      opacity: 100%;
-      animation: slideInUp 0.1s ease-out 0.1s forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
- 
-    @supports not (animation-timeline: view()) {
-      .reveal-img2,
+
+      @supports not (animation-timeline: view()) {
+        .reveal-img1,
+        .reveal-text1 {
+          opacity: 100%;
+          transform: translateX(60%) translateY(0);
+        }
+      }
+      .reveal-text2 {
+        opacity: 1;
+        animation: slideInUp 0.1s ease-out 0.1s forwards;
+        animation-timeline: view(65%);
+        animation-range: entry 0% cover 30%;
+      }
+
       .reveal-text2 {
         opacity: 100%;
-        transform: translateY(0) translateX(60%);
+        animation: slideInUp 0.1s ease-out 0.1s forwards;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
       }
-    }
 
+      @supports not (animation-timeline: view()) {
+        .reveal-img2,
+        .reveal-text2 {
+          opacity: 100%;
+          transform: translateY(0) translateX(60%);
+        }
+      }
 
- 
-</style>
-</head>
-<body class="bg-gray-50 min-h-screen text-gray-800">
+      /* ============================================
+     Dark mode fixes specific to this page.
+     ============================================ */
+      .dark body.bg-light,
+      .dark body {
+        background-color: #0f1014 !important;
+        color: #e5e7eb !important;
+      }
 
-  <nav class="bg-white sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5">
-    <a href="./index.html" class=" items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
-      <img src="../image/stadia-logo-transparent.png" class="h-15 w-auto">
-    </a>
- 
-    <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
-      <a href="./projects.html" class="px-5 py-2 rounded-full text-sm  bg-[#564CE5] text-white">PROJECT</a>
-      <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm  text-gray-500 hover:text-navy">POST CREATOR</a>
-      <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm text-gray-500 hover:text-navy">ABOUT US</a>
-    </div>
- 
-    <div class="flex items-center gap-3">
-      <div class="hidden md:flex items-center gap-3">
-        <div data-auth="guest" class="flex items-center gap-2">
-          <a href="./login.html" class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">Sign In</a>
-          <a href="./signup.html" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Sign Up</a>
+      /* Section backgrounds that should match dark mode */
+      .dark section.bg-\[\#f8f9fa\],
+      .dark .dark-zone {
+        background-color: #16171d !important;
+      }
+      .dark footer,
+      .dark footer.bg-\[\#f5f5f7\] {
+        background-color: #131419 !important;
+      }
+      .dark footer .border-gray-200,
+      .dark footer .border-t {
+        border-color: #2a2c34 !important;
+      }
+
+      /* Hard-coded dark inks in headings / body text -> light */
+      .dark .text-\[\#2040a1\],
+      .dark .text-\[\#3b3abe\],
+      .dark .text-\[\#1c1c2e\] {
+        color: #a5b4fc !important;
+      }
+      .dark .text-slate-800,
+      .dark .text-slate-700,
+      .dark .text-gray-900 {
+        color: #e5e7eb !important;
+      }
+
+      /* Team card backgrounds (bg-white) -> keep readable in both themes */
+      .dark .bg-white {
+        background-color: #1a1b23 !important;
+      }
+      .dark .border-gray-100 {
+        border-color: #23252c !important;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 min-h-screen text-gray-800 dark:bg-black dark:text-white"
+  >
+    <nav class="bg-white sticky top-0 z-50 shadow-sm">
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5"
+      >
+        <a
+          href="./index.html"
+          class="items-center gap-2 font-extrabold text-navy tracking-wide text-sm"
+        >
+          <img src="../image/stadia-logo-transparent.png" class="h-15 w-auto" />
+        </a>
+
+        <div
+          class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1"
+        >
+          <a
+            href="./projects.html"
+            class="px-5 py-2 rounded-full text-sm bg-[#564CE5] text-white"
+            >PROJECT</a
+          >
+          <a
+            href="./create-project.html"
+            data-requires-auth
+            class="px-5 py-2 rounded-full text-sm text-gray-500 hover:text-navy"
+            >POST CREATOR</a
+          >
+          <a
+            href="./about-us.html"
+            class="px-5 py-2 rounded-full text-sm text-gray-500 hover:text-navy"
+            >ABOUT US</a
+          >
         </div>
-        <div data-auth="user" class="hidden flex items-center gap-2">
-          <a href="./dashboard.html" class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy" title="Account">
-            <span data-auth="user-avatar" class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"></span>
+
+        <div class="flex items-center gap-3">
+          <div class="hidden md:flex items-center gap-3">
+            <div data-auth="guest" class="flex items-center gap-2">
+              <a
+                href="./login.html"
+                class="px-4 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy"
+                >Sign In</a
+              >
+              <a
+                href="./signup.html"
+                class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black"
+                >Sign Up</a
+              >
+            </div>
+            <div data-auth="user" class="hidden flex items-center gap-2">
+              <a
+                href="./dashboard.html"
+                class="flex items-center gap-2 pl-1.5 pr-3 py-1.5 rounded-full text-sm font-semibold text-gray-500 hover:text-navy"
+                title="Account"
+              >
+                <span
+                  data-auth="user-avatar"
+                  class="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center text-white text-xs font-bold shrink-0 bg-gray-300"
+                ></span>
+                <span data-auth="user-name">Account</span>
+              </a>
+              <button
+                type="button"
+                data-action="logout"
+                class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black"
+              >
+                Log out
+              </button>
+            </div>
+          </div>
+          <button
+            type="button"
+            data-action="toggle-theme"
+            title="Toggle dark mode"
+            class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition"
+          >
+            <svg
+              class="theme-icon-sun w-4 h-4 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+            <svg
+              class="theme-icon-moon w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              />
+            </svg>
+          </button>
+          <button
+            data-collapse-toggle="mobile-menu"
+            type="button"
+            class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+      <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
+        <a href="./projects.html" class="block py-2 font-semibold text-navy"
+          >PROJECT</a
+        >
+        <a
+          href="./create-project.html"
+          data-requires-auth
+          class="block py-2 font-semibold text-gray-500"
+          >POST CREATOR</a
+        >
+        <a href="./about-us.html" class="block py-2 font-semibold text-gray-500"
+          >ABOUT US</a
+        >
+        <div
+          data-auth="guest"
+          class="pt-2 mt-2 border-t border-gray-100 flex items-center gap-3"
+        >
+          <a href="./login.html" class="font-semibold text-gray-500">Sign In</a>
+          <a href="./signup.html" class="font-semibold text-[#564CE5]"
+            >Sign Up</a
+          >
+        </div>
+        <div
+          data-auth="user"
+          class="hidden pt-2 mt-2 border-t border-gray-100 flex items-center gap-3"
+        >
+          <a
+            href="./dashboard.html"
+            class="flex items-center gap-2 font-semibold text-gray-500"
+            title="Account"
+          >
+            <span
+              data-auth="user-avatar"
+              class="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-white text-[10px] font-bold shrink-0 bg-gray-300"
+            ></span>
             <span data-auth="user-name">Account</span>
           </a>
-          <button type="button" data-action="logout" class="px-4 py-2 rounded-full text-sm font-semibold bg-[#2b2a3a] text-white hover:bg-black">Log out</button>
+          <button
+            type="button"
+            data-action="logout"
+            class="font-semibold text-red-600"
+          >
+            Log out
+          </button>
         </div>
       </div>
-      <button type="button" data-action="toggle-theme" title="Toggle dark mode" class="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
-        <svg class="theme-icon-sun w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.14 6.66l-.7-.7M7.05 7.05l-.7-.7m11.32 0l-.7.7M7.05 16.95l-.7.7M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-        <svg class="theme-icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-      </button>
-      <button data-collapse-toggle="mobile-menu" type="button" class="md:hidden w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">☰</button>
-    </div>
-  </div>
-  <div class="hidden md:!hidden px-6 pb-4" id="mobile-menu">
-    <a href="./projects.html" class="block py-2 font-semibold text-navy">PROJECT</a>
-    <a href="./create-project.html" data-requires-auth class="block py-2 font-semibold text-gray-500">POST CREATOR</a>
-    <a href="./about-us.html" class="block py-2 font-semibold text-gray-500">ABOUT US</a>
-    <div data-auth="guest" class="pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
-      <a href="./login.html" class="font-semibold text-gray-500">Sign In</a>
-      <a href="./signup.html" class="font-semibold text-[#564CE5]">Sign Up</a>
-    </div>
-    <div data-auth="user" class="hidden pt-2 mt-2 border-t border-gray-100 flex items-center gap-3">
-      <a href="./dashboard.html" class="flex items-center gap-2 font-semibold text-gray-500" title="Account">
-        <span data-auth="user-avatar" class="w-6 h-6 rounded-full overflow-hidden flex items-center justify-center text-white text-[10px] font-bold shrink-0 bg-gray-300"></span>
-        <span data-auth="user-name">Account</span>
-      </a>
-      <button type="button" data-action="logout" class="font-semibold text-red-600">Log out</button>
-    </div>
-  </div>
-</nav>
-  <section class=" max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16" id="margin">
-  <div class="grid justify-start md:mr-[100px] lg:mr-[200px]">
-  <div class=" p-5 flex-1 text-center md:text-left text-[#564CE5] " data-aos="fade-right">
-    <h1 class="reveal-text1 text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-[#564CE5]">
-      <span class="text-red-600  " id="red">All Project Web Page</span><br class="hidden md:inline" /> <span class="text-[#564CE5] text-2xl "></span>
-    </h1>
-    <p class="mt-6 text-gray-500 text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
-     Learn to build reponsive , dynamic website by combining HTML , CSS , and JavaScript. Create smooth user experiences by masstering UI/UX principles. Blend coding skills with design expertise to craft engaging, modern web applications.
-    </p>
-    <div class="mt-8 flex justify-center md:justify-start">
-      <button type="button" class="bg-[#564CE5] hover:bg-[#4338CA] text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg active:scale-98 transition-all duration-200 cursor-pointer">
-        Learn more
-      </button>
-    </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid justify-end md:mr-[50px] lg:mr-[100px]">
-  <div class="flex-1 flex letter justify-center md:justify-end" data-aos="fade-left" data-aos-delay="150">
-    <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] aspect-square flex items-center justify-center">
-      <img src="../image/all.jpg" class="w-full max-w-[100%] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300">
-    </div>
-  </div>
-  </div>
-  </div>
-</section>
-  <section class="max-w-4xl mx-auto px-4 pb-16">
-    <div class="relative mb-8">
-      <input type="search" id="projectSearchInput"
-             placeholder="Search projects..."
-             class="w-full pl-5 pr-12 py-3.5 rounded-full border border-gray-200 bg-white shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-secondary2 focus:border-transparent
-                    transition-shadow
-                    text-gray-700 placeholder-gray-400" />
-      <div id="searchSpinner" class="hidden absolute right-4 top-1/2 -translate-y-1/2">
-        <div class="w-5 h-5 border-2 border-gray-200 border-t-secondary2 rounded-full animate-spin"></div>
+    </nav>
+    <section
+      class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16"
+      id="margin"
+    >
+      <div class="grid justify-start md:mr-[100px] lg:mr-[200px]">
+        <div
+          class="p-5 flex-1 text-center md:text-left text-[#564CE5]"
+          data-aos="fade-right"
+        >
+          <h1
+            class="reveal-text1 text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-[#564CE5]"
+          >
+            <span class="text-red-600" id="red">All Project Web Page</span
+            ><br class="hidden md:inline" />
+            <span class="text-[#564CE5] text-2xl"></span>
+          </h1>
+          <p
+            class="mt-6 text-gray-500 text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0"
+          >
+            Learn to build reponsive , dynamic website by combining HTML , CSS ,
+            and JavaScript. Create smooth user experiences by masstering UI/UX
+            principles. Blend coding skills with design expertise to craft
+            engaging, modern web applications.
+          </p>
+          <div class="mt-8 flex justify-center md:justify-start">
+            <button
+              type="button"
+              class="bg-[#564CE5] hover:bg-[#4338CA] text-white font-bold text-sm md:text-base px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg active:scale-98 transition-all duration-200 cursor-pointer"
+            >
+              Learn more
+            </button>
+          </div>
+        </div>
       </div>
-      <button id="searchIconBtn" type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-secondary2 transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </button>
-    </div>
-    <!-- "All Project" is static (it means "no filter"); every other button here
+      <div class="grid justify-end md:mr-[50px] lg:mr-[100px]">
+        <div
+          class="flex-1 flex letter justify-center md:justify-end"
+          data-aos="fade-left"
+          data-aos-delay="150"
+        >
+          <div
+            class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] aspect-square flex items-center justify-center"
+          >
+            <img
+              src="../image/all.jpg"
+              class="w-full max-w-[100%] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="max-w-4xl mx-auto px-4 pb-16">
+      <div class="relative mb-8">
+        <input
+          type="search"
+          id="projectSearchInput"
+          placeholder="Search projects..."
+          class="w-full pl-5 pr-12 py-3.5 rounded-full border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary2 focus:border-transparent transition-shadow text-gray-700 placeholder-gray-400"
+        />
+        <div
+          id="searchSpinner"
+          class="hidden absolute right-4 top-1/2 -translate-y-1/2"
+        >
+          <div
+            class="w-5 h-5 border-2 border-gray-200 border-t-secondary2 rounded-full animate-spin"
+          ></div>
+        </div>
+        <button
+          id="searchIconBtn"
+          type="button"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-secondary2 transition-colors"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+      </div>
+      <!-- "All Project" is static (it means "no filter"); every other button here
          is generated at runtime from CategoriesAPI.getAllCategories() -- see the
          script at the bottom of this page. Nothing else in this list is hardcoded. -->
-    <div id="categoryFilters" class="flex gap-3 w-full flex-wrap">
-      <button data-filter-all class="flex-1 py-2.5 rounded-full border border-gray-200 bg-secondary2 text-white font-medium transition shadow-sm text-sm">
-        All Project
-      </button>
-    </div>
-    </div>
-  </section>
-  </section> 
-     <div class="reveal-text w-full px-4 sm:px-6 lg:px-8 pb-16">
-        <div class="reveal-text mx-auto w-full">
-            <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                <div class="group h-200 w-full">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css1.jpg" 
-                                alt="Web Development Project" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">CSS Fundamentals: The Basics</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                               Learn the fundamentals of CSS, including selectors, properties, values, colors, typography, spacing, and the box model to build beautifully styled web pages.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    145
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/></svg>
-                                    312
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+      <div id="categoryFilters" class="flex gap-3 w-full flex-wrap">
+        <button
+          data-filter-all
+          class="flex-1 py-2.5 rounded-full border border-gray-200 bg-secondary2 text-white font-medium transition shadow-sm text-sm"
+        >
+          All Project
+        </button>
+      </div>
+    </section>
+    <div class="reveal-text w-full px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="reveal-text mx-auto w-full">
+        <div
+          id="projectsGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
+        >
+          <div class="group h-200 w-full">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css1.jpg"
+                  alt="Web Development Project"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >CSS Fundamentals: The Basics</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Learn the fundamentals of CSS, including selectors,
+                  properties, values, colors, typography, spacing, and the box
+                  model to build beautifully styled web pages.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    145
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    312
+                  </span>
                 </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/html2.jpg" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">HTML Semantic Elements</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                               Understand semantic HTML by using elements like header, nav, section, article, main, and footer, to improve accessibility and SEO.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    298
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    456
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/2.png" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Efficient Data Management: Arrays & Objects</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                Master JavaScript arrays and objects to organize complex data and implement dynamic, interactive features on websites.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    298
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    456
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css2.jpg" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">CSS Layouts: Flexbox & Grid</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                               Master modern CSS layouts using Flexbox and CSS Grid. Create responsive, flexible, and organized web page structures for every screen size.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    298
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    456
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/html4.jpg" 
-                                alt="Tailwind CSS Course" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Responsive HTML Layouts</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                 Build responsive page structures using semantic HTML combined with modern layout techniques for desktop, tablet, and mobile devices.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    187
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    234
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/2.png" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Efficient Data Management: Arrays & Objects</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                Master JavaScript arrays and objects to organize complex data and implement dynamic, interactive features on websites.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    298
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    456
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css3.jpg" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">JResponsive Web Design</span>
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                Build websites that adapt perfectly to desktops, tablets, and mobile devices using media queries, responsive units, and mobile-first design principles.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-tborder-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    521
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    678
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css4.jpg" 
-                                alt="Tailwind CSS Course" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">CSS Animations & Transitions</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                 Bring your websites to life with smooth transitions, keyframe animations, hover effects, transforms, and interactive visual experiences.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    187
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    234
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/uxui in2.png" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Principles of UI Design</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                Learn fundamental UI design principles including color theory, typography, layout, and visual hierarchy to create visually appealing and user-friendly interfaces.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    298
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    456
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hiddenshadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css5.jpg" 
-                                alt="TypeScript Course" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Advanced CSS Techniques</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                               Explore advanced CSS concepts such as custom properties (CSS variables), pseudo-elements, gradients, filters, shadows, and reusable styling techniques.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    264
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    389
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/uxui in4.png" 
-                                alt="" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">User Research and Persona Creation</span>
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                                Learn how to conduct effective user research through interviews, surveys, and observational studies to understand user needs, behaviors, and motivations.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    521
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    678
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="group h-full w-full max-w-xs">
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                        <div class="relative overflow-hidden bg-slate-100 h-32">
-                            <img 
-                                src="../image/css6.png" 
-                                alt="Performance Course" 
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                        </div>
-                        <div class="p-3 flex-1 flex flex-col">
-                            <h3 class="text-sm font-semibold text-slate-900 mb-1">
-                                <span class="text-indigo-600">Modern CSS Frameworks</span> 
-                            </h3>
-                            <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
-                              Learn how modern CSS frameworks like Tailwind CSS improve productivity by providing utility classes for creating responsive, professional user interfaces.
-                            </p>
-                            <div class="flex items-center gap-2 pt-2 border-t border-slate-100">
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"/>
-                                    </svg>
-                                    412
-                                </span>
-                                <span class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
-                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"/>
-                                    </svg>
-                                    567
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
- 
+              </div>
             </div>
-        </div>
-
-        <!-- Pagination controls, populated by JS below based on the API's meta.total_pages -->
-        <div id="projectsPagination" class="hidden flex items-center justify-center gap-2 pt-8"></div>
-    </div>
-
-
-<div class="marquee-wrap bg-[#564CE5] py-3">
-  <div class="marquee-track">
-    <div class="marquee-group">
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
-    </div>
-    <div class="marquee-group" aria-hidden="true">
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
-      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
-    </div>
-  </div>
-</div>
- 
-<footer class="bg-[#f5f5f7] px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10">
-    <div>
-      <div class="flex items-center gap-2 font-extrabold text-navy">
-        <img src="../image/stadia-logo-transparent.png" alt="" class="w-40 ">
-      </div>
-    </div>
-    <div>
-      <h5 class="font-extrabold text-sm mb-3">EXPLORE</h5>
-      <ul class="space-y-2 text-[13.5px] text-gray-500">
-        <li><a href="./index.html" class="hover:text-navy">Home</a></li>
-        <li><a href="./about-us.html" class="hover:text-navy">About Us</a></li>
-        <li><a href="./projects.html" class="hover:text-navy">List project</a></li>
-        <li><a href="./create-project.html" data-requires-auth class="hover:text-navy">Post project</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5 class="font-extrabold text-sm mb-3">Connect With Us</h5>
-      <p class="text-[13.5px] text-gray-500 mb-3">Stay updated with our latest news and events.</p>
-      <div class="flex gap-2 ">
-           <div><i class="fa-brands fa-facebook text-lg dark:text-white"></i></div>
-            <div><i class="fa-brands fa-telegram text-lg dark:text-white"></i></div>
-             <div><i class="fa-brands fa-youtube text-lg dark:text-white"></i></div> 
           </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/html2.jpg"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">HTML Semantic Elements</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Understand semantic HTML by using elements like header, nav,
+                  section, article, main, and footer, to improve accessibility
+                  and SEO.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    298
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    456
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/2.png"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >Efficient Data Management: Arrays & Objects</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Master JavaScript arrays and objects to organize complex data
+                  and implement dynamic, interactive features on websites.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    298
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    456
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css2.jpg"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >CSS Layouts: Flexbox & Grid</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Master modern CSS layouts using Flexbox and CSS Grid. Create
+                  responsive, flexible, and organized web page structures for
+                  every screen size.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    298
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    456
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/html4.jpg"
+                  alt="Tailwind CSS Course"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">Responsive HTML Layouts</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Build responsive page structures using semantic HTML combined
+                  with modern layout techniques for desktop, tablet, and mobile
+                  devices.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    187
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    234
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/2.png"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >Efficient Data Management: Arrays & Objects</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Master JavaScript arrays and objects to organize complex data
+                  and implement dynamic, interactive features on websites.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    298
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    456
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css3.jpg"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">JResponsive Web Design</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Build websites that adapt perfectly to desktops, tablets, and
+                  mobile devices using media queries, responsive units, and
+                  mobile-first design principles.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-tborder-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    521
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    678
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css4.jpg"
+                  alt="Tailwind CSS Course"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >CSS Animations & Transitions</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Bring your websites to life with smooth transitions, keyframe
+                  animations, hover effects, transforms, and interactive visual
+                  experiences.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    187
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    234
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/uxui in2.png"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">Principles of UI Design</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Learn fundamental UI design principles including color theory,
+                  typography, layout, and visual hierarchy to create visually
+                  appealing and user-friendly interfaces.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    298
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    456
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hiddenshadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css5.jpg"
+                  alt="TypeScript Course"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">Advanced CSS Techniques</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Explore advanced CSS concepts such as custom properties (CSS
+                  variables), pseudo-elements, gradients, filters, shadows, and
+                  reusable styling techniques.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    264
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    389
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/uxui in4.png"
+                  alt=""
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600"
+                    >User Research and Persona Creation</span
+                  >
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Learn how to conduct effective user research through
+                  interviews, surveys, and observational studies to understand
+                  user needs, behaviors, and motivations.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    521
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    678
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group h-full w-full max-w-xs">
+            <div
+              class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
+            >
+              <div class="relative overflow-hidden bg-slate-100 h-32">
+                <img
+                  src="../image/css6.png"
+                  alt="Performance Course"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div class="p-3 flex-1 flex flex-col">
+                <h3 class="text-sm font-semibold text-slate-900 mb-1">
+                  <span class="text-indigo-600">Modern CSS Frameworks</span>
+                </h3>
+                <p class="text-xs text-slate-600 line-clamp-2 mb-3 flex-1">
+                  Learn how modern CSS frameworks like Tailwind CSS improve
+                  productivity by providing utility classes for creating
+                  responsive, professional user interfaces.
+                </p>
+                <div
+                  class="flex items-center gap-2 pt-2 border-t border-slate-100"
+                >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6.5 10.333c0-.53.22-1.036.6-1.408L11 5.5V3a1.5 1.5 0 013 0v3.586c0 .398-.158.78-.44 1.06L12.5 8.7h4.086a1.5 1.5 0 011.45 1.878l-1.2 4.5A1.5 1.5 0 0115.386 16H8a1.5 1.5 0 01-1.5-1.5v-4.167z"
+                      />
+                    </svg>
+                    412
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors"
+                  >
+                    <svg
+                      class="w-3 h-3"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M5 3a2 2 0 00-2 2v14l7-5 7 5V5a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
+                    567
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination controls, populated by JS below based on the API's meta.total_pages -->
+      <div
+        id="projectsPagination"
+        class="hidden flex items-center justify-center gap-2 pt-8"
+      ></div>
     </div>
-    <div>
-      <h5 class="font-extrabold text-sm mb-3">Sponsored and organized by ISTAD</h5>
-      <div >
-        <img src="../image/New Logo iSTAD Full-12.png" alt="" class="w-48">
+
+    <div class="marquee-wrap bg-[#564CE5] py-3">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>POPULAR</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>EXCELLENT WORK</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>CREATIVE</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>SHOWCASE</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>BEST WORK</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>POSTED DAILY</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>STUDENTS</span
+          >
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>POPULAR</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>EXCELLENT WORK</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>CREATIVE</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>SHOWCASE</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>BEST WORK</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>POSTED DAILY</span
+          >
+          <span class="marquee-pill"
+            ><span class="text-yellow-300">✦</span>STUDENTS</span
+          >
+        </div>
       </div>
     </div>
-  </div>
-  <b><div class=" text-center  tmax-w-7xl mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500">
-    © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the next generation through their projects.
-  </div></b>
-</footer>
-  <script src="../vendor/flowbite/flowbite.min.js"> </script>
-    <script src="../vendor/preline/preline.js"> </script>
+
+    <footer
+      class="bg-[#f5f5f7] dark:bg-gray-400 text-gray-800 dark:text-gray-200 px-6 transition-colors duration-200"
+    >
+      <div
+        class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10 dark:bg-black"
+      >
+        <div>
+          <div class="flex items-center gap-2 font-extrabold text-navy">
+            <img
+              src="../image/stadia-logo-transparent.png"
+              alt="STADIA Logo"
+              class="w-40"
+            />
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
+            EXPLORE
+          </h5>
+          <ul class="space-y-2 text-[13.5px] text-gray-500 dark:text-gray-400">
+            <li>
+              <a
+                href="./index.html"
+                class="hover:text-navy dark:hover:text-white"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="./about-us.html"
+                class="hover:text-navy dark:hover:text-white"
+                >About Us</a
+              >
+            </li>
+            <li>
+              <a
+                href="./projects.html"
+                class="hover:text-navy dark:hover:text-white"
+                >List project</a
+              >
+            </li>
+            <li>
+              <a
+                href="./create-project.html"
+                data-requires-auth
+                class="hover:text-navy dark:hover:text-white"
+                >Post project</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
+            Connect With Us
+          </h5>
+          <p class="text-[13.5px] text-gray-500 dark:text-gray-400 mb-3">
+            Stay updated with our latest news and events.
+          </p>
+          <div class="flex gap-3">
+            <div>
+              <i
+                class="fa-brands fa-facebook text-lg text-gray-700 dark:text-white"
+              ></i>
+            </div>
+            <div>
+              <i
+                class="fa-brands fa-telegram text-lg text-gray-700 dark:text-white"
+              ></i>
+            </div>
+            <div>
+              <i
+                class="fa-brands fa-youtube text-lg text-gray-700 dark:text-white"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h5 class="font-extrabold text-sm mb-3 text-gray-900 dark:text-white">
+            Sponsored and organized by ISTAD
+          </h5>
+          <div>
+            <img
+              src="../image/New Logo iSTAD Full-12.png"
+              alt="iSTAD Logo"
+              class="w-48"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="text-center max-w-7xl mx-auto border-t border-gray-200 dark:border-gray-800 py-5 text-[13px] text-gray-500 dark:text-gray-400 font-bold"
+      >
+        © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the next
+        generation through their projects.
+      </div>
+    </footer>
+    <script src="../vendor/flowbite/flowbite.min.js"></script>
+    <script src="../vendor/preline/preline.js"></script>
     <!-- STADIA API wiring -->
     <script src="../vendor/multiavatar/multiavatar.min.js"></script>
     <script src="../vendor/aos/aos.js"></script>
-    <noscript><style>[data-aos]{opacity:1 !important;transform:none !important;}</style></noscript>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.AOS) AOS.init({ once: true, duration: 700, offset: 80, easing: 'ease-out-cubic' });
-    setTimeout(() => {
-      document.querySelectorAll('[data-aos]:not(.aos-animate)').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
+    <noscript
+      ><style>
+        [data-aos] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style></noscript
+    >
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.AOS)
+          AOS.init({
+            once: true,
+            duration: 700,
+            offset: 80,
+            easing: "ease-out-cubic",
+          });
+        setTimeout(() => {
+          document
+            .querySelectorAll("[data-aos]:not(.aos-animate)")
+            .forEach((el) => {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+            });
+        }, 2000);
       });
-    }, 2000);
-  });
-</script>
+    </script>
     <script src="../js/theme.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/auth.js"></script>
@@ -808,39 +1413,46 @@
     <script src="../js/reviews.js"></script>
     <script src="../js/cardDetail.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         if (window.AuthAPI) AuthAPI.initNavAuth();
 
-        const grid = document.getElementById('projectsGrid');
+        const grid = document.getElementById("projectsGrid");
         if (!grid || !window.ProjectsAPI) return;
 
         const PAGE_SIZE = 12;
-        const pagination = document.getElementById('projectsPagination');
+        const pagination = document.getElementById("projectsPagination");
         let currentPage = 1;
 
         function renderPagination(meta) {
           if (!pagination) return;
           if (!meta || !meta.total_pages || meta.total_pages <= 1) {
-            pagination.classList.add('hidden');
-            pagination.innerHTML = '';
+            pagination.classList.add("hidden");
+            pagination.innerHTML = "";
             return;
           }
           const page = meta.page || currentPage;
           const totalPages = meta.total_pages;
           const hasPrev = page > 1;
-          const hasNext = meta.has_next !== undefined ? meta.has_next : page < totalPages;
+          const hasNext =
+            meta.has_next !== undefined ? meta.has_next : page < totalPages;
 
-          pagination.classList.remove('hidden');
+          pagination.classList.remove("hidden");
           pagination.innerHTML = `
-            <button type="button" id="pagePrevBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasPrev ? '' : 'disabled'}>Prev</button>
+            <button type="button" id="pagePrevBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasPrev ? "" : "disabled"}>Prev</button>
             <span class="text-sm text-gray-500 px-2">Page ${page} of ${totalPages}</span>
-            <button type="button" id="pageNextBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasNext ? '' : 'disabled'}>Next</button>
+            <button type="button" id="pageNextBtn" class="px-4 py-2 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed" ${hasNext ? "" : "disabled"}>Next</button>
           `;
 
-          const prevBtn = document.getElementById('pagePrevBtn');
-          const nextBtn = document.getElementById('pageNextBtn');
-          if (prevBtn) prevBtn.addEventListener('click', () => { if (hasPrev) load(page - 1); });
-          if (nextBtn) nextBtn.addEventListener('click', () => { if (hasNext) load(page + 1); });
+          const prevBtn = document.getElementById("pagePrevBtn");
+          const nextBtn = document.getElementById("pageNextBtn");
+          if (prevBtn)
+            prevBtn.addEventListener("click", () => {
+              if (hasPrev) load(page - 1);
+            });
+          if (nextBtn)
+            nextBtn.addEventListener("click", () => {
+              if (hasNext) load(page + 1);
+            });
         }
 
         // The API's list/search/category endpoints don't support filtering by
@@ -848,14 +1460,20 @@
         // projects. Drafts are unfinished/private by definition -- filter them
         // out of every public listing here rather than showing them to anyone
         // browsing the site.
-        const onlyPublished = (list) => (Array.isArray(list) ? list : []).filter(p => p.status === 'published');
+        const onlyPublished = (list) =>
+          (Array.isArray(list) ? list : []).filter(
+            (p) => p.status === "published",
+          );
 
         // Newest-first: the API has no `sort`/`order` param and returns
         // projects oldest-created-first, so freshly posted projects would
         // otherwise land on the LAST page instead of the first. There's no
         // per-project-page sort control either, so the whole list is fetched
         // once, sorted client-side, and paginated client-side from there.
-        const byNewest = (list) => [...list].sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+        const byNewest = (list) =>
+          [...list].sort(
+            (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0),
+          );
 
         let allPublished = null; // cached, sorted, filtered -- fetched once
 
@@ -864,70 +1482,95 @@
           cardDetailAPI.showLoading(grid);
           const ready = allPublished
             ? Promise.resolve(allPublished)
-            : ProjectsAPI.getAllProjects({ page: 1, size: 100 })
-                .then(items => { allPublished = byNewest(onlyPublished(items)); return allPublished; });
+            : ProjectsAPI.getAllProjects({ page: 1, size: 100 }).then(
+                (items) => {
+                  allPublished = byNewest(onlyPublished(items));
+                  return allPublished;
+                },
+              );
 
           ready
             .then((published) => {
               if (published.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found. Try adjusting your search or filters.</div>';
+                grid.innerHTML =
+                  '<div class="col-span-full text-center text-gray-500 py-10">No projects found. Try adjusting your search or filters.</div>';
                 renderPagination(null);
                 return;
               }
-              const totalPages = Math.max(1, Math.ceil(published.length / PAGE_SIZE));
+              const totalPages = Math.max(
+                1,
+                Math.ceil(published.length / PAGE_SIZE),
+              );
               const clampedPage = Math.min(Math.max(1, page), totalPages);
               currentPage = clampedPage;
               const start = (clampedPage - 1) * PAGE_SIZE;
               const pageItems = published.slice(start, start + PAGE_SIZE);
               cardDetailAPI.renderProjectCards(pageItems, grid);
-              renderPagination({ page: clampedPage, total_pages: totalPages, has_next: clampedPage < totalPages, total: published.length });
-              window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+              renderPagination({
+                page: clampedPage,
+                total_pages: totalPages,
+                has_next: clampedPage < totalPages,
+                total: published.length,
+              });
+              window.scrollTo({
+                top: grid.getBoundingClientRect().top + window.scrollY - 100,
+                behavior: "smooth",
+              });
             })
-            .catch(() => { cardDetailAPI.showError(grid, 'Failed to load projects.'); renderPagination(null); });
+            .catch(() => {
+              cardDetailAPI.showError(grid, "Failed to load projects.");
+              renderPagination(null);
+            });
         };
         load(1);
 
         // Wire the search input if present. Debounced so rapid typing doesn't
         // fire a request (and re-flash the skeleton) on every keystroke; the
         // magnifying-glass icon swaps for a spinner while a search is in flight.
-        const searchInput = document.getElementById('projectSearchInput');
-        const searchSpinner = document.getElementById('searchSpinner');
-        const searchIconBtn = document.getElementById('searchIconBtn');
+        const searchInput = document.getElementById("projectSearchInput");
+        const searchSpinner = document.getElementById("searchSpinner");
+        const searchIconBtn = document.getElementById("searchIconBtn");
         let searchDebounceTimer = null;
         let searchRequestId = 0;
 
         function runSearch(q) {
           const requestId = ++searchRequestId;
-          if (searchSpinner) searchSpinner.classList.remove('hidden');
-          if (searchIconBtn) searchIconBtn.classList.add('hidden');
+          if (searchSpinner) searchSpinner.classList.remove("hidden");
+          if (searchIconBtn) searchIconBtn.classList.add("hidden");
           cardDetailAPI.showLoading(grid);
           renderPagination(null); // search results aren't paginated here
           ProjectsAPI.searchProjects(q, { page: 1, size: 20 })
-            .then(projects => {
+            .then((projects) => {
               if (requestId !== searchRequestId) return; // a newer search superseded this one
               const published = byNewest(onlyPublished(projects));
               if (published.length === 0) {
-                grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' + ApiUtils.escapeHTML(q) + '&quot;.</div>';
+                grid.innerHTML =
+                  '<div class="col-span-full text-center text-gray-500 py-10">No projects found for &quot;' +
+                  ApiUtils.escapeHTML(q) +
+                  "&quot;.</div>";
                 return;
               }
               cardDetailAPI.renderProjectCards(published, grid);
             })
-            .catch(() => { if (requestId === searchRequestId) cardDetailAPI.showError(grid, 'Search failed.'); })
+            .catch(() => {
+              if (requestId === searchRequestId)
+                cardDetailAPI.showError(grid, "Search failed.");
+            })
             .finally(() => {
               if (requestId !== searchRequestId) return;
-              if (searchSpinner) searchSpinner.classList.add('hidden');
-              if (searchIconBtn) searchIconBtn.classList.remove('hidden');
+              if (searchSpinner) searchSpinner.classList.add("hidden");
+              if (searchIconBtn) searchIconBtn.classList.remove("hidden");
             });
         }
 
         if (searchInput) {
-          searchInput.addEventListener('input', e => {
+          searchInput.addEventListener("input", (e) => {
             const q = e.target.value.trim();
             clearTimeout(searchDebounceTimer);
             if (!q) {
               searchRequestId++; // invalidate any in-flight search
-              if (searchSpinner) searchSpinner.classList.add('hidden');
-              if (searchIconBtn) searchIconBtn.classList.remove('hidden');
+              if (searchSpinner) searchSpinner.classList.add("hidden");
+              if (searchIconBtn) searchIconBtn.classList.remove("hidden");
               load(1);
               return;
             }
@@ -938,21 +1581,35 @@
         // Category filter buttons: "All Project" is static (see the HTML),
         // every other button is generated here from CategoriesAPI.getAllCategories()
         // -- nothing about the filter list itself is hardcoded.
-        const filtersContainer = document.getElementById('categoryFilters');
-        const allProjectBtn = filtersContainer ? filtersContainer.querySelector('[data-filter-all]') : null;
+        const filtersContainer = document.getElementById("categoryFilters");
+        const allProjectBtn = filtersContainer
+          ? filtersContainer.querySelector("[data-filter-all]")
+          : null;
 
-        const FILTER_HOVER_CLASSES = ['hover:bg-secondary2/10', 'hover:border-secondary2', 'hover:text-secondary2'];
+        const FILTER_HOVER_CLASSES = [
+          "hover:bg-secondary2/10",
+          "hover:border-secondary2",
+          "hover:text-secondary2",
+        ];
         function setActiveFilterBtn(activeBtn) {
           // Hover classes only make sense on inactive chips -- without removing
           // them from the active one, hovering it would fade its solid purple
           // background/white text toward the same hover tint used for inactive
           // chips, making the "selected" chip look broken while hovered.
-          filtersContainer.querySelectorAll('button').forEach(b => {
-            b.classList.remove('bg-secondary2', 'text-white');
-            b.classList.add('bg-white', 'text-gray-800', ...FILTER_HOVER_CLASSES);
+          filtersContainer.querySelectorAll("button").forEach((b) => {
+            b.classList.remove("bg-secondary2", "text-white");
+            b.classList.add(
+              "bg-white",
+              "text-gray-800",
+              ...FILTER_HOVER_CLASSES,
+            );
           });
-          activeBtn.classList.remove('bg-white', 'text-gray-800', ...FILTER_HOVER_CLASSES);
-          activeBtn.classList.add('bg-secondary2', 'text-white');
+          activeBtn.classList.remove(
+            "bg-white",
+            "text-gray-800",
+            ...FILTER_HOVER_CLASSES,
+          );
+          activeBtn.classList.add("bg-secondary2", "text-white");
         }
 
         async function selectCategoryFilter(categoryUuid, btn) {
@@ -960,39 +1617,47 @@
           cardDetailAPI.showLoading(grid);
           renderPagination(null); // category results aren't paginated in this simple view
           try {
-            const projects = await CategoriesAPI.getCategoryProjects(categoryUuid);
+            const projects =
+              await CategoriesAPI.getCategoryProjects(categoryUuid);
             const published = byNewest(onlyPublished(projects));
             if (published.length === 0) {
-              grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">No projects found for this category.</div>';
+              grid.innerHTML =
+                '<div class="col-span-full text-center text-gray-500 py-10">No projects found for this category.</div>';
               return;
             }
             cardDetailAPI.renderProjectCards(published, grid);
           } catch (err) {
-            cardDetailAPI.showError(grid, 'Failed to filter projects.');
+            cardDetailAPI.showError(grid, "Failed to filter projects.");
           }
         }
 
         if (allProjectBtn) {
-          allProjectBtn.addEventListener('click', () => {
+          allProjectBtn.addEventListener("click", () => {
             setActiveFilterBtn(allProjectBtn);
             load(1);
           });
         }
 
         if (filtersContainer && window.CategoriesAPI) {
-          CategoriesAPI.getAllCategories().then(categories => {
-            (categories || []).forEach(cat => {
-              const btn = document.createElement('button');
-              btn.type = 'button';
-              btn.className = 'flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium hover:bg-secondary2/10 hover:border-secondary2 hover:text-secondary2 transition shadow-sm text-sm';
-              btn.textContent = cat.title || cat.name || 'Category';
-              btn.addEventListener('click', () => selectCategoryFilter(cat.uuid, btn));
-              filtersContainer.appendChild(btn);
-            });
-          }).catch(err => console.error('Failed to load category filters:', err.message));
+          CategoriesAPI.getAllCategories()
+            .then((categories) => {
+              (categories || []).forEach((cat) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className =
+                  "flex-1 py-2.5 rounded-full border border-gray-200 bg-white text-gray-800 font-medium hover:bg-secondary2/10 hover:border-secondary2 hover:text-secondary2 transition shadow-sm text-sm";
+                btn.textContent = cat.title || cat.name || "Category";
+                btn.addEventListener("click", () =>
+                  selectCategoryFilter(cat.uuid, btn),
+                );
+                filtersContainer.appendChild(btn);
+              });
+            })
+            .catch((err) =>
+              console.error("Failed to load category filters:", err.message),
+            );
         }
       });
     </script>
-
-</body>
+  </body>
 </html>
