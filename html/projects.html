@@ -226,9 +226,6 @@
         }
       }
 
-      /* ============================================
-     Dark mode fixes specific to this page.
-     ============================================ */
       .dark body.bg-light,
       .dark body {
         background-color: #0f1014 !important;
@@ -522,14 +519,11 @@
           </svg>
         </button>
       </div>
-      <!-- "All Project" is static (it means "no filter"); every other button here
-         is generated at runtime from CategoriesAPI.getAllCategories() -- see the
-         script at the bottom of this page. Nothing else in this list is hardcoded. -->
       <div id="categoryFilters" class="flex gap-3 w-full flex-wrap">
         <button
           data-filter-all
-          class="flex-1 py-2.5 rounded-full border border-gray-200 bg-secondary2 text-white font-medium transition shadow-sm text-sm"
-        >
+          class="flex-1 py-2.5 rounded-full border border-gray-200 bg-secondary2 text-white font-medium transition
+           shadow-sm text-sm">
           All Project
         </button>
       </div>
@@ -538,14 +532,13 @@
       <div class="reveal-text mx-auto w-full">
         <div
           id="projectsGrid"
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
-        >
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           <div class="group h-200 w-full">
             <div
               class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col"
             >
               <div class="relative overflow-hidden bg-slate-100 h-32">
-                <img
+                <img 
                   src="../image/css1.jpg"
                   alt="Web Development Project"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -17,7 +17,6 @@
 <meta name="twitter:title" content="STADIA — Showcase Your Projects">
 <meta name="twitter:description" content="STADIA is a project showcase platform for ISTAD students — browse, share, and get feedback on real student work.">
 <script>(function(){try{var t=localStorage.getItem('stadia_theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();</script>
-
 <link href="../src/output.css" rel="stylesheet">
 <style>
    .marquee-wrap {
@@ -259,21 +258,37 @@
      color: #a8adb8 !important;
    }
 
-   /* Benefits icon circles still readable in dark mode */
+      /* Benefits icon circles still readable in dark mode */
    .dark .bg-orange-50 {
      background-color: rgba(255, 159, 67, 0.12) !important;
    }
 
+      /* Benefit list icons: black in light mode, white in dark mode */
+   li .fa-solid {
+     color: #111827 !important;
+   }
+   .dark li .fa-solid {
+     color: #e5e7eb !important;
+   }
+
+   /* Footer social / Font Awesome brand icons: black in light mode, white in dark mode */
+   footer .fa-brands {
+     color: #111827 !important;
+   }
+   .dark footer .fa-brands {
+     color: #e5e7eb !important;
+   }
+
 </style>
 </head>
-
-<body class="bg-white text-[#1c1c2e] font-[Segoe UI,Arial,sans-serif]">
-<nav class="bg-white sticky top-0 z-50 shadow-sm">
+<body class="bg-white  text-[#1c1c2e] font-[Segoe UI,Arial,sans-serif]">
+<nav class="bg-white sticky  top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5">
     <a href="./index.html" class=" items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
       <img src="../image/stadia-logo-transparent.png" class="h-15 w-auto">
     </a>
     <div class="hidden md:flex items-center gap-1 bg-white border border-gray-200 rounded-full p-1">
+
       <a href="./projects.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">PROJECT</a>
       <a href="./create-project.html" data-requires-auth class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">POST CREATOR</a>
       <a href="./about-us.html" class="px-5 py-2 rounded-full text-sm font-semibold text-gray-500 hover:text-navy">ABOUT US</a>
@@ -391,25 +406,24 @@
       <img src="../image/student-benefit.svg" class="  w-[380px] h-[380px] ">
     </div>
   </div>
-  <div class="reveal-text grid md:grid-cols-2 gap-12 items-center">
-    <div class="order-2 md:order-1  reveal-img flex justify-center" data-aos="fade-right">
-     <img src="../image/Pair programming-amico.png" class="w-[380px] h-[380px]">
+    <div class="reveal-text grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal-img flex justify-center" data-aos="fade-right">
+      <img src="../image/Pair programming-amico.png" class="w-[380px] h-[380px]">
+    </div>
+    <div class="reveal-text px-4 md:px-10 text-gray-700" data-aos="fade-left">
+      <div class="text-red-600 text-center font-extrabold text-xl mb-5 reveal-text" id="box2">Benefits for Users</div>
+      <ul class="space-y-5">
+        <li class="flex gap-4 text-[14.5px] leading-relaxed text-gray-700">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-gray-700"><i class="dark:text-white fa-solid fa-book"></i></span>
+          <span>Users can review projects and exchange ideas through comments.</span>
+        </li>
+        <li class="flex gap-4 text-[14.5px] leading-relaxed text-gray-700">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-gray-700"><i class="text-yellow-300 fa-solid fa-lightbulb"></i></span>
+          <span>Users can discover creative and innovative projects from other students. Users can search, browse, and filter projects quickly.</span>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="order-1 md:order-2 reveal-text px-4 md:px-10 text-gray-700" data-aos="fade-left">
-  <div class="text-red-600 text-center font-extrabold text-xl mb-5 reveal-text" id="box2">Benefits for Users</div>
-  <ul class="space-y-5">
-    <!-- Removed px-10 from li elements -->
-    <li class="flex gap-4 text-[14.5px] leading-relaxed text-gray-700">
-      <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-gray-700"><i class="dark:text-white fa-solid fa-book"></i></span>
-      <span>Users can review projects and exchange ideas through comments.</span>
-    </li>
-    <li class="flex gap-4 text-[14.5px] leading-relaxed text-gray-700">
-      <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-gray-700"><i class="text-yellow-300 fa-solid fa-lightbulb"></i></span>
-      <span>Users can discover creative and innovative projects from other students. Users can search, browse, and filter projects quickly.</span>
-    </li>
-  </ul>
-</div>
 <section class="bg-white py-14">
     <div class="py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-2xl mx-auto text-center">
@@ -424,9 +438,9 @@
     </div>
 </section>
 </section>
-     <div class=" reveal-text grid px-4 sm:px-6 lg:px-8 pb-16">
+     <div class=" reveal-text grid col-3 px-4 sm:px-6 lg:px-8 pb-16">
         <div class=" reveal-text mx-auto ">
-            <div id="popularProjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div id="popularProjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <div class="group h-full w-full">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
                         <div class="relative overflow-hidden bg-slate-100 h-32">
@@ -691,6 +705,36 @@
 <div class="marquee-wrap bg-[#564CE5] py-3">
   <div class="marquee-track">
     <div class="marquee-group">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>CREATIVE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>SHOWCASE</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>BEST WORK</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>POSTED DAILY</span>
+      <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENTS</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
       <span class="marquee-pill"><span class="text-yellow-300">✦</span>STUDENT PROJECTS</span>
       <span class="marquee-pill"><span class="text-yellow-300">✦</span>POPULAR</span>
       <span class="marquee-pill"><span class="text-yellow-300">✦</span>EXCELLENT WORK</span>
