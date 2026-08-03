@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 380" width="380" height="380" role="img" aria-label="Student publishing a project">
+  <defs>
+    <linearGradient id="sb-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9f43"/>
+      <stop offset="1" stop-color="#ffb877"/>
+    </linearGradient>
+  </defs>
+
+  <!-- halo -->
+  <circle cx="190" cy="190" r="140" fill="#ffe8d0"/>
+
+  <!-- decorative dots -->
+  <g fill="#ff9f43" opacity="0.55">
+    <circle cx="40" cy="60" r="5"/>
+    <circle cx="345" cy="50" r="4"/>
+    <circle cx="350" cy="330" r="6"/>
+    <circle cx="30" cy="320" r="4"/>
+  </g>
+
+  <!-- open notebook -->
+  <g>
+    <rect x="60" y="120" width="120" height="150" rx="10" fill="#ffffff" stroke="#ffe0bd" stroke-width="2"/>
+    <path d="M180 120 L200 130 L200 270 L180 270 Z" fill="#fff5ea"/>
+    <path d="M180 130 L200 130" stroke="#ffe0bd" stroke-width="2"/>
+    <rect x="76" y="150" width="80" height="8" rx="4" fill="#ff9f43"/>
+    <rect x="76" y="172" width="90" height="6" rx="3" fill="#ffd9b5"/>
+    <rect x="76" y="190" width="70" height="6" rx="3" fill="#ffd9b5"/>
+    <rect x="76" y="208" width="84" height="6" rx="3" fill="#ffd9b5"/>
+    <circle cx="170" cy="200" r="6" fill="#2bb673"/>
+    <path d="M166 200 L169.5 203.5 L174.5 197.5" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- laptop next to it -->
+  <g>
+    <rect x="216" y="138" width="120" height="86" rx="8" fill="#2b2a3a"/>
+    <rect x="224" y="146" width="104" height="62" rx="4" fill="#ffffff"/>
+    <rect x="230" y="154" width="60" height="6" rx="3" fill="#564CE5"/>
+    <rect x="230" y="168" width="84" height="5" rx="2.5" fill="#d9d6f7"/>
+    <rect x="230" y="180" width="60" height="5" rx="2.5" fill="#d9d6f7"/>
+    <rect x="238" y="212" width="76" height="10" rx="5" fill="#2b2a3a"/>
+  </g>
+
+  <!-- upward arrow / upload -->
+  <g>
+    <path d="M190 300 C190 260 190 250 190 240" stroke="#2bb673" stroke-width="6" fill="none" stroke-linecap="round" marker-end="url(#arrowhead)"/>
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#2bb673"/>
+      </marker>
+    </defs>
+    <circle cx="190" cy="318" r="12" fill="#2bb673"/>
+    <path d="M184 318 L190 311 L196 318" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- graduation cap -->
+  <g>
+    <path d="M150 60 L190 44 L230 60 L190 76 Z" fill="#2b2a3a"/>
+    <path d="M190 76 L190 92 L206 84 L206 68 Z" fill="#564CE5"/>
+    <rect x="186" y="46" width="8" height="18" rx="3" fill="#ff9f43"/>
+  </g>
+</svg>

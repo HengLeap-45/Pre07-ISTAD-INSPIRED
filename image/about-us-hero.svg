@@ -1,0 +1,105 @@
+<svg width="520" height="440" viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="About us - a collaborative team of learners growing together">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#564CE5"/>
+      <stop offset="100%" stop-color="#9A93FF"/>
+    </linearGradient>
+    <linearGradient id="capGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2B2A3A"/>
+      <stop offset="100%" stop-color="#4A4A66"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded pill blob -->
+  <rect x="20" y="34" width="480" height="372" rx="70" fill="url(#bgGrad)"/>
+
+  <!-- Soft decorative circles -->
+  <circle cx="430" cy="70" r="85" fill="white" opacity="0.12"/>
+  <circle cx="80" cy="380" r="100" fill="white" opacity="0.10"/>
+  <circle cx="465" cy="350" r="40" fill="#FFC24B" opacity="0.25"/>
+
+  <!-- Floating sparkle accents -->
+  <g fill="#FFFF66">
+    <path d="M70 96 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 Z"/>
+    <path d="M452 160 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z" opacity="0.9"/>
+  </g>
+  <g opacity="0.8">
+    <circle cx="120" cy="120" r="5" fill="#FFC24B"/>
+    <circle cx="415" cy="90" r="4" fill="#FFC24B"/>
+    <circle cx="90" cy="300" r="4" fill="#FFFF66"/>
+  </g>
+
+  <!-- Big lightbulb = shared idea / growth of the team -->
+  <g transform="translate(258 138)">
+    <circle cx="0" cy="-4" r="62" fill="white" opacity="0.10"/>
+    <!-- bulb body -->
+    <path d="M-34 -30 C-36 -52 -20 -66 0 -66 C20 -66 36 -52 34 -30 C33 -16 26 -8 22 -2 C18 10 16 16 16 16 L-16 16 C-16 16 -18 10 -22 -2 C-26 -8 -33 -16 -34 -30 Z" fill="#FFD93D"/>
+    <!-- bulb sheen -->
+    <path d="M-18 -56 C-12 -62 -2 -60 2 -56 C-4 -54 -12 -52 -18 -54 Z" fill="white" opacity="0.55"/>
+    <!-- base -->
+    <rect x="-14" y="16" width="28" height="8" rx="3" fill="#2B2A3A" opacity="0.85"/>
+    <rect x="-10" y="24" width="20" height="9" rx="3" fill="#2B2A3A" opacity="0.55"/>
+  </g>
+
+  <!-- Idea spark rays -->
+  <g fill="#FFFF66" opacity="0.9">
+    <text x="300" y="86" font-family="Arial" font-size="20">✦</text>
+    <text x="204" y="78" font-family="Arial" font-size="14">✦</text>
+    <text x="326" y="180" font-family="Arial" font-size="12">✦</text>
+  </g>
+
+  <!-- Left person (mentor, arm raised) -->
+  <g transform="translate(120 0)">
+    <ellipse cx="90" cy="356" rx="62" ry="15" fill="#1B1B2F" opacity="0.22"/>
+    <!-- body -->
+    <path d="M58 268 C58 246 70 232 90 232 C110 232 122 246 122 268 L128 330 C128 336 124 340 117 340 L63 340 C56 340 52 336 52 330 Z" fill="#FFC24B"/>
+    <!-- arm raised -->
+    <path d="M120 268 C132 258 142 244 144 230" stroke="#FFC24B" stroke-width="12" stroke-linecap="round"/>
+    <!-- head -->
+    <circle cx="90" cy="210" r="28" fill="#F1CDA0"/>
+    <!-- glasses -->
+    <circle cx="80" cy="212" r="8" fill="none" stroke="#2B2A3A" stroke-width="2.4"/>
+    <circle cx="100" cy="212" r="8" fill="none" stroke="#2B2A3A" stroke-width="2.4"/>
+    <line x1="88" y1="212" x2="92" y2="212" stroke="#2B2A3A" stroke-width="2.4"/>
+  </g>
+
+  <!-- Graduation cap thrown up at top -->
+  <g transform="translate(186 34) rotate(-18)">
+    <path d="M0 0 L22 -8 L44 0 L22 8 Z" fill="url(#capGrad)"/>
+    <path d="M22 8 L30 5 L30 14 C30 17 26 20 22 20 C18 20 14 17 14 14 L14 5 Z" fill="url(#capGrad)"/>
+    <ellipse cx="22" cy="-1" rx="22" ry="5" fill="#564CE5"/>
+    <circle cx="22" cy="-1" r="3" fill="#FFC24B"/>
+  </g>
+
+  <!-- Right person (student/team member with headphones) -->
+  <g transform="translate(300 0)">
+    <ellipse cx="100" cy="356" rx="62" ry="15" fill="#1B1B2F" opacity="0.22"/>
+    <!-- body -->
+    <path d="M68 268 C68 246 80 232 100 232 C120 232 132 246 132 268 L122 306 C122 312 106 316 100 316 C94 316 78 312 78 306 Z" fill="#6E67F0"/>
+    <!-- head -->
+    <circle cx="100" cy="210" r="28" fill="#E0B386"/>
+    <!-- headphone band -->
+    <path d="M74 208 A28 28 0 0 1 126 208" fill="none" stroke="#2B2A3A" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="74" cy="210" r="5" fill="#FFC24B"/>
+    <circle cx="126" cy="210" r="5" fill="#FFC24B"/>
+  </g>
+
+  <!-- Center laptop between them (shared workspace) -->
+  <g transform="translate(205 196)">
+    <!-- screen -->
+    <rect x="-46" y="-30" width="92" height="62" rx="8" fill="#FFFFFF"/>
+    <rect x="-46" y="-30" width="92" height="13" rx="8" fill="#564CE5"/>
+    <!-- code lines on screen -->
+    <rect x="-38" y="-12" width="60" height="5" rx="2.5" fill="#CFCDFB"/>
+    <rect x="-38" y="-3" width="44" height="5" rx="2.5" fill="#CFCDFB"/>
+    <rect x="-38" y="6" width="55" height="5" rx="2.5" fill="#564CE5" opacity="0.7"/>
+    <rect x="-38" y="15" width="30" height="5" rx="2.5" fill="#FFC24B" opacity="0.7"/>
+    <!-- base -->
+    <rect x="-58" y="32" width="116" height="8" rx="4" fill="#2B2A3A"/>
+  </g>
+
+  <!-- "ABOUT US" pill bottom -->
+  <rect x="195" y="368" width="140" height="30" rx="15" fill="white" opacity="0.95"/>
+  <text x="265" y="387" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#564CE5" text-anchor="middle">ABOUT US</text>
+</svg>
+

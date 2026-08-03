@@ -1,4 +1,4 @@
-﻿﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -183,7 +183,7 @@
       animation-range: entry 0% cover 30%;
     }
  
-        @supports not (animation-timeline: view()) {
+    @supports not (animation-timeline: view()) {
       .reveal-img2,
       .reveal-text2 {
         opacity: 100%;
@@ -191,81 +191,39 @@
       }
     }
 
-
-   /* ============================================
-      Dark mode fixes specific to this page.
-      ============================================ */
-      .dark body.bg-white,
-   .dark body {
-     background-color: #0f1014 !important;
-     color: #e5e7eb !important;
-   }
-
-      /* Navbar */
-   .dark nav.bg-white,
-   .dark nav {
-     background-color: #131419 !important;
-     border-color: #23252c !important;
-   }
-   .dark nav .border-gray-200,
-   .dark nav .border-t {
-     border-color: #23252c !important;
-   }
-   .dark nav button.bg-gray-100 {
-     background-color: #23252c !important;
-     color: #e5e7eb !important;
-   }
-
-   /* Footer */
-   .dark footer,
-   .dark footer.bg-\[\#f5f5f7\] {
-     background-color: #131419 !important;
-   }
-   .dark footer .border-gray-200,
-   .dark footer .border-t {
-     border-color: #2a2c34 !important;
-   }
-
-   /* Section / card backgrounds that should follow dark mode */
-   .dark section.bg-white {
-     background-color: #16171d !important;
-   }
-   .dark .bg-white {
-     background-color: #1a1b23 !important;
-   }
-   .dark .border-gray-100,
-   .dark .border-slate-200,
-   .dark .border-gray-200 {
-     border-color: #23252c !important;
-   }
-
-   /* Headings / body text that are hard-coded dark -> light */
-   .dark .text-\[\#1c1c2e\],
-   .dark .text-black,
-   .dark .text-slate-900,
-   .dark .text-slate-700,
-   .dark .text-slate-800,
-   .dark .text-gray-900 {
-     color: #e5e7eb !important;
-   }
-   .dark .text-slate-600,
-   .dark .text-gray-700,
-   .dark .text-gray-500,
-   .dark .text-gray-400 {
-     color: #a8adb8 !important;
-   }
-
-   /* Benefits icon circles still readable in dark mode */
-   .dark .bg-orange-50 {
-     background-color: rgba(255, 159, 67, 0.12) !important;
-   }
+  /* ============================================
+     Dark mode text fixes specific to this page.
+     Ensures text that would otherwise stay dark
+     (black / slate / hard-coded inks) turns light
+     when the page is in dark mode.
+     ============================================ */
+  .dark body,
+  .dark .text-black,
+  .dark .text-black-600,
+  .dark .text-slate-900,
+  .dark .text-slate-800,
+  .dark .text-slate-700,
+  .dark .text-slate-600,
+  .dark .text-\[\#1c1c2e\],
+  .dark .text-\[\#2b2a3a\],
+  .dark .text-\[\#1e3a8a\],
+  .dark .text-\[\#2040a1\] {
+    color: #e5e7eb !important;
+  }
+  .dark .text-slate-500 {
+    color: #9ca3af !important;
+  }
+  .dark .text-gray-50,
+  .dark .text-slate-50 {
+    color: #f9fafb !important;
+  }
 
 </style>
 </head>
 
 <body class="bg-white text-[#1c1c2e] font-[Segoe UI,Arial,sans-serif]">
 <nav class="bg-white sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-2.5">
+  <div class="w-[90%] mx-auto flex items-center justify-between px-6 py-2.5">
     <a href="./index.html" class=" items-center gap-2 font-extrabold text-navy tracking-wide text-sm">
       <img src="../image/stadia-logo-transparent.png" class="h-9 w-auto">
     </a>
@@ -317,7 +275,7 @@
   </div>
 </nav>
 
-<section class=" max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16" id="margin">
+<section class=" w-[90%] mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16" id="margin">
   <div class="grid justify-start md:mr-[100px] lg:mr-[200px]">
   <div class=" p-5 flex-1 text-center md:text-left text-[#564CE5] " data-aos="fade-right">
     <h1 class="letter text-2xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-[#564CE5]">
@@ -337,7 +295,6 @@
   <div class="grid justify-end md:mr-[50px] lg:mr-[100px]">
   <div class="flex-1 flex letter justify-center md:justify-end" data-aos="fade-left" data-aos-delay="150">
     <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[450px] aspect-square flex items-center justify-center">
-
       <img src="../image/hero-showcase.svg" class="w-full max-w-[400px] h-auto object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-300">
     </div>
   </div>
@@ -368,7 +325,7 @@
     </div>
   </div>
 </div>
-<section class=" mx-auto px-10 py-0 space-y-10">
+<section class=" mx-auto w-[90%] px-10 py-0 space-y-10">
   <div class=" grid md:grid-cols-2 gap-12 items-center">
     <div class="reveal-text1">
       <div class="text-red-600 text-center  font-extrabold text-xl mb-5" id="Ccolor2">BENIFITS FOR STUDENT</div>
@@ -387,19 +344,19 @@
       <img src="../image/student-benefit.svg" class="  w-[380px] h-[380px] ">
     </div>
   </div>
-    <div class="reveal-text grid md:grid-cols-2 gap-12 items-center">
+  <div class="reveal-text grid md:grid-cols-2 gap-12 items-center">
     <div class="order-2 md:order-1  reveal-img flex justify-center" data-aos="fade-right">
      <img src="../image/users-benefit.svg" class="w-[380px] h-[380px]">
     </div>
-        <div class="order-1 md:order-2  reveal-text px-10 text-gray-700" data-aos="fade-left">
+    <div class="order-1 md:order-2  reveal-text px-10  text-black-600" data-aos="fade-left">
       <div class="text-red-600 text-center font-extrabold text-xl mb-5 reveal-text  " id="box2">Benefits for Users</div>
       <ul class="space-y-5">
-        <li class="flex gap-4  text-[14.5px] leading-relaxed text-gray-700 px-10 ">
-          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex📝tems-center justify-center text-sm text-gray-700  ">📝</span>
+        <li class="flex gap-4  text-[14.5px] leading-relaxed text-black px-10 ">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50 flex items-center justify-center text-sm text-black  ">📝</span>
           Users can review projects and exchange ideas through comments.
         </li>
-        <li class="flex gap-4 text-[14.5px] leading-relaxed text-gray-700 px-10 ">
-          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50  fl💡 items-center justify-center text-sm text-gray-700  ">💡</span>
+        <li class="flex gap-4 text-[14.5px] leading-relaxed text-black px-10 ">
+          <span class="shrink-0 w-7 h-7 rounded-full bg-orange-50  flex items-center justify-center text-sm text-black  ">💡</span>
           Users can discover creative and innovative projects from other students. Users can search, browse, and filter projects quickly.
         </li>
       </ul>
@@ -419,8 +376,8 @@
     </div>
 </section>
 </section>
-     <div class=" reveal-text grid px-4 sm:px-6 lg:px-8 pb-16">
-        <div class=" reveal-text mx-auto ">
+     <div class=" reveal-text grid w-[90%] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class=" reveal-text w-full mx-auto ">
             <div id="popularProjectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <div class="group h-full w-full">
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 h-full flex flex-col">
@@ -637,13 +594,13 @@
             <h4 class="text-[30px] md:text-[30px] font-bold text-blue-600 mb-4 tracking-tight">
                 What our Student say
             </h4>
-            <p class="text-[16px] md:text-[16px] text-gray-600 leading-relaxed max-w-xl mx-auto ">
+            <p class="text-[16px] md:text-[16px] text-black-600 leading-relaxed max-w-xl mx-auto ">
                 Master essential frontend technologies and frameworks to build modern, 
                 responsive web applications with clean and efficient code.
             </p>
         </div>
     </div>
- <div class="reveal-img2 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="reveal-img2 w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
   <div class="relative">
     <div id="reviewsCarousel" class="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 scrollbar-hide"></div>
     <button id="reviewsPrevBtn" type="button" aria-label="Previous reviews" class="hidden md:flex absolute -left-4 top-[calc(50%-14px)] -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-md items-center justify-center text-gray-500 hover:text-secondary2 border border-gray-100">
@@ -671,7 +628,7 @@
   </div>
 </section>
 
-<div class="   reveal-text2 max-w-7xl mx-auto px-6 py-5 mb-6">
+<div class="   reveal-text2 w-[90%] mx-auto px-6 py-5 mb-6">
   <div class="bg-[#564CE5] rounded-2xl px-8 py-10 md:px-11 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6"
        style="background-image: radial-gradient(circle at 90% 20%, rgba(255,255,255,.08), transparent 60%);">
     <div class="">
@@ -709,7 +666,8 @@
 </div>
 </div>
 <footer class="bg-[#f5f5f7] px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 py-10">
+
+  <div class="w-[90%] mx-auto grid md:grid-cols-4 gap-8 py-10">
     <div>
       <div class="flex items-center gap-2 font-extrabold text-navy">
         <img src="../image/stadia-logo-transparent.png" alt="" class="w-40 ">
@@ -742,8 +700,7 @@
         <img src="../image/New Logo iSTAD Full-12.png" alt="" class="w-48">
       </div>
     </div>
-  </div>
-  <b><div class=" text-center  tmax-w-7xl mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500">
+  <b><div class=" text-center  w-[90%] mx-auto border-t border-gray-200 py-5 text-[13px] text-gray-500">
     © 2026 &nbsp; STADIA is a platform where ISTAD students inspire the next generation through their projects.
   </div></b>
 </footer>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" width="480" height="480" role="img" aria-label="Showcase your projects">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#564CE5"/>
+      <stop offset="1" stop-color="#7c6fe8"/>
+    </linearGradient>
+    <linearGradient id="rocket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b2a3a"/>
+      <stop offset="1" stop-color="#565a86"/>
+    </linearGradient>
+  </defs>
+
+  <!-- soft halo -->
+  <circle cx="240" cy="235" r="175" fill="url(#bg)" opacity="0.16"/>
+
+  <!-- decorative dots -->
+  <g fill="#564CE5" opacity="0.5">
+    <circle cx="52" cy="70" r="6"/>
+    <circle cx="430" cy="90" r="5"/>
+    <circle cx="420" cy="380" r="7"/>
+    <circle cx="60" cy="400" r="5"/>
+    <circle cx="230" cy="40" r="4"/>
+    <circle cx="70" cy="230" r="4"/>
+  </g>
+
+  <!-- floating flag element -->
+  <g>
+    <rect x="28" y="150" width="8" height="150" rx="3" fill="#2b2a3a" opacity="0.35"/>
+    <rect x="36" y="154" width="78" height="52" rx="6" fill="#564CE5"/>
+    <path d="M36 186 L108 186 L114 206 L36 206 Z" fill="#7c6fe8"/>
+  </g>
+
+  <!-- screen / laptop base -->
+  <g>
+    <rect x="120" y="150" width="240" height="170" rx="14" fill="url(#bg)"/>
+    <rect x="132" y="162" width="216" height="134" rx="8" fill="#ffffff"/>
+    <!-- browser dots -->
+    <circle cx="146" cy="178" r="5" fill="#ff5f57"/>
+    <circle cx="162" cy="178" r="5" fill="#febc2e"/>
+    <circle cx="178" cy="178" r="5" fill="#28c840"/>
+    <!-- card on screen -->
+    <g>
+      <rect x="146" y="196" width="86" height="56" rx="6" fill="#efeefc"/>
+      <rect x="154" y="206" width="40" height="6" rx="3" fill="#564CE5"/>
+      <rect x="154" y="220" width="70" height="5" rx="2.5" fill="#cfcdea"/>
+      <rect x="154" y="232" width="52" height="5" rx="2.5" fill="#cfcdea"/>
+      <rect x="232" y="196" width="86" height="56" rx="6" fill="#e9e7fb"/>
+      <rect x="240" y="206" width="40" height="6" rx="3" fill="#7c6fe8"/>
+      <rect x="240" y="220" width="70" height="5" rx="2.5" fill="#cfcdea"/>
+      <circle cx="275" cy="240" r="4" fill="#28c840"/>
+      <rect x="146" y="262" width="172" height="10" rx="5" fill="#ffffff" stroke="#e5e4f6"/>
+    </g>
+    <!-- base -->
+    <rect x="140" y="320" width="200" height="12" rx="6" fill="#2b2a3a" opacity="0.85"/>
+    <rect x="120" y="332" width="240" height="10" rx="5" fill="#2b2a3a" opacity="0.55"/>
+  </g>
+
+  <!-- rocket -->
+  <g transform="translate(292 60) rotate(35)">
+    <path d="M56 0 C40 34 40 88 56 122 L44 118 C22 84 22 30 44 0 Z" fill="url(#rocket)"/>
+    <path d="M56 0 L56 122 L68 118 C90 84 90 30 68 0 Z" fill="url(#rocket)"/>
+    <circle cx="56" cy="66" r="18" fill="#eef0ff"/>
+    <circle cx="56" cy="66" r="10" fill="#2b2a3a"/>
+    <path d="M54 60 L54 72 L74 66 Z" fill="#564CE5"/>
+    <!-- fins -->
+    <path d="M40 92 L18 128 L40 118 Z" fill="#ff8f4a"/>
+    <path d="M72 92 L94 128 L72 118 Z" fill="#ff8f4a"/>
+    <!-- flames -->
+    <path d="M44 120 Q56 150 56 150 Q56 150 68 120 Z" fill="#febc2e" opacity="0.9"/>
+    <path d="M50 124 Q56 142 62 124 Z" fill="#ff5f57"/>
+  </g>
+
+  <!-- comment bubble -->
+  <g>
+    <rect x="330" y="300" width="90" height="40" rx="10" fill="#564CE5"/>
+    <path d="M345 340 L350 356 L360 340 Z" fill="#564CE5"/>
+    <circle cx="352" cy="320" r="4" fill="#ffffff"/>
+    <circle cx="368" cy="320" r="4" fill="#ffffff"/>
+    <circle cx="384" cy="320" r="4" fill="#ffffff"/>
+  </g>
+</svg>
